@@ -22,3 +22,7 @@ dependencies, and tools contained in a repository.
 * Step 1. Create branch
 * Step 2. Edit
 * Step 3. Submit Pull Request
+
+### More information
+
+More information about pull requests can be found at https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
