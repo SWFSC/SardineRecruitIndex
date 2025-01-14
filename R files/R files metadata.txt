@@ -1,0 +1,10 @@
+'Process env data_example.R' processes raw BEUTI data into inputs to SS
+
+'Obtain SS3 exe files.R' creates directories and downloads SS executables
+	-This needs to be run to obtain local executables, as .exe files are currently included in .gitignore
+
+'Fit assessment_2024 benchmark.R' runs 2024 sardine benchmark assessment
+
+'Fit assessment_example As-Data.R' runs the example assessment with following attributes:
+	-Based originally on 2024 sardine benchmark assessment
+	-Added example BEUTI environmental data as an index of recruitment
