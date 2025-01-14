@@ -1,0 +1,32 @@
+Note 1 Information: Max data length bin: 28  < max pop len bins: 30; so will accumulate larger pop len bins
+Warning 1 : Input catches in 2024 can be overridden by caps or allocations
+Warning 2 : Input catches in 2024 can be overridden by caps or allocations
+Warning 3 : Input catches in 2024 can be overridden by caps or allocations
+Warning 4 : Input catches in 2024 can be overridden by caps or allocations
+Warning 5 : Input catches in 2024 can be overridden by caps or allocations
+Warning 6 : Input catches in 2024 can be overridden by caps or allocations
+Note 2 Information: settle_month is less than spawn_month, so logical age at settlement calculated to be: 1  for settle_time 1.  Does not match read value of 0 are you sure? 
+Warning 7 : At least one block pattern ends in endyr. Check the output parameter value time series to see if the values in forecast years are as intended.
+Warning 8 : 2D_AR selectivity deviations option is selected!
+Warning 9 : 1st iteration warning: ssb(endyr)/ssb(styr)= 1.60621e-06; suggest start with larger R0 to get near 0.4; or use depletion fleet option
+Warning 10 : 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
+Warning 11 : Early recdev biasadj is >2 times ratio of rmse to sigmaR
+Warning 12 Adjustment: setting positive forecast relF for forecast only fleet: 1
+Warning 13 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 14 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 15 Adjustment: setting positive forecast relF for forecast only fleet: 3
+Warning 16 Adjustment: setting positive forecast relF for forecast only fleet: 1
+Warning 17 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 18 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 19 Adjustment: setting positive forecast relF for forecast only fleet: 3
+Warning 20 Adjustment: setting positive forecast relF for forecast only fleet: 1
+Warning 21 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 22 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 23 Adjustment: setting positive forecast relF for forecast only fleet: 3
+Note 3 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+Warning 24 Adjustment: setting positive forecast relF for forecast only fleet: 1
+Warning 25 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 26 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 27 Adjustment: setting positive forecast relF for forecast only fleet: 3
+Note 4 Information:  N parameters that are on or within 1% of min-max bound: 4; check results, variance may be suspect
+ 27 warnings  and 4 notes 
