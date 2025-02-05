@@ -27,7 +27,7 @@ Data were downloaded from the [CalCurrent IEA website](https://www.integratedeco
 # get data files to read in and collate
 
 # data file path
-datPath <- "C:/Users/r.wildermuth/Documents/FutureSeas/RecruitmentIndex/DFA_data/"
+datPath <- "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/DFA_data/"
 # handle weights, habitat, and zooplankton separately
 datFiles <- list.files(datPath)
 datFiles <- grep("cciea_", datFiles, fixed = TRUE, value = TRUE)
@@ -282,6 +282,31 @@ John Field's standardized young-of-the-year anchovy index from the RREAS survey,
 ```{r}
 yoyAnch <- read_csv(file = paste0(datPath, "RREAS_anchovy_YOY_index.csv"), na = "NULL")
 yoyAnch <- yoyAnch %>% rename(anchYoY = Index)
+
+yoySard <- read_csv(file = paste0(datPath, "cciea_RREAS_YOYsardine_dl20250116.csv"), na = "NULL", skip = 1)
+yoySard <- yoySard %>% rename(time = UTC,
+                              sardYoY = `Relative CPUE (dglm model)`)
+yoySard %>% ggplot(aes(x = time, y = sardYoY)) +
+  geom_line()
+```
+
+SLiDERS index of young-of-the-year sardine from sea lion scats received from Alex Curtis (10/8/2024)
+```{r}
+yoySLiDERS <- read_csv(file = paste0(datPath, "NYOY.qtr.csv"), na = "NULL")
+yoySLiDERS <- yoySLiDERS %>% filter(ScientificName == "YOY Sardinops sagax")
+
+yoySLiDERS %>% ggplot(aes(x = as.factor(altYear), y = xn)) + 
+  geom_bar(stat = "identity") +
+  facet_wrap(~Season)
+
+yoySLiDERS %>% group_by(Season) %>% summarize(avgN = mean(ns),
+                                              minN = min(ns),
+                                              maxN = max(ns),
+                                              meanYoY = mean(xn))
+# summer (June-Aug) has highest number of detections and second highest sample coverage
+yoySLiDERS %>% filter(Season == "2-Su") %>%
+  ggplot(aes(x = altYear, y = xn)) +
+  geom_line()
 ```
 
 # Weight-at-age data
@@ -474,6 +499,18 @@ nemuroZ <- read_csv(paste0(datPath, "ROMS-NEMURO spring plankton.csv"))
 nemuroZ <- nemuroZ %>% filter(GCM == "HIST") %>%
               pivot_wider(names_from = zone, values_from = c(PS, PL, ZS, ZM, ZL))
 ```
+
+Spring Copepoda pacificus
+```{r}
+spCpacificus <- read_csv(paste0(datPath, "Spring copepod community for Andrew 20221116.csv"))
+spCpacificus <- spCpacificus %>% filter(Species_new == "Calanus pacificus")
+
+spCpacificus %>% 
+  filter(Year >= 1990) %>%
+  ggplot(aes(x = Year, y = Abundance_m2)) +
+  geom_line()
+```
+
 
 # Species distribution model outputs
 Spawning habitat area and duration are calculated from ROMS-based species distribution models produced by Barb Muhling and downloaded 3/29/2023. Habitat predictions are derived from SDMs without SSB included as a predictor. For now using only GAM estimates of SDM.
