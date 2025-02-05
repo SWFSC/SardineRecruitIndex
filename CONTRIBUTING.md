@@ -6,7 +6,7 @@ The following is a set of guidelines for contributing to the [NMFS Openscapes Gi
 
 This project and everyone participating in it is governed by the [Code of Conduct]([CODE_OF_CONDUCT.md](https://github.com/afsc-gap-products/.github/blob/main/CODE_OF_CONDUCT.md)). By participating, you are expected to uphold this code. 
 
-## Contribute Through Pull Requests
+## Contribute through pull requests
 
 Pull Requests are the way concrete changes are made to the code, documentation,
 dependencies, and tools contained in a repository.
@@ -26,3 +26,7 @@ dependencies, and tools contained in a repository.
 ### More information
 
 More information about pull requests can be found at https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
+
+## Use informative commit messages
+
+An example guide for best practices when writing commit messages can be found at https://github.com/pfmc-assessments/PacFIN.Utilities/wiki/Convention-for-commit-messages
