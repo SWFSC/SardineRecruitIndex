@@ -131,6 +131,34 @@ legend(x="topright", legend = c("Data Processing for Research Assessment","2024 
 # Save estimates of age composition
 write.csv(Age_prop_final, here::here("Data", "MexCal_S1_agecomps_research.csv"))
 
+# Generate estimates of landings by MY, season
+landings_s_y <- raw_landings %>% 
+  mutate(MY = ifelse(MONTH %in% c(7:12), YEAR, YEAR-1),
+         Season = ifelse(MONTH %in% c(7:12), 1, 2),
+         `Model Y_S` = paste(MY,Season,sep="-"),
+         Fishery = ifelse(REGION %in% c("OR", "WA", "BC"), "PNW", "MexCal")) %>%
+  filter(MY >= 1981, SUB_POP == "NSP", 
+         Fishery == "MexCal", Season == 1) %>%
+  group_by(MY, Season) %>% # Removed Port_Area for time being, based on eqns. in briefing book based on month, age, and year only
+  dplyr::summarize(L_s_y = round(sum(MT),2)) %>% 
+  mutate(Fleet = 1,
+         catch_se = 0.05,
+         Yr = MY,
+         catch = L_s_y,
+         Seas = Season) %>%
+  ungroup() %>%
+  select(Yr, Seas, Fleet, catch, catch_se) %>%
+  left_join(expand.grid(Yr = 1981:2017,
+                        Seas = 1:2,
+                        Fleet = 1,
+                        catch_se = 0.05), .) %>%
+  mutate(catch = replace_na(catch, 0)) %>%
+  select(Yr, Seas, Fleet, catch, catch_se) %>%
+  arrange(Yr, Seas)
+
+# Save estimates of catch
+write.csv(landings_s_y, here::here("Data", "MexCal_S1_catch_research.csv"))
+
   # MexCal_S2 -------------------------
 
 # Format, filter data, calculate total monthly landings for each model year
@@ -242,20 +270,32 @@ legend(x="topright", legend = c("Data Processing for Research Assessment","2024 
 write.csv(Age_prop_final, here::here("Data", "MexCal_S2_agecomps_research.csv"))
 
 # Generate estimates of landings by MY, season
-landings_y <- raw_landings %>% 
-  #filter(REGION %in% c("OR", "WA", "CA")) %>% # now need to include BC, MexCal catch
+landings_s_y <- raw_landings %>% 
   mutate(MY = ifelse(MONTH %in% c(7:12), YEAR, YEAR-1),
          Season = ifelse(MONTH %in% c(7:12), 1, 2),
          `Model Y_S` = paste(MY,Season,sep="-"),
          Fishery = ifelse(REGION %in% c("OR", "WA", "BC"), "PNW", "MexCal")) %>%
   filter(MY >= 1981, SUB_POP == "NSP", 
-         Season == 2, Fishery == "MexCal") %>%
-  group_by(MY, MONTH) %>% # Removed Port_Area for time being, based on eqns. in briefing book based on month, age, and year only
-  dplyr::summarize(L_m_y = sum(MT)) %>% 
-  as.data.frame() %>%
-  group_by(MY) %>%
-  dplyr::summarize(L_y = sum(L_m_y))
+         Fishery == "MexCal", Season == 2) %>%
+  group_by(MY, Season) %>% # Removed Port_Area for time being, based on eqns. in briefing book based on month, age, and year only
+  dplyr::summarize(L_s_y = round(sum(MT),2)) %>% 
+  mutate(Fleet = 2,
+         catch_se = 0.05,
+         Yr = MY,
+         catch = L_s_y,
+         Seas = Season) %>%
+  ungroup() %>%
+  select(Yr, Seas, Fleet, catch, catch_se) %>%
+  left_join(expand.grid(Yr = 1981:2016,
+                        Seas = 1:2,
+                        Fleet = 2,
+                        catch_se = 0.05), .) %>%
+  mutate(catch = replace_na(catch, 0)) %>%
+  select(Yr, Seas, Fleet, catch, catch_se) %>%
+  arrange(Yr, Seas)
 
+# Save estimates of catch
+write.csv(landings_s_y, here::here("Data", "MexCal_S2_catch_research.csv"))
 
   # PNW -------------------------------
 
@@ -367,3 +407,33 @@ legend(x="topright", legend = c("Data Processing for Research Assessment","2024 
 
 # Save estimates of age composition
 write.csv(Age_prop_final, here::here("Data", "PNW_agecomps_research.csv"))
+
+# Generate estimates of landings by MY, season
+landings_s_y <- raw_landings %>% 
+  mutate(MY = ifelse(MONTH %in% c(7:12), YEAR, YEAR-1),
+         Season = ifelse(MONTH %in% c(7:12), 1, 2),
+         `Model Y_S` = paste(MY,Season,sep="-"),
+         Fishery = ifelse(REGION %in% c("OR", "WA", "BC"), "PNW", "MexCal")) %>%
+  filter(MY >= 1981, SUB_POP == "NSP", 
+         Fishery == "PNW") %>%
+  group_by(MY, Season) %>% # Removed Port_Area for time being, based on eqns. in briefing book based on month, age, and year only
+  dplyr::summarize(L_s_y = round(sum(MT),2)) %>% 
+  mutate(Fleet = 3,
+         catch_se = 0.05,
+         Yr = MY,
+         catch = L_s_y,
+         Seas = Season) %>%
+  ungroup() %>%
+  select(Yr, Seas, Fleet, catch, catch_se) %>%
+  left_join(expand.grid(Yr = 1981:2017,
+                        Seas = 1:2,
+                        Fleet = 3,
+                        catch_se = 0.05), .) %>%
+  mutate(catch = replace_na(catch, 0)) %>%
+  select(Yr, Seas, Fleet, catch, catch_se) %>%
+  arrange(Yr, Seas) %>%
+  filter(paste0(Yr, Seas) != "20172") # remove last year-season w/o data
+
+# Save estimates of catch
+write.csv(landings_s_y, here::here("Data", "PNW_catch_research.csv"))
+
