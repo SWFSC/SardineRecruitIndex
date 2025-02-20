@@ -1,13 +1,16 @@
 ---
 title: "Recruitment DFA data processing"
 author: "Robert Wildermuth"
-date: "2023-03-09"
+date: "2025-02-05"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Documentation of data processing for Dynamic Factor Analysis of sardine recruitment indicators. Data are updated to cover through 2023 or later. Indicators directly relevant to anchovy have been removed.
+
 
 ```{r}
 # Copied from https://github.com/futureseas/recrmntDFA 1/14/2025
@@ -22,7 +25,7 @@ library(r4ss)
 ```
 
 # California Current Integrated Ecosystem Assessment data
-Data were downloaded from the [CalCurrent IEA website](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/california-current-iea-indicators) 1/9/2023. Monthly or seasonal values were aggregated across relevant time periods for fish life histories to create annual values for the DFA.
+Data were downloaded from the [CalCurrent IEA website](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/california-current-iea-indicators) 1/16/2025. Monthly or seasonal values were aggregated across relevant time periods for fish life histories to create annual values for the DFA.
 ```{r}
 # get data files to read in and collate
 
@@ -32,36 +35,34 @@ datPath <- "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/DFA_data/
 datFiles <- list.files(datPath)
 datFiles <- grep("cciea_", datFiles, fixed = TRUE, value = TRUE)
 
+# use updated time series
+datFiles <- datFiles[which(!grepl("2023", datFiles))]
+
 # df names
-datNames <- sub("_dl20230109.csv", "", datFiles)
-datNames <- sub("_dl20230809.csv", "", datNames)
-datNames <- sub("_dl20231212.csv", "", datNames)
+datNames <- sub("_dl20250116.csv", "", datFiles)
 datNames <- sub("cciea_", "", datNames)
 
 # -------- Create table mapping variable names to descriptions and sources -----
 datDict <- data.frame(Variable = datNames,
-                      Description = c("Habitat compression index 30N to 35.5N",
-                                      "Habitat compression index 35.5N to 40N",
+                      Description = c(
                                       "Northern copepod biomass anomaly at 44.6N",
                                       "Southern copepod biomass anomaly at 44.6N",
                                       "Biologically Effective Upwelling Transport Index at 33N",
                                       "Biologically Effective Upwelling Transport Index at 39N",
                                       "Coastal Upwelling Transport Index at 33N",
                                       "Coastal Upwelling Transport Index at 39N",
+                                      "Habitat compression index 30N to 35.5N",
+                                      # "Habitat compression index 35.5N to 40N",
                                       "Length of Upwelling Season Index at 33N",
                                       "Length of Upwelling Season Index at 36N",
                                       "Length of Upwelling Season Index at 39N",
-                                      "Multivariate El Nino Southern Oscillation Index",
-                                      "Northern Oscillation Index",
-                                      "North Pacific Gyre Oscillation Index",
-                                      "Pacific Decadal Oscillation Index",
                                       "Spring Transition Index at 33N",
                                       "Spring Transition Index at 36N",
                                       "Spring Transition Index at 39N",
-                                      "Total spring CalCOFI larval anchovy (ln(n+1)/10m^2)",
+                                      "Mean myctophids in SWFSC Rockfish Recruitment & Ecosystem Assessment Survey (log(CPUE+1))",
+                                      "Young-of-the-year sardine in SWFSC Rockfish Recruitment & Ecosystem Assessment Survey",
                                       "Total spring CalCOFI larval sardine (ln(n+1)/10m^2)",
-                                      "Total spring CalCOFI larval southern mesopelagics (ln(n+1)/10m^2)",
-                                      "Mean myctophids in SWFSC Rockfish Recruitment & Ecosystem Assessment Survey (log(CPUE+1))"),
+                                      "Total spring CalCOFI larval southern mesopelagics (ln(n+1)/10m^2)"),
                       Source = "CCIEA")
 datDict
 
@@ -74,6 +75,9 @@ for(i in 1:length(datFiles)) {
                   skip = 2))
 }
 
+# for now skip N/S COP
+datNames <- datNames[-c(1:2)]
+
 # creates 'year' and 'month' columns 
 recrDat <- lapply(mget(datNames), 
                   function(x) {x %>% mutate(year = year(time),
@@ -83,30 +87,30 @@ recrDat <- lapply(mget(datNames),
 # Read in SSWI separately
 sswi <- read_csv(file.path(datPath, "sswi_monthly_35-37N_1980-2010.csv"))
 
-# ---- Aggregate monthly measures for annual time series ------
-# NPGO indicator of forage, aggregate May - July
-recrDat$OC_NPGO <- recrDat$OC_NPGO %>% filter(month %in% 5:7) %>%
-                      group_by(year) %>%
-                      summarize(NPGO = mean(OC_NPGO))
-
-# PDO indicator of preconditioning, aggregate March - July, Aug - Oct
-recrDat$OC_PDO <- recrDat$OC_PDO %>% filter(month %in% 3:10) %>%
-                      mutate(seas = case_when(month %in% 3:7 ~ "spring",
-                                              month %in% 8:10 ~ "summer")) %>%
-                      group_by(year, seas) %>%
-                      summarize(PDO = mean(OC_PDO)) %>% 
-                      pivot_wider(names_from = seas, names_prefix = "PDO",
-                                  values_from = PDO)
-
-# NOI indicator of forage, aggregate March - July
-recrDat$OC_NOI <- recrDat$OC_NOI %>% filter(month %in% 3:7) %>%
-                      group_by(year) %>%
-                      summarize(NOI = mean(OC_NOI))
-
-# ENSO indicator of forage, aggregate March - July
-recrDat$OC_MultiENSOindx <- recrDat$OC_MultiENSOindx %>% filter(month %in% 3:7) %>%
-                              group_by(year) %>%
-                              summarize(ENSO = mean(OC_MultiENSOindx))
+# # ---- Aggregate monthly measures for annual time series ------
+# # NPGO indicator of forage, aggregate May - July
+# recrDat$OC_NPGO <- recrDat$OC_NPGO %>% filter(month %in% 5:7) %>%
+#                       group_by(year) %>%
+#                       summarize(NPGO = mean(OC_NPGO))
+# 
+# # PDO indicator of preconditioning, aggregate March - July, Aug - Oct
+# recrDat$OC_PDO <- recrDat$OC_PDO %>% filter(month %in% 3:10) %>%
+#                       mutate(seas = case_when(month %in% 3:7 ~ "spring",
+#                                               month %in% 8:10 ~ "summer")) %>%
+#                       group_by(year, seas) %>%
+#                       summarize(PDO = mean(OC_PDO)) %>% 
+#                       pivot_wider(names_from = seas, names_prefix = "PDO",
+#                                   values_from = PDO)
+# 
+# # NOI indicator of forage, aggregate March - July
+# recrDat$OC_NOI <- recrDat$OC_NOI %>% filter(month %in% 3:7) %>%
+#                       group_by(year) %>%
+#                       summarize(NOI = mean(OC_NOI))
+# 
+# # ENSO indicator of forage, aggregate March - July
+# recrDat$OC_MultiENSOindx <- recrDat$OC_MultiENSOindx %>% filter(month %in% 3:7) %>%
+#                               group_by(year) %>%
+#                               summarize(ENSO = mean(OC_MultiENSOindx))
 
 # BEUTI indicator of forage, aggregate May - July
 recrDat$OC_BEUTI_33N <- recrDat$OC_BEUTI_33N %>% filter(month %in% 5:7) %>%
@@ -125,35 +129,35 @@ recrDat$OC_CUTI_39N <- recrDat$OC_CUTI_39N %>% filter(month %in% 5:7) %>%
                           summarize(CUTI_39N = mean(OC_CUTI_39N))
 
 # HCI indicator of preconditioning, aggregate Feb - July
-recrDat$EI_HCI_30N355N <- recrDat$EI_HCI_30N355N %>% filter(month %in% 2:7) %>%
+recrDat$OC_HCI_30N355N <- recrDat$OC_HCI_30N355N %>% filter(month %in% 2:7) %>%
                               group_by(year) %>%
-                              summarize(HCI_R3 = mean(EI_HCI_30N355N)) # Region 3
+                              summarize(HCI_30N355N = mean(OC_HCI_30N355N)) # Region 3
 
-recrDat$EI_HCI_355N40N <- recrDat$EI_HCI_355N40N %>% filter(month %in% 2:7) %>%
-                              group_by(year) %>%
-                              summarize(HCI_R4 = mean(EI_HCI_355N40N)) # Region 4
+# recrDat$EI_HCI_355N40N <- recrDat$EI_HCI_355N40N %>% filter(month %in% 2:7) %>%
+#                               group_by(year) %>%
+#                               summarize(HCI_R4 = mean(EI_HCI_355N40N)) # Region 4
 
-# COPepod community indicator of preconditioning and forage, aggregate March - July, Aug - Oct
-recrDat$EI_NorthernCOP_44.6N <- recrDat$EI_NorthernCOP_44.6N %>% filter(month %in% 3:10) %>%
-                      mutate(seas = case_when(month %in% 3:7 ~ "spring",
-                                              month %in% 8:10 ~ "summer")) %>%
-                      group_by(year, seas) %>%
-                      summarize(NCOP = mean(EI_NorthernCOP_44.6N)) %>% 
-                      pivot_wider(names_from = seas, names_prefix = "NCOP",
-                                  values_from = NCOP)
-# lag summer zooplankton for condition
-recrDat$EI_NorthernCOP_44.6N$NCOPsummerlag1 <- lag(recrDat$EI_NorthernCOP_44.6N$NCOPsummer, n=1)
-
-
-recrDat$EI_SouthernCOP_44.6N <- recrDat$EI_SouthernCOP_44.6N %>% filter(month %in% 3:10) %>%
-                      mutate(seas = case_when(month %in% 3:7 ~ "spring",
-                                              month %in% 8:10 ~ "summer")) %>%
-                      group_by(year, seas) %>%
-                      summarize(SCOP = mean(EI_SouthernCOP_44.6N)) %>% 
-                      pivot_wider(names_from = seas, names_prefix = "SCOP",
-                                  values_from = SCOP) 
-# lag summer zooplankton for condition
-recrDat$EI_SouthernCOP_44.6N$SCOPsummerlag1 <- lag(recrDat$EI_SouthernCOP_44.6N$SCOPsummer, n=1)
+# # COPepod community indicator of preconditioning and forage, aggregate March - July, Aug - Oct
+# recrDat$EI_NorthernCOP_44.6N <- recrDat$EI_NorthernCOP_44.6N %>% filter(month %in% 3:10) %>%
+#                       mutate(seas = case_when(month %in% 3:7 ~ "spring",
+#                                               month %in% 8:10 ~ "summer")) %>%
+#                       group_by(year, seas) %>%
+#                       summarize(NCOP = mean(EI_NorthernCOP_44.6N)) %>% 
+#                       pivot_wider(names_from = seas, names_prefix = "NCOP",
+#                                   values_from = NCOP)
+# # lag summer zooplankton for condition
+# recrDat$EI_NorthernCOP_44.6N$NCOPsummerlag1 <- lag(recrDat$EI_NorthernCOP_44.6N$NCOPsummer, n=1)
+# 
+# 
+# recrDat$EI_SouthernCOP_44.6N <- recrDat$EI_SouthernCOP_44.6N %>% filter(month %in% 3:10) %>%
+#                       mutate(seas = case_when(month %in% 3:7 ~ "spring",
+#                                               month %in% 8:10 ~ "summer")) %>%
+#                       group_by(year, seas) %>%
+#                       summarize(SCOP = mean(EI_SouthernCOP_44.6N)) %>% 
+#                       pivot_wider(names_from = seas, names_prefix = "SCOP",
+#                                   values_from = SCOP) 
+# # lag summer zooplankton for condition
+# recrDat$EI_SouthernCOP_44.6N$SCOPsummerlag1 <- lag(recrDat$EI_SouthernCOP_44.6N$SCOPsummer, n=1)
 
 # Southern Source Water Index indicator of nursery habitat, aggregate Jan-Jun, Jul-Dec
 # From Mike Jacox (5/15/2023): "The way I did these runs was similar to particle tracking, but a different methodology that relies on the internal workings of the ROMS code. In effect, you can think of it like adding a dye or tracer to an area of the ocean and then tracking it backward in time."
@@ -261,35 +265,18 @@ indxGAM <- indxGAM %>% mutate(sardLarv = sardLarv + c(0, sardGAMcoef[2:length(yr
                               sardLarv = case_when(sardLarv < log(0.01) ~ log(0.01),
                                                    TRUE ~ sardLarv))
 
-load(file = paste0(datPath, "anchovyLarvalIndex.RData"))
-indxGAM$anchLarv <- coef(anchLarv)[1]
-indxGAM$anchGAMcoef <- as.vector(coef(anchLarv))[1:length(yr.vec)]
-indxGAM <- indxGAM %>% mutate(anchLarv = anchLarv + c(0, anchGAMcoef[2:length(yr.vec)]))
-
 load(file = paste0(datPath, "soMesopelLarvalIndex.RData"))
 indxGAM$mesopelLarv <- coef(mesopelLarv)[1]
 indxGAM$mesopelGAMcoef <- as.vector(coef(mesopelLarv))[1:length(yr.vec)]
 indxGAM <- indxGAM %>% mutate(mesopelLarv = mesopelLarv + c(0, mesopelGAMcoef[2:length(yr.vec)]))
 
-indxGAM %>% select(year, sardLarv, anchLarv, mesopelLarv) %>%
+indxGAM %>% select(year, sardLarv, mesopelLarv) %>%
   pivot_longer(cols = -year) %>%
   ggplot(aes(x = year, y = value, color = name)) +
   geom_line()
 ```
 
 # Young-of-the-Year Index
-John Field's standardized young-of-the-year anchovy index from the RREAS survey, pulled from Charlie Hinchliffe's anchovy model by Desiree Tommasi (8/23/2023).
-```{r}
-yoyAnch <- read_csv(file = paste0(datPath, "RREAS_anchovy_YOY_index.csv"), na = "NULL")
-yoyAnch <- yoyAnch %>% rename(anchYoY = Index)
-
-yoySard <- read_csv(file = paste0(datPath, "cciea_RREAS_YOYsardine_dl20250116.csv"), na = "NULL", skip = 1)
-yoySard <- yoySard %>% rename(time = UTC,
-                              sardYoY = `Relative CPUE (dglm model)`)
-yoySard %>% ggplot(aes(x = time, y = sardYoY)) +
-  geom_line()
-```
-
 SLiDERS index of young-of-the-year sardine from sea lion scats received from Alex Curtis (10/8/2024)
 ```{r}
 yoySLiDERS <- read_csv(file = paste0(datPath, "NYOY.qtr.csv"), na = "NULL")
@@ -349,21 +336,6 @@ sardSSBwt %>% ggplot(aes(x = year, y = meanSSBwt, color = seas)) +
   facet_wrap(~seas, scales = "free_y") +
   labs(y = "Mean SSB weight (g)")
 
-# WAA from fishery data used in SS
-# From Charlie Hinchliff on 4/4/2023:
-# The model is based on a June-May biological year (aka ‘model year’), with two 
-# semester-based seasons (5 & 7 months) per year (S1 is Jun-Dec, and S2 is Jan-May).
-# and:
-# for 'model year' S2 will actually correspond to the following calendar year 
-# i.e., fish in 'model year-season' 2015-2 were caught at the beginning of 2016 (Jan-May).
-# This will be the same for biomass output too.
-waaFishery <- read_csv(paste0(datPath,
-                              "anchovySSfiles/anchovy_formatted_wtatage_for_Robert.csv"))
-
-waaFishery %>% ggplot(aes(x = modelyear, y = a1, color = as.character(Seas))) +
-  geom_line() +
-  # facet_wrap(~commonName, scales = "free_y") +
-  labs(y = "Mean weight (g)")
 ```
 
 # Zooplankton data
@@ -628,76 +600,10 @@ ggplot() +
 
 sardSpawnHab <- aggregate(sardSpawnYr, ccAtl, FUN = sum, na.rm = TRUE)
 
-#--- Anchovy --------------------------
-anchFiles <- expand.grid("anch", 2:4, 1998:2022, "mboost_roms.nc") %>% 
-                    mutate(sdmFile = paste(Var1, Var2, Var3, Var4, sep = "_")) %>%
-                    pull(sdmFile)
-
-anchFiles <- paste0(datPath, "SDMoutput/anchovy_noSSB/", anchFiles)
-anchSDMs <- read_stars(anchFiles, proxy = FALSE, quiet = TRUE)
-# Time fix from Barb
-wrongTimes <- as.Date(st_get_dimension_values(anchSDMs, "time"))
-wrongTimes[c(1, length(wrongTimes))] # Can see is wrong baseline
-rightTimes <- wrongTimes + 693579 # 693579 is the number of days since 0000-00-00
-anchSDMs <- st_set_dimensions(anchSDMs, 3, values = rightTimes, names = "time")
-st_get_dimension_values(anchSDMs, "time")[c(1, length(wrongTimes))] # Check times look ok now
-
-st_crs(anchSDMs) <- "+proj=longlat +ellps=WGS84 +datum=WGS84"
-anchSDMs <- st_transform(anchSDMs, "+proj=longlat +ellps=WGS84 +datum=WGS84")
-#st_get_dimension_values(anchSDMs, "time")
-
-# crop to Atlantis extent
-anchSDMs <- st_crop(x = anchSDMs,
-                      y = ccAtl)
-
-# show first 5 days of SDM
-anchSlice <- slice(anchSDMs, index = 1:5, along = "time")
-ggplot() + geom_stars(data = anchSlice) + facet_wrap(~time)
-
-# Calculate high probability habitat
-probMean <- mean(anchSDMs$anch_2_1998_GAM_noSSB.nc, na.rm = TRUE)
-probSD <- sd(anchSDMs$anch_2_1998_GAM_noSSB.nc, na.rm = TRUE)
-upper95 <- probMean + 1.96*probSD
-# discrimination threshold from Barb Muhling:
-anchHabThresh <- 0.29
-
-# Try masking low probability cells
-anchSpawn <- anchSDMs
-anchSpawn[anchSDMs < anchHabThresh] <- NA
-
-anchSpawnSlice <- slice(anchSpawn, index = 150:160, along = "time")
-#ggplot() + geom_stars(data = sardSpawnSlice) + facet_wrap(~time)
-
-ggplot() +
-  geom_stars(data = anchSpawnSlice) +
-  scale_fill_gradientn(colours = mypalette, limits = c(0, 0.8), na.value = NA) +
-  guides(fill = guide_colorbar(barwidth=0.5, barheight=5)) +
-  pac.coast + 
-  geom_sf(data = ccAtl, color = "black", size = 1.5, fill = NA) +
-  coord_sf(xlim = c(-130, -113), ylim = c(27, 42)) +
-  facet_wrap(~time)
-
-anchSpawnYr <- aggregate(anchSpawn, by = "years", FUN = sum, na.rm = TRUE)
-st_get_dimension_values(anchSpawnYr, "time")
-
-ggplot() +
-  geom_stars(data = aperm(anchSpawnYr, c(2,3,1))) +
-  scale_fill_gradientn(colours = mypalette,
-                       limits = c(0, max(anchSpawnYr$anch_2_1998_mboost_roms.nc,
-                                         na.rm = TRUE)),
-                       na.value = NA) +
-  guides(fill = guide_colorbar(barwidth=0.5, barheight=5)) +
-  pac.coast +
-  geom_sf(data = ccAtl, color = "black", size = 1.5, fill = NA) +
-  coord_sf(xlim = c(-130, -115), ylim = c(28, 42)) +
-  facet_wrap(~time)
-
-anchSpawnHab <- aggregate(anchSpawnYr, ccAtl, FUN = sum, na.rm = TRUE)
 spawnTS <- data.frame(year = 1998:2022,
-                      sardSpawnHab = t(sardSpawnHab$sard_3_1998_mboost_roms.nc),
-                      anchSpawnHab = t(anchSpawnHab$anch_2_1998_mboost_roms.nc))
+                      sardSpawnHab = t(sardSpawnHab$sard_3_1998_mboost_roms.nc))
 
-spawnTS %>% pivot_longer(cols = c("sardSpawnHab", "anchSpawnHab")) %>%
+spawnTS %>% pivot_longer(cols = c("sardSpawnHab")) %>%
   ggplot() +
   geom_line(aes(x = year, y = value, col = name))
 ```
@@ -742,24 +648,7 @@ ggplot() +
   coord_sf(xlim = c(-130, -115), ylim = c(28, 42)) +
   facet_wrap(~time)
 
-# Anchovy
-anchSpawnGrounds <- aggregate(anchSpawnYr, by = by_t, FUN = sum, 
-                              na.rm = TRUE, rightmost.closed = TRUE)
-# Change to categorical (1 = in spawning grounds)
-anchSpawnGrounds[anchSpawnGrounds > 0] <- 1
-# rearrange the dimensions and get only the aggregated time slice
-anchSpawnGrounds <- aperm(anchSpawnGrounds, c(2,3,1))
-anchSpawnGrounds <- anchSpawnGrounds[, , , 1]
-
-ggplot() +
-  geom_stars(data = anchSpawnGrounds) +
-  pac.coast +
-  geom_sf(data = ccAtl, color = "black", size = 1.5, fill = NA) +
-  coord_sf(xlim = c(-130, -115), ylim = c(28, 42)) +
-  facet_wrap(~time)
-
 # save(sardSpawnGrounds, file = paste0(datPath, "histSardSpawnGr.RData"))
-# save(anchSpawnGrounds, file = paste0(datPath, "histAnchSpawnGr.RData"))
 ```
 
 Find proportion of breeding habitat in spawning ground
@@ -804,35 +693,6 @@ sardSpawnDays <- sardSpDates %>% filter(propSpawn >= 0.05) %>%
                     group_by(year) %>%
                     summarize(daysAbove5pct = n())
 
-# convert spawning days to categorical
-anchSpawn1NA <- anchSpawn
-anchSpawn1NA[anchSpawn > anchHabThresh] <- 1 # should only be NAs and 1s
-
-# find number of cells in spawning grounds
-anchSpGrdDenom <- aggregate(anchSpawnGrounds, by = ccAtl, FUN = sum, na.rm = TRUE)
-anchSpGrdDenom <- as.numeric(anchSpGrdDenom$anch_2_1998_mboost_roms.nc)
-
-# find number of high probability cells at each time
-anchSpGrdNum <- aggregate(anchSpawn1NA, by = ccAtl, FUN = sum, na.rm = TRUE)
-anchSpGrdNum <- t(anchSpGrdNum$anch_2_1998_mboost_roms.nc) 
-
-anchSpDates <- data.frame(date = st_get_dimension_values(anchSpawn, which = "time"),
-                          propSpawn = anchSpGrdNum/anchSpGrdDenom) %>%
-                  mutate(year = year(ymd(date)),
-                         dayofYr = yday(date))
-
-summary(anchSpGrdNum/anchSpGrdDenom)
-
-anchSpDates %>% #filter(year == 2015) %>%
-  ggplot(aes(x = dayofYr, y = propSpawn)) +
-  geom_line() +
-  geom_hline(yintercept = quantile(anchSpGrdNum/anchSpGrdDenom, probs = c(0.1, 0.2, 0.5))) +
-  facet_wrap(~year, scales = "free_y")
-
-# Calculate number of days 40% of spawning grounds contain high quality habitat
-anchSpawnDays <- anchSpDates %>% filter(propSpawn >= 0.4) %>% 
-                    group_by(year) %>%
-                    summarize(daysAbove40pct = n())
 ```
 
 ## Nursury habitat area
@@ -917,76 +777,10 @@ ggplot() +
 
 sardLarvHab <- aggregate(sardLarvYr, ccAtl, FUN = sum, na.rm = TRUE)
 
-#--- Anchovy --------------------------
-anchFiles <- expand.grid("anchLarvae", 2:4, 1998:2022, "mboost_roms.nc") %>% 
-                    mutate(sdmFile = paste(Var1, Var2, Var3, Var4, sep = "_")) %>%
-                    pull(sdmFile)
-
-anchFiles <- paste0(datPath, "SDMoutput/anchovy_larvae/", anchFiles)
-anchLarvSDMs <- read_stars(anchFiles, proxy = FALSE, quiet = TRUE)
-# Time fix from Barb
-wrongTimes <- as.Date(st_get_dimension_values(anchLarvSDMs, "time"))
-wrongTimes[c(1, length(wrongTimes))] # Can see is wrong baseline
-rightTimes <- wrongTimes + 693579 # 693579 is the number of days since 0000-00-00
-anchLarvSDMs <- st_set_dimensions(anchLarvSDMs, 3, values = rightTimes, names = "time")
-st_get_dimension_values(anchLarvSDMs, "time")[c(1, length(wrongTimes))] # Check times look ok now
-
-st_crs(anchLarvSDMs) <- "+proj=longlat +ellps=WGS84 +datum=WGS84"
-anchLarvSDMs <- st_transform(anchLarvSDMs, "+proj=longlat +ellps=WGS84 +datum=WGS84")
-#st_get_dimension_values(anchLarvSDMs, "time")
-
-# crop to Atlantis extent
-anchLarvSDMs <- st_crop(x = anchLarvSDMs,
-                      y = ccAtl)
-
-# show first 5 days of SDM
-anchLarvSlice <- slice(anchLarvSDMs, index = 1:5, along = "time")
-ggplot() + geom_stars(data = anchLarvSlice) + facet_wrap(~time)
-
-# Calculate high probability habitat
-probMean <- mean(anchLarvSDMs$anch_2_1998_GAM_noSSB.nc, na.rm = TRUE)
-probSD <- sd(anchLarvSDMs$anch_2_1998_GAM_noSSB.nc, na.rm = TRUE)
-upper95 <- probMean + 1.96*probSD
-# discrimination threshold from Barb Muhling:
-anchLarvHabThresh <- 0.42
-
-# Try masking low probability cells
-anchLarv <- anchLarvSDMs
-anchLarv[anchLarvSDMs < anchLarvHabThresh] <- NA
-
-# anchLarvSlice <- slice(anchLarv, index = 150:160, along = "time")
-# #ggplot() + geom_stars(data = sardLarvSlice) + facet_wrap(~time)
-# 
-# ggplot() +
-#   geom_stars(data = anchLarvSlice) +
-#   scale_fill_gradientn(colours = mypalette, limits = c(0, 0.8), na.value = NA) +
-#   guides(fill = guide_colorbar(barwidth=0.5, barheight=5)) +
-#   pac.coast + 
-#   geom_sf(data = ccAtl, color = "black", size = 1.5, fill = NA) +
-#   coord_sf(xlim = c(-130, -113), ylim = c(27, 42)) +
-#   facet_wrap(~time)
-
-anchLarvYr <- aggregate(anchLarv, by = "years", FUN = sum, na.rm = TRUE)
-st_get_dimension_values(anchLarvYr, "time")
-
-ggplot() +
-  geom_stars(data = aperm(anchLarvYr, c(2,3,1))) +
-  scale_fill_gradientn(colours = mypalette,
-                       limits = c(0, max(anchLarvYr$anchLarvae_2_1998_mboost_roms.nc,
-                                         na.rm = TRUE)),
-                       na.value = NA) +
-  guides(fill = guide_colorbar(barwidth=0.5, barheight=5)) +
-  pac.coast +
-  geom_sf(data = ccAtl, color = "black", size = 1.5, fill = NA) +
-  coord_sf(xlim = c(-130, -115), ylim = c(28, 42)) +
-  facet_wrap(~time)
-
-anchLarvHab <- aggregate(anchLarvYr, ccAtl, FUN = sum, na.rm = TRUE)
 nurseTS <- data.frame(year = 1998:2022,
-                      sardNurseHab = t(sardLarvHab$sardLarvae_3_1998_mboost_roms.nc),
-                      anchNurseHab = t(anchLarvHab$anchLarvae_2_1998_mboost_roms.nc))
+                      sardNurseHab = t(sardLarvHab$sardLarvae_3_1998_mboost_roms.nc))
 
-nurseTS %>% pivot_longer(cols = c("sardNurseHab", "anchNurseHab")) %>%
+nurseTS %>% pivot_longer(cols = c("sardNurseHab")) %>%
   ggplot() +
   geom_line(aes(x = year, y = value, col = name))
 ```
@@ -995,7 +789,7 @@ nurseTS %>% pivot_longer(cols = c("sardNurseHab", "anchNurseHab")) %>%
 Use Stock Synthesis-based estimates of biomass and recruitment as index variables
 ```{r}
 # sardine - use r4ss package to read in from research model folder
-sardVals <- SS_output("C:/Users/r.wildermuth/Documents/FutureSeas/sardine_research_assessment",
+sardVals <- SS_output("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/sardine_research_assessment",
                       verbose = FALSE, printstats = FALSE)
 
 sardBio <- sardVals$timeseries %>% filter(Era == "TIME") %>%
@@ -1039,19 +833,6 @@ anchRec %>% ggplot(aes(x = Yr, y = anchRec)) +
   geom_line()
 ```
 
-Stock assessment estimates of albacore and hake
-```{r}
-albacore <- readxl::read_excel(path = paste0(datPath, "Drivers of Sardine recruitment - Time-series.xlsx"),
-                   sheet = "Albacore", col_names = TRUE,
-                   skip = 5)
-albacore <- albacore %>% rename(albacore = "SSB (T)")
-
-hake <- readxl::read_excel(path = paste0(datPath, "Drivers of Sardine recruitment - Time-series.xlsx"),
-                   sheet = "Pacific hake", col_names = TRUE,
-                   skip = 2)
-hake <- hake %>% rename(hake = "Biomass (thousand tons)")
-```
-
 # Colate timeseries 
 ```{r}
 # compile and save data for analysis
@@ -1069,13 +850,10 @@ sardSSBwt <- sardSSBwt %>%filter(seas == "spring",
 
 waa <- waa %>% full_join(y = sardSSBwt, by = "year")
 
-# Use observed fishery-dependent waa for anchovy
-# Note: gap in observations between 1988-2013, so may only be useful for longer-term analysis in STAN
-waaFishery <- waaFishery %>% filter(Seas == 2) %>%
-                # account for model year + S2 being in next calendar year
-                mutate(year = modelyear + 1) %>%
-                select(year, a1) %>%
-                rename(age1SprAnchmeanWAA = a1)
+yoySLiDERS <- yoySLiDERS %>% filter(Season == "2-Su") %>%
+                rename(year = altYear,
+                       yoySardSL = xn) %>%
+                select(year, yoySardSL)
 
 # take only small zooplkn groups in spring for larvae forage
 zooplkn <- zooplkn %>% group_by(Class, year, seas) %>%
@@ -1090,6 +868,10 @@ zooplkn <- zooplkn %>% group_by(Class, year, seas) %>%
 copMeanSize <- copMeanSize %>% select(-totSize)
 naupMeanSize <- naupMeanSize %>% select(-totSize)
 
+spCpacificus <- spCpacificus %>% rename(year = Year,
+                                        C.pacificus = Abundance_m2) %>%
+                  select(year, C.pacificus)
+
 # Join SS output and change name of 'Yr' once
 outSS3 <- anchRec %>% full_join(sardRec, by = "Yr")  %>% 
             rename(year = Yr)
@@ -1103,32 +885,30 @@ sst <- WCRNT %>% rename(springSST = SSTwcnrtspring,
 
 # Combine everything together and save
 recrDat <- recrDat %>% full_join(indxGAM, by = "year") %>%
-              full_join(yoyAnch, by = c("year" = "Year")) %>%
               full_join(waa, by = "year") %>%
-              full_join(waaFishery, by = "year") %>%
               #full_join(zooplkn, by = "year") %>%
-              full_join(copMeanSize, by = "year") %>%
-              full_join(naupMeanSize, by = "year") %>%
+              # full_join(copMeanSize, by = "year") %>%
+              # full_join(naupMeanSize, by = "year") %>%
               full_join(copGAM, by = "year") %>%
               full_join(nemuroZ, by = "year") %>%
+              full_join(spCpacificus, by = "year") %>%
               full_join(spawnTS, by = "year") %>%
               full_join(sardSpawnDays, by = "year") %>%
-              full_join(anchSpawnDays, by = "year") %>%
               full_join(nurseTS, by = "year") %>%
               full_join(outSS3, by = "year") %>%
               full_join(anchBio, by = "year") %>%
               full_join(sardBio, by = "year") %>%
               full_join(sst, by = "year") %>%
               full_join(transport, by = "year") %>%
-              full_join(albacore, by = c("year" = "Years")) %>%
-              full_join(hake, by = c("year" = "Year")) %>%
-              select(-c(sprCalCOFILarvalAnchovy,
-                        sprCalCOFILarvalSardine,
+              full_join(yoySLiDERS, by = "year") %>%
+  
+  
+              select(-c(sprCalCOFILarvalSardine,
                         sprCalCOFISouthernMesopels,
-                        sardGAMcoef, anchGAMcoef, mesopelGAMcoef,
-                        copGAMcoef, naupGAMcoef, GCM, se_log,
+                        sardGAMcoef, mesopelGAMcoef,
+                        copGAMcoef, naupGAMcoef, GCM,
                         PS_NorCal, PS_SoCal, PL_NorCal, PL_SoCal,
-                        ZS_NorCal, ZS_SoCal, `Catches (T)`))
+                        ZS_NorCal, ZS_SoCal))
 
-write_csv(recrDat, file = "C:/Users/r.wildermuth/Documents/FutureSeas/RecruitmentIndex/recrmntDFA/recrDFAdat.csv")
+#write_csv(recrDat, file = "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/Data/recrDFAdat.csv")
 ```
