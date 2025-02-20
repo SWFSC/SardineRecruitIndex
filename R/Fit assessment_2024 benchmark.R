@@ -29,7 +29,7 @@ sel_SS <- "v3.30.22" # indicate version of SS to run this analysis with
   # 2024 Benchmark used v3.30.22
 
 # Set directory for SS files
-base_wd <- here::here("SS files", "Pacific sardine 2024 benchmark")
+base_wd <- here::here("scenarioModels", "Pacific sardine 2024 benchmark")
 
 # Run 2024 Pacific sardine benchmark assessment, save output/plots ---------------------------
   # Run model, save results as .rds file ----

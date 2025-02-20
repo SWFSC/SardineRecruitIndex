@@ -10,7 +10,7 @@
 #######################################
 
 # ID all SS3 versions to install .exe file for
-SS_vers <- c("v3.30.22.1", "v3.30.22")
+SS_vers <- c("v3.30.16", "v3.30.22.1", "v3.30.22")
 
 # Create local-only directory for storing different versions of SS3 exe files
   # Only creates directory if not already present
