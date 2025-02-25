@@ -22,7 +22,7 @@
 #_Cond 1 1 1 2 4 10 # example move definition for seas=1, morph=1, source=1 dest=2, age1=4, age2=10
 #
 7 #_Nblock_Patterns
- 1 16 16 8 5 37 14 #_blocks_per_pattern 
+ 1 11 16 8 5 37 14 #_blocks_per_pattern 
 # begin and end years of blocks
 
  #1: SR pattern
@@ -30,11 +30,7 @@
 
  #2: AT Survey age selectivity
  #2012 2012 2013 2013 2014 2014 2015 2015 2016 2016 2017 2017 2018 2018 2019 2019
- 2007 2007 # Copied from 2024 benchmark
- 2008 2008
- 2009 2009
- 2010 2010
- 2011 2011
+  # Copied from 2024 benchmark, started from 2012 as in 2020_research_assessment
  2012 2012
  2013 2013
  2014 2014
@@ -225,7 +221,7 @@
             -3             3         -0.59             0            99             0         -2          0          0          0          0          0          0          0  #  LnQ_base_TEP_all(6)
 # timevary Q parameters 
 #_          LO            HI          INIT         PRIOR         PR_SD       PR_type     PHASE  #  parm_name
-             0             3        -0.311             0            99             0      -1  # LnQ_base_AT_Survey(4)_BLK5repl_2015
+            -3             3        -0.311             0            99             0      -1  # LnQ_base_AT_Survey(4)_BLK5repl_2015
 -3 3 -0.530 0 99  0 -1 # Q block spring 2020
 -3 3 -0.311 0 99  0 -1 # Q block 2021
 -3 3 0      0 99 0 -1 # Q block 2022
@@ -446,6 +442,9 @@
              0             9             0            -1            99             0      -4  # AgeSel_P2_AT_Survey(4)_BLK2repl_2017
              0             9   0.000433815            -1            99             0      4  # AgeSel_P2_AT_Survey(4)_BLK2repl_2018
              0            11   0.000433815            -1            99             0      4  # AgeSel_P2_AT_Survey(4)_BLK2repl_2019
+             0            11   0.000433815            -1            99             0      4  # AgeSel_P2_AT_Survey(4)_BLK2repl_2021
+             0            11   0.000433815            -1            99             0      4  # AgeSel_P2_AT_Survey(4)_BLK2repl_2022
+             0            11   0.000433815            -1            99             0      4  # AgeSel_P2_AT_Survey(4)_BLK2repl_2023
 # info on dev vectors created for selex parms are reported with other devs after tag parameter section 
 #
 0   #  use 2D_AR1 selectivity(0/1)
