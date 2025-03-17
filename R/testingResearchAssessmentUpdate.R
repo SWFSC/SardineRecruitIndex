@@ -73,7 +73,7 @@ compBio <- resAssmt$timeseries %>% filter(Era == "TIME") %>%
               rename("resAssmt2025" = "Bio_smry")
 
 compBio %>% pivot_longer(cols = -c(Yr, Seas), names_to = "SSmodel", values_to = "bioSmry") %>%
-  # ggplot(aes(x = Yr, y = log(bioSmry), color = SSmodel)) +
-  ggplot(aes(x = Yr, y = bioSmry, color = SSmodel)) +
+  ggplot(aes(x = Yr, y = log(bioSmry), color = SSmodel)) +
+  # ggplot(aes(x = Yr, y = bioSmry, color = SSmodel)) +
   geom_line() +
   facet_wrap(~Seas)

@@ -105,7 +105,7 @@
  0.199 0.936 0.585 0 99 0 -2 0 0 0 0 0 0 0 # NatM_p_1_Fem_GP_1
 # Sex: 1  BioPattern: 1  Growth
  3 30 8 0 99 0 3 0 0 0 0 0 0 0 # L_at_Amin_Fem_GP_1
- 15 40 26.7199 0 99 0 3 0 1 1982 2019 4 0 0 # L_at_Amax_Fem_GP_1
+ 15 40 26.7199 0 99 0 3 0 1 1982 2024 4 0 0 # L_at_Amax_Fem_GP_1
  0.05 0.99 0.721427 0 99 0 3 0 0 0 0 0 0 0 # VonBert_K_Fem_GP_1
  0.05 0.5 0.164739 0 99 0 3 0 0 0 0 0 0 0 # CV_young_Fem_GP_1
  0.01 0.1 0.0396945 0 99 0 3 0 0 0 0 0 0 0 # CV_old_Fem_GP_1
@@ -120,7 +120,7 @@
 # Hermaphroditism
 #  Recruitment Distribution  
 #  Cohort growth dev base
- 0.1 10 1 1 1 6 -1 0 1 1982 2019 5 0 0 # CohortGrowDev
+ 0.1 10 1 1 1 6 -1 0 1 1982 2024 5 0 0 # CohortGrowDev
 #  Movement
 #  Age Error from parameters
 #  catch multiplier
