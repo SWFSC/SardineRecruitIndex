@@ -654,18 +654,18 @@ g a seas subseas ALK_idx real_age calen_age lin_grow first_grow_age
  predparm pointer -1 -1 -1 -1 -1 -1 14
  Biology base parameter setup 14
 1  0.199 0.936 0.7 -0.393 0.31 3 2 0 0 0 0 0 0 0 NatM_Lorenzen_averageFem_GP_1
-2  3 30 8 0 99 0 3 0 0 0 0 0 0 0 L_at_Amin_Fem_GP_1
-3  15 40 26.7199 0 99 0 3 0 1 1982 2024 4 0 0 L_at_Amax_Fem_GP_1
-4  0.05 0.99 0.721427 0 99 0 3 0 0 0 0 0 0 0 VonBert_K_Fem_GP_1
-5  0.05 0.5 0.164739 0 99 0 3 0 0 0 0 0 0 0 CV_young_Fem_GP_1
-6  0.01 0.1 0.0396945 0 99 0 3 0 0 0 0 0 0 0 CV_old_Fem_GP_1
+2  3 30 8 0 99 0 -3 0 0 0 0 0 0 0 L_at_Amin_Fem_GP_1
+3  15 40 26.7199 0 99 0 -3 0 0 0 0 0 0 0 L_at_Amax_Fem_GP_1
+4  0.05 0.99 0.721427 0 99 0 -3 0 0 0 0 0 0 0 VonBert_K_Fem_GP_1
+5  0.05 0.5 0.164739 0 99 0 -3 0 0 0 0 0 0 0 CV_young_Fem_GP_1
+6  0.01 0.1 0.0396945 0 99 0 -3 0 0 0 0 0 0 0 CV_old_Fem_GP_1
 7  -3 3 7.5242e-06 0 99 0 -3 0 0 0 0 0 0 0 Wtlen_1_Fem_GP_1
 8  -3 5 3.2332 0 99 0 -3 0 0 0 0 0 0 0 Wtlen_2_Fem_GP_1
 9  9 19 15.44 0 99 0 -3 0 0 0 0 0 0 0 Mat50%_Fem_GP_1
 10  -20 3 -0.89252 0 99 0 -3 0 0 0 0 0 0 0 Mat_slope_Fem_GP_1
 11  0 10 1 0 99 0 -3 0 0 0 0 0 0 0 Eggs/kg_inter_Fem_GP_1
 12  -1 5 0 0 99 0 -3 0 0 0 0 0 0 0 Eggs/kg_slope_wt_Fem_GP_1
-13  0.1 10 1 1 1 6 -1 0 1 1982 2024 5 0 0 CohortGrowDev
+13  0.1 10 1 1 1 6 -1 0 0 0 0 0 0 0 CohortGrowDev
 14  1e-06 0.999999 0.5 0.5 0.5 0 -99 0 0 0 0 0 0 0 FracFemale_GP_1
 mgparm_type for each parm:
 1 natmort
@@ -683,66 +683,54 @@ mgparm_type for each parm:
 13 growth
 14 recr_dist
 Now read env, block/trend, and dev adjustments to MGparms 
-
- timevary for MG parameter: 3
-baseparm:  15 40 26.7199 0 99 0 3 0 1 1982 2024 4 0 0
-parameter dev vector created with phase set to: 4
-dev vec: 1 with link: 1 min, max year  1982 2024
-timevary_setup 1 3 1 0 0 0 0 1 1 1982 2024 4 3 0
-
- timevary for MG parameter: 13
-baseparm:  0.1 10 1 1 1 6 -1 0 1 1982 2024 5 0 0
-parameter dev vector created with phase set to: 5
-dev vec: 2 with link: 1 min, max year  1982 2024
-timevary_setup 1 13 3 0 0 0 0 2 1 1982 2024 5 13 0
 Display timevary_MG flag
 1980 timevary_MG:  0 0 0 0 0 0 0 0
 1981 timevary_MG:  0 0 0 0 0 0 0 0
-1982 timevary_MG:  1 0 1 0 0 0 0 0
-1983 timevary_MG:  1 0 1 0 0 0 0 0
-1984 timevary_MG:  1 0 1 0 0 0 0 0
-1985 timevary_MG:  1 0 1 0 0 0 0 0
-1986 timevary_MG:  1 0 1 0 0 0 0 0
-1987 timevary_MG:  1 0 1 0 0 0 0 0
-1988 timevary_MG:  1 0 1 0 0 0 0 0
-1989 timevary_MG:  1 0 1 0 0 0 0 0
-1990 timevary_MG:  1 0 1 0 0 0 0 0
-1991 timevary_MG:  1 0 1 0 0 0 0 0
-1992 timevary_MG:  1 0 1 0 0 0 0 0
-1993 timevary_MG:  1 0 1 0 0 0 0 0
-1994 timevary_MG:  1 0 1 0 0 0 0 0
-1995 timevary_MG:  1 0 1 0 0 0 0 0
-1996 timevary_MG:  1 0 1 0 0 0 0 0
-1997 timevary_MG:  1 0 1 0 0 0 0 0
-1998 timevary_MG:  1 0 1 0 0 0 0 0
-1999 timevary_MG:  1 0 1 0 0 0 0 0
-2000 timevary_MG:  1 0 1 0 0 0 0 0
-2001 timevary_MG:  1 0 1 0 0 0 0 0
-2002 timevary_MG:  1 0 1 0 0 0 0 0
-2003 timevary_MG:  1 0 1 0 0 0 0 0
-2004 timevary_MG:  1 0 1 0 0 0 0 0
-2005 timevary_MG:  1 0 1 0 0 0 0 0
-2006 timevary_MG:  1 0 1 0 0 0 0 0
-2007 timevary_MG:  1 0 1 0 0 0 0 0
-2008 timevary_MG:  1 0 1 0 0 0 0 0
-2009 timevary_MG:  1 0 1 0 0 0 0 0
-2010 timevary_MG:  1 0 1 0 0 0 0 0
-2011 timevary_MG:  1 0 1 0 0 0 0 0
-2012 timevary_MG:  1 0 1 0 0 0 0 0
-2013 timevary_MG:  1 0 1 0 0 0 0 0
-2014 timevary_MG:  1 0 1 0 0 0 0 0
-2015 timevary_MG:  1 0 1 0 0 0 0 0
-2016 timevary_MG:  1 0 1 0 0 0 0 0
-2017 timevary_MG:  1 0 1 0 0 0 0 0
-2018 timevary_MG:  1 0 1 0 0 0 0 0
-2019 timevary_MG:  1 0 1 0 0 0 0 0
-2020 timevary_MG:  1 0 1 0 0 0 0 0
-2021 timevary_MG:  1 0 1 0 0 0 0 0
-2022 timevary_MG:  1 0 1 0 0 0 0 0
-2023 timevary_MG:  1 0 1 0 0 0 0 0
-2024 timevary_MG:  1 0 1 0 0 0 0 0
+1982 timevary_MG:  0 0 0 0 0 0 0 0
+1983 timevary_MG:  0 0 0 0 0 0 0 0
+1984 timevary_MG:  0 0 0 0 0 0 0 0
+1985 timevary_MG:  0 0 0 0 0 0 0 0
+1986 timevary_MG:  0 0 0 0 0 0 0 0
+1987 timevary_MG:  0 0 0 0 0 0 0 0
+1988 timevary_MG:  0 0 0 0 0 0 0 0
+1989 timevary_MG:  0 0 0 0 0 0 0 0
+1990 timevary_MG:  0 0 0 0 0 0 0 0
+1991 timevary_MG:  0 0 0 0 0 0 0 0
+1992 timevary_MG:  0 0 0 0 0 0 0 0
+1993 timevary_MG:  0 0 0 0 0 0 0 0
+1994 timevary_MG:  0 0 0 0 0 0 0 0
+1995 timevary_MG:  0 0 0 0 0 0 0 0
+1996 timevary_MG:  0 0 0 0 0 0 0 0
+1997 timevary_MG:  0 0 0 0 0 0 0 0
+1998 timevary_MG:  0 0 0 0 0 0 0 0
+1999 timevary_MG:  0 0 0 0 0 0 0 0
+2000 timevary_MG:  0 0 0 0 0 0 0 0
+2001 timevary_MG:  0 0 0 0 0 0 0 0
+2002 timevary_MG:  0 0 0 0 0 0 0 0
+2003 timevary_MG:  0 0 0 0 0 0 0 0
+2004 timevary_MG:  0 0 0 0 0 0 0 0
+2005 timevary_MG:  0 0 0 0 0 0 0 0
+2006 timevary_MG:  0 0 0 0 0 0 0 0
+2007 timevary_MG:  0 0 0 0 0 0 0 0
+2008 timevary_MG:  0 0 0 0 0 0 0 0
+2009 timevary_MG:  0 0 0 0 0 0 0 0
+2010 timevary_MG:  0 0 0 0 0 0 0 0
+2011 timevary_MG:  0 0 0 0 0 0 0 0
+2012 timevary_MG:  0 0 0 0 0 0 0 0
+2013 timevary_MG:  0 0 0 0 0 0 0 0
+2014 timevary_MG:  0 0 0 0 0 0 0 0
+2015 timevary_MG:  0 0 0 0 0 0 0 0
+2016 timevary_MG:  0 0 0 0 0 0 0 0
+2017 timevary_MG:  0 0 0 0 0 0 0 0
+2018 timevary_MG:  0 0 0 0 0 0 0 0
+2019 timevary_MG:  0 0 0 0 0 0 0 0
+2020 timevary_MG:  0 0 0 0 0 0 0 0
+2021 timevary_MG:  0 0 0 0 0 0 0 0
+2022 timevary_MG:  0 0 0 0 0 0 0 0
+2023 timevary_MG:  0 0 0 0 0 0 0 0
+2024 timevary_MG:  0 0 0 0 0 0 0 0
 seasonal effects as read:  0 0 0 0 0 0 0 0 0 0
-MG_active  2 1 1 0 0 0 0 0
+MG_active  1 1 0 0 0 0 0 0
 3 #_SR_function: 1=NA; 2=Ricker(2 parms); 3=BevHolt(2); 4=SCAA(2); 5=Hockey(3); 6=B-H_flattop(2); 7=Survival(3); 8=Shepherd(3); 9=Ricker_Power(3) 
 0  # 0/1 to use steepness in initial equ recruitment calculation
 0  #  future feature:  0/1 to make realized sigmaR a function of SR curvature
@@ -761,11 +749,11 @@ block pattern: 1 method 2 Nblocks: 1
  create parm for block 1
  block method 2
 read timevary block parameter:  -15 15 -2.25458 0 99 0 4
-timevary_setup 2 4 5 1 2 0 0 0 0 0 0 0 22 0
- SR timevary_parm_cnt start and end 5 5
-link to timevary parms:   0 0 0 3 0
+timevary_setup 2 4 1 1 2 0 0 0 0 0 0 0 18 0
+ SR timevary_parm_cnt start and end 1 1
+link to timevary parms:   0 0 0 1 0
 SR_Npar and N_SRparm2 and N_SRparm3:  2 5 6
-5 6  -15 15 -2.25458 0 99 0 4
+1 6  -15 15 -2.25458 0 99 0 4
 SR_parm_RD:  15.3516 0.5 1 0 0 -2.25458
 1 do_recdev
 1983 recdev_start
@@ -842,17 +830,17 @@ read timevary block parameter:  -3 3 0 0 99 0 -1
  create parm for block 5
  block method 2
 read timevary block parameter:  -3 3 0 0 99 0 -1
-timevary_setup 3 1 6 5 2 0 0 0 0 0 0 0 74 0
+timevary_setup 3 1 2 5 2 0 0 0 0 0 0 0 70 0
 fleet 5 base index 2
 fleet 6 base index 3
-Q  uses timevary parms:   4 0 0
- Q  timevary_parm_cnt start and end 6 10
+Q  uses timevary parms:   2 0 0
+ Q  timevary_parm_cnt start and end 2 6
 Q_Npar and Q_Npar2:  3 8
-6 4  -3 3 -0.311 0 99 0 -1
-7 5  -3 3 -0.53 0 99 0 -1
-8 6  -3 3 -0.311 0 99 0 -1
-9 7  -3 3 0 0 99 0 -1
-10 8  -3 3 0 0 99 0 -1
+2 4  -3 3 -0.311 0 99 0 -1
+3 5  -3 3 -0.53 0 99 0 -1
+4 6  -3 3 -0.311 0 99 0 -1
+5 7  -3 3 0 0 99 0 -1
+6 8  -3 3 0 0 99 0 -1
 Q_parm_RD: 
 1 0 LnQ_base_AT_Survey(4)
 2 -1.83 LnQ_base_DEPM(5)
@@ -971,7 +959,7 @@ read timevary block parameter:  -10 11 0.837451 -1 99 0 3
  create parm for block 16
  block method 2
 read timevary block parameter:  -10 11 0.837451 -1 99 0 3
-timevary_setup 5 2 11 3 2 0 0 0 0 0 0 0 83 0
+timevary_setup 5 2 7 3 2 0 0 0 0 0 0 0 79 0
 3 sel  -10 15 -0.884887 -1 99 0 3 0 0 0 0 0 3 2
 
  timevary for sel parameter: 3
@@ -1025,7 +1013,7 @@ read timevary block parameter:  -10 11 -0.884887 -1 99 0 3
  create parm for block 16
  block method 2
 read timevary block parameter:  -10 11 -0.884887 -1 99 0 3
-timevary_setup 5 3 27 3 2 0 0 0 0 0 0 0 84 0
+timevary_setup 5 3 23 3 2 0 0 0 0 0 0 0 80 0
 4 sel  -10 11 -0.635305 -1 99 0 3 0 0 0 0 0 3 2
 
  timevary for sel parameter: 4
@@ -1079,7 +1067,7 @@ read timevary block parameter:  -10 11 -0.635305 -1 99 0 3
  create parm for block 16
  block method 2
 read timevary block parameter:  -10 11 -0.635305 -1 99 0 3
-timevary_setup 5 4 43 3 2 0 0 0 0 0 0 0 85 0
+timevary_setup 5 4 39 3 2 0 0 0 0 0 0 0 81 0
 5 sel  -10 11 0.91816 -1 99 0 3 0 0 0 0 0 3 2
 
  timevary for sel parameter: 5
@@ -1133,7 +1121,7 @@ read timevary block parameter:  -10 11 0.91816 -1 99 0 3
  create parm for block 16
  block method 2
 read timevary block parameter:  -10 11 0.91816 -1 99 0 3
-timevary_setup 5 5 59 3 2 0 0 0 0 0 0 0 86 0
+timevary_setup 5 5 55 3 2 0 0 0 0 0 0 0 82 0
 6 sel  -10 11 -0.111484 -1 99 0 3 0 0 0 0 0 0 0
 7 sel  -10 11 -0.989063 -1 99 0 3 0 0 0 0 0 0 0
 8 sel  -10 11 -1.49305 -1 99 0 3 0 0 0 0 0 0 0
@@ -1186,7 +1174,7 @@ read timevary block parameter:  -10 11 0.769735 -1 99 0 3
  create parm for block 14
  block method 1
 read timevary block parameter:  -10 11 0.769735 -1 99 0 3
-timevary_setup 5 11 75 7 1 0 0 0 0 0 0 0 92 0
+timevary_setup 5 11 71 7 1 0 0 0 0 0 0 0 88 0
 12 sel  -10 11 0.135819 -1 99 0 3 0 0 0 0 0 7 1
 
  timevary for sel parameter: 12
@@ -1234,7 +1222,7 @@ read timevary block parameter:  -10 11 0.135819 -1 99 0 3
  create parm for block 14
  block method 1
 read timevary block parameter:  -10 11 0.135819 -1 99 0 3
-timevary_setup 5 12 89 7 1 0 0 0 0 0 0 0 93 0
+timevary_setup 5 12 85 7 1 0 0 0 0 0 0 0 89 0
 13 sel  -10 11 -0.104782 -1 99 0 3 0 0 0 0 0 7 1
 
  timevary for sel parameter: 13
@@ -1282,7 +1270,7 @@ read timevary block parameter:  -10 11 0.135819 -1 99 0 3
  create parm for block 14
  block method 1
 read timevary block parameter:  -10 11 0.135819 -1 99 0 3
-timevary_setup 5 13 103 7 1 0 0 0 0 0 0 0 94 0
+timevary_setup 5 13 99 7 1 0 0 0 0 0 0 0 90 0
 14 sel  -10 11 -1.03412 -1 99 0 3 0 0 0 0 0 0 0
 15 sel  -10 11 0.213999 -1 99 0 3 0 0 0 0 0 0 0
 16 sel  -10 11 -1.7739 -1 99 0 3 0 0 0 0 0 0 0
@@ -1317,7 +1305,7 @@ read timevary block parameter:  0 10 5.00095 0 99 0 4
  create parm for block 8
  block method 2
 read timevary block parameter:  0 10 5.00095 0 99 0 4
-timevary_setup 5 19 117 4 2 0 0 0 0 0 0 0 100 0
+timevary_setup 5 19 113 4 2 0 0 0 0 0 0 0 96 0
 20 sel  -5 15 0.483799 0 99 0 4 0 0 0 0 0 0 0
 21 sel  0 9 0 -1 99 0 -3 0 0 0 0 0 0 0
 22 sel  0 11 0.000433815 -1 99 0 4 0 0 0 0 0 2 2
@@ -1358,21 +1346,21 @@ read timevary block parameter:  0 11 0.000433815 -1 99 0 4
  create parm for block 11
  block method 2
 read timevary block parameter:  0 11 0.000433815 -1 99 0 4
-timevary_setup 5 22 125 2 2 0 0 0 0 0 0 0 103 0
+timevary_setup 5 22 121 2 2 0 0 0 0 0 0 0 99 0
  now read 0/1 for 2D_AR
 0  #_ 0/1 to request experimental 2D_AR selectivity smoother options 
-N_selparm: 22 with timevary: 147 with TV and 2D_AR: 147 timevary parm range for sel: 11 135 135
+N_selparm: 22 with timevary: 147 with TV and 2D_AR: 147 timevary parm range for sel: 7 131 131
 list all parms used for timevary implementation
-1 parm  0.0001 2 0.01 0.5 0.5 6 -5
-2 parm  -0.99 0.99 0 0 0.5 6 -6
-3 parm  0.0001 2 0.11 0.5 0.5 6 -5
-4 parm  -0.99 0.99 0 0 0.5 6 -6
-5 parm  -15 15 -2.25458 0 99 0 4
-6 parm  -3 3 -0.311 0 99 0 -1
-7 parm  -3 3 -0.53 0 99 0 -1
-8 parm  -3 3 -0.311 0 99 0 -1
-9 parm  -3 3 0 0 99 0 -1
-10 parm  -3 3 0 0 99 0 -1
+1 parm  -15 15 -2.25458 0 99 0 4
+2 parm  -3 3 -0.311 0 99 0 -1
+3 parm  -3 3 -0.53 0 99 0 -1
+4 parm  -3 3 -0.311 0 99 0 -1
+5 parm  -3 3 0 0 99 0 -1
+6 parm  -3 3 0 0 99 0 -1
+7 parm  -10 11 0.837451 -1 99 0 3
+8 parm  -10 11 0.837451 -1 99 0 3
+9 parm  -10 11 0.837451 -1 99 0 3
+10 parm  -10 11 0.837451 -1 99 0 3
 11 parm  -10 11 0.837451 -1 99 0 3
 12 parm  -10 11 0.837451 -1 99 0 3
 13 parm  -10 11 0.837451 -1 99 0 3
@@ -1385,15 +1373,15 @@ list all parms used for timevary implementation
 20 parm  -10 11 0.837451 -1 99 0 3
 21 parm  -10 11 0.837451 -1 99 0 3
 22 parm  -10 11 0.837451 -1 99 0 3
-23 parm  -10 11 0.837451 -1 99 0 3
-24 parm  -10 11 0.837451 -1 99 0 3
-25 parm  -10 11 0.837451 -1 99 0 3
-26 parm  -10 11 0.837451 -1 99 0 3
-27 parm  -10 11 -0.884887 -1 99 0 3
+23 parm  -10 11 -0.884887 -1 99 0 3
+24 parm  -10 11 -0.884887 -1 99 0 3
+25 parm  -10 11 -0.884887 -1 99 0 3
+26 parm  -10 11 -0.884887 -1 99 0 3
+27 parm  -10 15 -0.884887 -1 99 0 3
 28 parm  -10 11 -0.884887 -1 99 0 3
 29 parm  -10 11 -0.884887 -1 99 0 3
 30 parm  -10 11 -0.884887 -1 99 0 3
-31 parm  -10 15 -0.884887 -1 99 0 3
+31 parm  -10 11 -0.884887 -1 99 0 3
 32 parm  -10 11 -0.884887 -1 99 0 3
 33 parm  -10 11 -0.884887 -1 99 0 3
 34 parm  -10 11 -0.884887 -1 99 0 3
@@ -1401,10 +1389,10 @@ list all parms used for timevary implementation
 36 parm  -10 11 -0.884887 -1 99 0 3
 37 parm  -10 11 -0.884887 -1 99 0 3
 38 parm  -10 11 -0.884887 -1 99 0 3
-39 parm  -10 11 -0.884887 -1 99 0 3
-40 parm  -10 11 -0.884887 -1 99 0 3
-41 parm  -10 11 -0.884887 -1 99 0 3
-42 parm  -10 11 -0.884887 -1 99 0 3
+39 parm  -10 11 -0.635305 -1 99 0 3
+40 parm  -10 11 -0.635305 -1 99 0 3
+41 parm  -10 11 -0.635305 -1 99 0 3
+42 parm  -10 11 -0.635305 -1 99 0 3
 43 parm  -10 11 -0.635305 -1 99 0 3
 44 parm  -10 11 -0.635305 -1 99 0 3
 45 parm  -10 11 -0.635305 -1 99 0 3
@@ -1417,10 +1405,10 @@ list all parms used for timevary implementation
 52 parm  -10 11 -0.635305 -1 99 0 3
 53 parm  -10 11 -0.635305 -1 99 0 3
 54 parm  -10 11 -0.635305 -1 99 0 3
-55 parm  -10 11 -0.635305 -1 99 0 3
-56 parm  -10 11 -0.635305 -1 99 0 3
-57 parm  -10 11 -0.635305 -1 99 0 3
-58 parm  -10 11 -0.635305 -1 99 0 3
+55 parm  -10 11 0.91816 -1 99 0 3
+56 parm  -10 11 0.91816 -1 99 0 3
+57 parm  -10 11 0.91816 -1 99 0 3
+58 parm  -10 11 0.91816 -1 99 0 3
 59 parm  -10 11 0.91816 -1 99 0 3
 60 parm  -10 11 0.91816 -1 99 0 3
 61 parm  -10 11 0.91816 -1 99 0 3
@@ -1433,11 +1421,11 @@ list all parms used for timevary implementation
 68 parm  -10 11 0.91816 -1 99 0 3
 69 parm  -10 11 0.91816 -1 99 0 3
 70 parm  -10 11 0.91816 -1 99 0 3
-71 parm  -10 11 0.91816 -1 99 0 3
-72 parm  -10 11 0.91816 -1 99 0 3
-73 parm  -10 11 0.91816 -1 99 0 3
-74 parm  -10 11 0.91816 -1 99 0 3
-75 parm  -10 15 0.769735 -1 99 0 3
+71 parm  -10 15 0.769735 -1 99 0 3
+72 parm  -10 11 0.769735 -1 99 0 3
+73 parm  -10 11 0.769735 -1 99 0 3
+74 parm  -10 11 0.769735 -1 99 0 3
+75 parm  -10 11 0.769735 -1 99 0 3
 76 parm  -10 11 0.769735 -1 99 0 3
 77 parm  -10 11 0.769735 -1 99 0 3
 78 parm  -10 11 0.769735 -1 99 0 3
@@ -1447,10 +1435,10 @@ list all parms used for timevary implementation
 82 parm  -10 11 0.769735 -1 99 0 3
 83 parm  -10 11 0.769735 -1 99 0 3
 84 parm  -10 11 0.769735 -1 99 0 3
-85 parm  -10 11 0.769735 -1 99 0 3
-86 parm  -10 11 0.769735 -1 99 0 3
-87 parm  -10 11 0.769735 -1 99 0 3
-88 parm  -10 11 0.769735 -1 99 0 3
+85 parm  -10 11 0.135819 -1 99 0 3
+86 parm  -10 11 0.135819 -1 99 0 3
+87 parm  -10 11 0.135819 -1 99 0 3
+88 parm  -10 11 0.135819 -1 99 0 3
 89 parm  -10 11 0.135819 -1 99 0 3
 90 parm  -10 11 0.135819 -1 99 0 3
 91 parm  -10 11 0.135819 -1 99 0 3
@@ -1475,29 +1463,25 @@ list all parms used for timevary implementation
 110 parm  -10 11 0.135819 -1 99 0 3
 111 parm  -10 11 0.135819 -1 99 0 3
 112 parm  -10 11 0.135819 -1 99 0 3
-113 parm  -10 11 0.135819 -1 99 0 3
-114 parm  -10 11 0.135819 -1 99 0 3
-115 parm  -10 11 0.135819 -1 99 0 3
-116 parm  -10 11 0.135819 -1 99 0 3
+113 parm  0 10 5.00095 0 99 0 4
+114 parm  0 10 5.00095 0 99 0 4
+115 parm  0 10 5.00095 0 99 0 4
+116 parm  0 10 5.00095 0 99 0 4
 117 parm  0 10 5.00095 0 99 0 4
 118 parm  0 10 5.00095 0 99 0 4
 119 parm  0 10 5.00095 0 99 0 4
 120 parm  0 10 5.00095 0 99 0 4
-121 parm  0 10 5.00095 0 99 0 4
-122 parm  0 10 5.00095 0 99 0 4
-123 parm  0 10 5.00095 0 99 0 4
-124 parm  0 10 5.00095 0 99 0 4
+121 parm  0 9 0.000433815 -1 99 0 4
+122 parm  0 9 0.000433815 -1 99 0 4
+123 parm  0 9 0.000433815 -1 99 0 4
+124 parm  0 9 0 -1 99 0 -4
 125 parm  0 9 0.000433815 -1 99 0 4
-126 parm  0 9 0.000433815 -1 99 0 4
+126 parm  0 9 0 -1 99 0 -4
 127 parm  0 9 0.000433815 -1 99 0 4
-128 parm  0 9 0 -1 99 0 -4
-129 parm  0 9 0.000433815 -1 99 0 4
-130 parm  0 9 0 -1 99 0 -4
-131 parm  0 9 0.000433815 -1 99 0 4
-132 parm  0 11 0.000433815 -1 99 0 4
-133 parm  0 11 0.000433815 -1 99 0 4
-134 parm  0 11 0.000433815 -1 99 0 4
-135 parm  0 11 0.000433815 -1 99 0 4
+128 parm  0 11 0.000433815 -1 99 0 4
+129 parm  0 11 0.000433815 -1 99 0 4
+130 parm  0 11 0.000433815 -1 99 0 4
+131 parm  0 11 0.000433815 -1 99 0 4
 Recalc_flag_for_length_selex_recalc_by_year
 1 MexCal_S1  1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
 2 MexCal_S2  1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
@@ -1513,8 +1497,6 @@ Recalc_flag_for_age_selex_recalc_by_year
 5 DEPM  1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
 6 TEP_all  1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
 0 TG_custom (need to read even if no tag data ); tag_data?: 0 N_Fleet: 3
- dev vector #:  1 setup:  1 3 1 0 0 0 0 1 1 1982 2024 4 3 0 phase: 4
- dev vector #:  2 setup:  1 13 3 0 0 0 0 2 1 1982 2024 5 13 0 phase: 5
  read var_adjust list until -9999
  -9999 1 0
  number of variance adjustment records = 0
@@ -1546,28 +1528,28 @@ LAMBDA
  18 4 1 0 1
 0 # extra stdev reporting: 0 = skip, 1 = read specs for reporting stdev for selectivity, size, and numbers, 2 = add option for M, dyn. Bzero & Smrybio 
 End of control file successful! 999
-N parameters: 314
-Parameters plus derived quant: 560
+N parameters: 224
+Parameters plus derived quant: 470
 Adjust the phases 
  requested turn_off phase: 10
 Fcast_dev_phase (read and adjusted): 0 5
-ParCount 314   Active parameters: 286
+ParCount 224   Active parameters: 195
 Turn_off_phase 10
- max_phase 5
-560
-parm 314 covar 286
-deriv_start 314 286
-parm 360 covar 332
-parm 406 covar 378
-parm 450 covar 422
-parm 494 covar 466
-parm 538 covar 510
-parm 555 covar 527  after benchmark 
-parm 557 covar 529  after forecast 
+ max_phase 4
+470
+parm 224 covar 195
+deriv_start 224 195
+parm 270 covar 241
+parm 316 covar 287
+parm 360 covar 331
+parm 404 covar 375
+parm 448 covar 419
+parm 465 covar 436  after benchmark 
+parm 467 covar 438  after forecast 
  do ln(SPB) std labels for 3 years
  do Svy_sdreport labels 0
-parm 560 covar 532  after all derived quantities 
-Active parameters plus derived quantities:  532
+parm 470 covar 441  after all derived quantities 
+Active parameters plus derived quantities:  441
 Begin setting up parameters
  now dimension the selectivity arrays 147
  -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 0 -5 0 0 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 -10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -2709,7 +2691,7 @@ Finished reading the empirical weight at age file
  age comp var adjust has been set-up 
  setup stderr for mean size-at-age: 
  set parms to init values in CTL file 
- MGparms read from ctl  0.7 8 26.7199 0.721427 0.164739 0.0396945 7.5242e-06 3.2332 15.44 -0.89252 1 0 1 0.5 0.01 0 0.11 0
+ MGparms read from ctl  0.7 8 26.7199 0.721427 0.164739 0.0396945 7.5242e-06 3.2332 15.44 -0.89252 1 0 1 0.5
  SRR_parms read from ctl  15.3516 0.5 1 0 0 -2.25458
  rec_devs read from ctl  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  Q_parms read from ctl  0 -1.83 -0.59 -0.311 -0.53 -0.311 0 0
@@ -2717,7 +2699,7 @@ Finished reading the empirical weight at age file
  selex_parms read from ctl  1.00004 0.837451 -0.884887 -0.635305 0.91816 -0.111484 -0.989063 -1.49305 -1.89536 1.99999 0.769735 0.135819 -0.104782 -1.03412 0.213999 -1.7739 -0.285435 -6.97878 5.00095 0.483799 0 0.000433815 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 0.000433815 0.000433815 0.000433815 0 0.000433815 0 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815
 
  now check MGparm bounds and priors and do jitter if requested 
- MG_parms after check  0.7 8 26.7199 0.721427 0.164739 0.0396945 7.5242e-06 3.2332 15.44 -0.89252 1 0 1 0.5 0.01 0 0.11 0
+ MG_parms after check  0.7 8 26.7199 0.721427 0.164739 0.0396945 7.5242e-06 3.2332 15.44 -0.89252 1 0 1 0.5
 
  now check SR_parm bounds and priors and do jitter if requested 
  SRR_parms after check  15.3516 0.5 1 0 0 -2.25458
@@ -2733,47 +2715,33 @@ Finished reading the empirical weight at age file
 
  now check sel_parm bounds and priors and do jitter if requested 
  selex_parms after check   1.00004 0.837451 -0.884887 -0.635305 0.91816 -0.111484 -0.989063 -1.49305 -1.89536 1.99999 0.769735 0.135819 -0.104782 -1.03412 0.213999 -1.7739 -0.285435 -6.97878 5.00095 0.483799 0 0.000433815 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 0.000433815 0.000433815 0.000433815 0 0.000433815 0 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815
-
- now check parmdev bounds and priors and do jitter if requested 
- parm_devs after check   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 Begin evaluating biology calculations once
 
 **********************
-number of parameters with timevary:  13
+number of parameters with timevary:  11
 timevary #: 1
-setup:   1 3 1 0 0 0 0 1 1 1982 2024 4 3 0
-base MGparm 26.7199
-1 timevary_parm: 0.01
-2 timevary_parm: 0
-dev vector #: 1
-result by year:  26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199
-timevary #: 2
-setup:   1 13 3 0 0 0 0 2 1 1982 2024 5 13 0
-base MGparm 1
-3 timevary_parm: 0.11
-4 timevary_parm: 0
-dev vector #: 2
-result by year:  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-timevary #: 3
-setup:   2 4 5 1 2 0 0 0 0 0 0 0 22 0
+setup:   2 4 1 1 2 0 0 0 0 0 0 0 18 0
 base SR_parm 0
-5 timevary_parm: -2.25458
+1 timevary_parm: -2.25458
 block pattern 1
 result by year:  -2.25458 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-timevary #: 4
-setup:   3 1 6 5 2 0 0 0 0 0 0 0 74 0
+timevary #: 2
+setup:   3 1 2 5 2 0 0 0 0 0 0 0 70 0
 base Qparm 0
-6 timevary_parm: -0.311
-7 timevary_parm: -0.53
-8 timevary_parm: -0.311
-9 timevary_parm: 0
-10 timevary_parm: 0
+2 timevary_parm: -0.311
+3 timevary_parm: -0.53
+4 timevary_parm: -0.311
+5 timevary_parm: 0
+6 timevary_parm: 0
 block pattern 1
 result by year:  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.311 -0.311 -0.311 -0.311 -0.311 -0.53 -0.311 0 0 0
-timevary #: 5
-setup:   5 2 11 3 2 0 0 0 0 0 0 0 83 0
+timevary #: 3
+setup:   5 2 7 3 2 0 0 0 0 0 0 0 79 0
 base selparm 0.837451
+7 timevary_parm: 0.837451
+8 timevary_parm: 0.837451
+9 timevary_parm: 0.837451
+10 timevary_parm: 0.837451
 11 timevary_parm: 0.837451
 12 timevary_parm: 0.837451
 13 timevary_parm: 0.837451
@@ -2786,15 +2754,15 @@ base selparm 0.837451
 20 timevary_parm: 0.837451
 21 timevary_parm: 0.837451
 22 timevary_parm: 0.837451
-23 timevary_parm: 0.837451
-24 timevary_parm: 0.837451
-25 timevary_parm: 0.837451
-26 timevary_parm: 0.837451
 block pattern 5
 result by year:  0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451
-timevary #: 6
-setup:   5 3 27 3 2 0 0 0 0 0 0 0 84 0
+timevary #: 4
+setup:   5 3 23 3 2 0 0 0 0 0 0 0 80 0
 base selparm -0.884887
+23 timevary_parm: -0.884887
+24 timevary_parm: -0.884887
+25 timevary_parm: -0.884887
+26 timevary_parm: -0.884887
 27 timevary_parm: -0.884887
 28 timevary_parm: -0.884887
 29 timevary_parm: -0.884887
@@ -2807,15 +2775,15 @@ base selparm -0.884887
 36 timevary_parm: -0.884887
 37 timevary_parm: -0.884887
 38 timevary_parm: -0.884887
-39 timevary_parm: -0.884887
-40 timevary_parm: -0.884887
-41 timevary_parm: -0.884887
-42 timevary_parm: -0.884887
 block pattern 3
 result by year:  -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887
-timevary #: 7
-setup:   5 4 43 3 2 0 0 0 0 0 0 0 85 0
+timevary #: 5
+setup:   5 4 39 3 2 0 0 0 0 0 0 0 81 0
 base selparm -0.635305
+39 timevary_parm: -0.635305
+40 timevary_parm: -0.635305
+41 timevary_parm: -0.635305
+42 timevary_parm: -0.635305
 43 timevary_parm: -0.635305
 44 timevary_parm: -0.635305
 45 timevary_parm: -0.635305
@@ -2828,15 +2796,15 @@ base selparm -0.635305
 52 timevary_parm: -0.635305
 53 timevary_parm: -0.635305
 54 timevary_parm: -0.635305
-55 timevary_parm: -0.635305
-56 timevary_parm: -0.635305
-57 timevary_parm: -0.635305
-58 timevary_parm: -0.635305
 block pattern 3
 result by year:  -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305
-timevary #: 8
-setup:   5 5 59 3 2 0 0 0 0 0 0 0 86 0
+timevary #: 6
+setup:   5 5 55 3 2 0 0 0 0 0 0 0 82 0
 base selparm 0.91816
+55 timevary_parm: 0.91816
+56 timevary_parm: 0.91816
+57 timevary_parm: 0.91816
+58 timevary_parm: 0.91816
 59 timevary_parm: 0.91816
 60 timevary_parm: 0.91816
 61 timevary_parm: 0.91816
@@ -2849,15 +2817,15 @@ base selparm 0.91816
 68 timevary_parm: 0.91816
 69 timevary_parm: 0.91816
 70 timevary_parm: 0.91816
-71 timevary_parm: 0.91816
-72 timevary_parm: 0.91816
-73 timevary_parm: 0.91816
-74 timevary_parm: 0.91816
 block pattern 3
 result by year:  0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816
-timevary #: 9
-setup:   5 11 75 7 1 0 0 0 0 0 0 0 92 0
+timevary #: 7
+setup:   5 11 71 7 1 0 0 0 0 0 0 0 88 0
 base selparm 0.769735
+71 timevary_parm: 0.769735
+72 timevary_parm: 0.769735
+73 timevary_parm: 0.769735
+74 timevary_parm: 0.769735
 75 timevary_parm: 0.769735
 76 timevary_parm: 0.769735
 77 timevary_parm: 0.769735
@@ -2868,15 +2836,15 @@ base selparm 0.769735
 82 timevary_parm: 0.769735
 83 timevary_parm: 0.769735
 84 timevary_parm: 0.769735
-85 timevary_parm: 0.769735
-86 timevary_parm: 0.769735
-87 timevary_parm: 0.769735
-88 timevary_parm: 0.769735
 block pattern 3
 result by year:  0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735
-timevary #: 10
-setup:   5 12 89 7 1 0 0 0 0 0 0 0 93 0
+timevary #: 8
+setup:   5 12 85 7 1 0 0 0 0 0 0 0 89 0
 base selparm 0.135819
+85 timevary_parm: 0.135819
+86 timevary_parm: 0.135819
+87 timevary_parm: 0.135819
+88 timevary_parm: 0.135819
 89 timevary_parm: 0.135819
 90 timevary_parm: 0.135819
 91 timevary_parm: 0.135819
@@ -2887,15 +2855,15 @@ base selparm 0.135819
 96 timevary_parm: 0.135819
 97 timevary_parm: 0.135819
 98 timevary_parm: 0.135819
+block pattern 7
+result by year:  0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819
+timevary #: 9
+setup:   5 13 99 7 1 0 0 0 0 0 0 0 90 0
+base selparm -0.104782
 99 timevary_parm: 0.135819
 100 timevary_parm: 0.135819
 101 timevary_parm: 0.135819
 102 timevary_parm: 0.135819
-block pattern 7
-result by year:  0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819
-timevary #: 11
-setup:   5 13 103 7 1 0 0 0 0 0 0 0 94 0
-base selparm -0.104782
 103 timevary_parm: 0.135819
 104 timevary_parm: 0.135819
 105 timevary_parm: 0.135819
@@ -2906,39 +2874,35 @@ base selparm -0.104782
 110 timevary_parm: 0.135819
 111 timevary_parm: 0.135819
 112 timevary_parm: 0.135819
-113 timevary_parm: 0.135819
-114 timevary_parm: 0.135819
-115 timevary_parm: 0.135819
-116 timevary_parm: 0.135819
 block pattern 7
 result by year:  -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782
-timevary #: 12
-setup:   5 19 117 4 2 0 0 0 0 0 0 0 100 0
+timevary #: 10
+setup:   5 19 113 4 2 0 0 0 0 0 0 0 96 0
 base selparm 5.00095
+113 timevary_parm: 5.00095
+114 timevary_parm: 5.00095
+115 timevary_parm: 5.00095
+116 timevary_parm: 5.00095
 117 timevary_parm: 5.00095
 118 timevary_parm: 5.00095
 119 timevary_parm: 5.00095
 120 timevary_parm: 5.00095
-121 timevary_parm: 5.00095
-122 timevary_parm: 5.00095
-123 timevary_parm: 5.00095
-124 timevary_parm: 5.00095
 block pattern 7
 result by year:  5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095
-timevary #: 13
-setup:   5 22 125 2 2 0 0 0 0 0 0 0 103 0
+timevary #: 11
+setup:   5 22 121 2 2 0 0 0 0 0 0 0 99 0
 base selparm 0.000433815
+121 timevary_parm: 0.000433815
+122 timevary_parm: 0.000433815
+123 timevary_parm: 0.000433815
+124 timevary_parm: 0
 125 timevary_parm: 0.000433815
-126 timevary_parm: 0.000433815
+126 timevary_parm: 0
 127 timevary_parm: 0.000433815
-128 timevary_parm: 0
+128 timevary_parm: 0.000433815
 129 timevary_parm: 0.000433815
-130 timevary_parm: 0
+130 timevary_parm: 0.000433815
 131 timevary_parm: 0.000433815
-132 timevary_parm: 0.000433815
-133 timevary_parm: 0.000433815
-134 timevary_parm: 0.000433815
-135 timevary_parm: 0.000433815
 block pattern 4
 result by year:  0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0 0.000433815 0 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815
 get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
@@ -2954,40 +2918,30 @@ Finished evaluating biology calculations once
 Begin estimating
 
 **********************
-number of parameters with timevary:  13
+number of parameters with timevary:  11
 timevary #: 1
-setup:   1 3 1 0 0 0 0 1 1 1982 2024 4 3 0
-base MGparm 26.7199
-1 timevary_parm: 0.01
-2 timevary_parm: 0
-dev vector #: 1
-result by year:  26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199 26.7199
-timevary #: 2
-setup:   1 13 3 0 0 0 0 2 1 1982 2024 5 13 0
-base MGparm 1
-3 timevary_parm: 0.11
-4 timevary_parm: 0
-dev vector #: 2
-result by year:  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-timevary #: 3
-setup:   2 4 5 1 2 0 0 0 0 0 0 0 22 0
+setup:   2 4 1 1 2 0 0 0 0 0 0 0 18 0
 base SR_parm 0
-5 timevary_parm: -2.25458
+1 timevary_parm: -2.25458
 block pattern 2
 result by year:  -2.25458 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-timevary #: 4
-setup:   3 1 6 5 2 0 0 0 0 0 0 0 74 0
+timevary #: 2
+setup:   3 1 2 5 2 0 0 0 0 0 0 0 70 0
 base Qparm 0
-6 timevary_parm: -0.311
-7 timevary_parm: -0.53
-8 timevary_parm: -0.311
-9 timevary_parm: 0
-10 timevary_parm: 0
+2 timevary_parm: -0.311
+3 timevary_parm: -0.53
+4 timevary_parm: -0.311
+5 timevary_parm: 0
+6 timevary_parm: 0
 block pattern 1
 result by year:  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -0.311 -0.311 -0.311 -0.311 -0.311 -0.53 -0.311 0 0 0
-timevary #: 5
-setup:   5 2 11 3 2 0 0 0 0 0 0 0 83 0
+timevary #: 3
+setup:   5 2 7 3 2 0 0 0 0 0 0 0 79 0
 base selparm 0.837451
+7 timevary_parm: 0.837451
+8 timevary_parm: 0.837451
+9 timevary_parm: 0.837451
+10 timevary_parm: 0.837451
 11 timevary_parm: 0.837451
 12 timevary_parm: 0.837451
 13 timevary_parm: 0.837451
@@ -3000,15 +2954,15 @@ base selparm 0.837451
 20 timevary_parm: 0.837451
 21 timevary_parm: 0.837451
 22 timevary_parm: 0.837451
-23 timevary_parm: 0.837451
-24 timevary_parm: 0.837451
-25 timevary_parm: 0.837451
-26 timevary_parm: 0.837451
 block pattern 5
 result by year:  0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451 0.837451
-timevary #: 6
-setup:   5 3 27 3 2 0 0 0 0 0 0 0 84 0
+timevary #: 4
+setup:   5 3 23 3 2 0 0 0 0 0 0 0 80 0
 base selparm -0.884887
+23 timevary_parm: -0.884887
+24 timevary_parm: -0.884887
+25 timevary_parm: -0.884887
+26 timevary_parm: -0.884887
 27 timevary_parm: -0.884887
 28 timevary_parm: -0.884887
 29 timevary_parm: -0.884887
@@ -3021,15 +2975,15 @@ base selparm -0.884887
 36 timevary_parm: -0.884887
 37 timevary_parm: -0.884887
 38 timevary_parm: -0.884887
-39 timevary_parm: -0.884887
-40 timevary_parm: -0.884887
-41 timevary_parm: -0.884887
-42 timevary_parm: -0.884887
 block pattern 3
 result by year:  -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887 -0.884887
-timevary #: 7
-setup:   5 4 43 3 2 0 0 0 0 0 0 0 85 0
+timevary #: 5
+setup:   5 4 39 3 2 0 0 0 0 0 0 0 81 0
 base selparm -0.635305
+39 timevary_parm: -0.635305
+40 timevary_parm: -0.635305
+41 timevary_parm: -0.635305
+42 timevary_parm: -0.635305
 43 timevary_parm: -0.635305
 44 timevary_parm: -0.635305
 45 timevary_parm: -0.635305
@@ -3042,15 +2996,15 @@ base selparm -0.635305
 52 timevary_parm: -0.635305
 53 timevary_parm: -0.635305
 54 timevary_parm: -0.635305
-55 timevary_parm: -0.635305
-56 timevary_parm: -0.635305
-57 timevary_parm: -0.635305
-58 timevary_parm: -0.635305
 block pattern 3
 result by year:  -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305 -0.635305
-timevary #: 8
-setup:   5 5 59 3 2 0 0 0 0 0 0 0 86 0
+timevary #: 6
+setup:   5 5 55 3 2 0 0 0 0 0 0 0 82 0
 base selparm 0.91816
+55 timevary_parm: 0.91816
+56 timevary_parm: 0.91816
+57 timevary_parm: 0.91816
+58 timevary_parm: 0.91816
 59 timevary_parm: 0.91816
 60 timevary_parm: 0.91816
 61 timevary_parm: 0.91816
@@ -3063,15 +3017,15 @@ base selparm 0.91816
 68 timevary_parm: 0.91816
 69 timevary_parm: 0.91816
 70 timevary_parm: 0.91816
-71 timevary_parm: 0.91816
-72 timevary_parm: 0.91816
-73 timevary_parm: 0.91816
-74 timevary_parm: 0.91816
 block pattern 3
 result by year:  0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816 0.91816
-timevary #: 9
-setup:   5 11 75 7 1 0 0 0 0 0 0 0 92 0
+timevary #: 7
+setup:   5 11 71 7 1 0 0 0 0 0 0 0 88 0
 base selparm 0.769735
+71 timevary_parm: 0.769735
+72 timevary_parm: 0.769735
+73 timevary_parm: 0.769735
+74 timevary_parm: 0.769735
 75 timevary_parm: 0.769735
 76 timevary_parm: 0.769735
 77 timevary_parm: 0.769735
@@ -3082,15 +3036,15 @@ base selparm 0.769735
 82 timevary_parm: 0.769735
 83 timevary_parm: 0.769735
 84 timevary_parm: 0.769735
-85 timevary_parm: 0.769735
-86 timevary_parm: 0.769735
-87 timevary_parm: 0.769735
-88 timevary_parm: 0.769735
 block pattern 3
 result by year:  0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 1.53947 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735 0.769735
-timevary #: 10
-setup:   5 12 89 7 1 0 0 0 0 0 0 0 93 0
+timevary #: 8
+setup:   5 12 85 7 1 0 0 0 0 0 0 0 89 0
 base selparm 0.135819
+85 timevary_parm: 0.135819
+86 timevary_parm: 0.135819
+87 timevary_parm: 0.135819
+88 timevary_parm: 0.135819
 89 timevary_parm: 0.135819
 90 timevary_parm: 0.135819
 91 timevary_parm: 0.135819
@@ -3101,15 +3055,15 @@ base selparm 0.135819
 96 timevary_parm: 0.135819
 97 timevary_parm: 0.135819
 98 timevary_parm: 0.135819
+block pattern 7
+result by year:  0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819
+timevary #: 9
+setup:   5 13 99 7 1 0 0 0 0 0 0 0 90 0
+base selparm -0.104782
 99 timevary_parm: 0.135819
 100 timevary_parm: 0.135819
 101 timevary_parm: 0.135819
 102 timevary_parm: 0.135819
-block pattern 7
-result by year:  0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.271638 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819 0.135819
-timevary #: 11
-setup:   5 13 103 7 1 0 0 0 0 0 0 0 94 0
-base selparm -0.104782
 103 timevary_parm: 0.135819
 104 timevary_parm: 0.135819
 105 timevary_parm: 0.135819
@@ -3120,85 +3074,39 @@ base selparm -0.104782
 110 timevary_parm: 0.135819
 111 timevary_parm: 0.135819
 112 timevary_parm: 0.135819
-113 timevary_parm: 0.135819
-114 timevary_parm: 0.135819
-115 timevary_parm: 0.135819
-116 timevary_parm: 0.135819
 block pattern 7
 result by year:  -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 0.031037 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782 -0.104782
-timevary #: 12
-setup:   5 19 117 4 2 0 0 0 0 0 0 0 100 0
+timevary #: 10
+setup:   5 19 113 4 2 0 0 0 0 0 0 0 96 0
 base selparm 5.00095
+113 timevary_parm: 5.00095
+114 timevary_parm: 5.00095
+115 timevary_parm: 5.00095
+116 timevary_parm: 5.00095
 117 timevary_parm: 5.00095
 118 timevary_parm: 5.00095
 119 timevary_parm: 5.00095
 120 timevary_parm: 5.00095
-121 timevary_parm: 5.00095
-122 timevary_parm: 5.00095
-123 timevary_parm: 5.00095
-124 timevary_parm: 5.00095
 block pattern 7
 result by year:  5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095 5.00095
-timevary #: 13
-setup:   5 22 125 2 2 0 0 0 0 0 0 0 103 0
+timevary #: 11
+setup:   5 22 121 2 2 0 0 0 0 0 0 0 99 0
 base selparm 0.000433815
+121 timevary_parm: 0.000433815
+122 timevary_parm: 0.000433815
+123 timevary_parm: 0.000433815
+124 timevary_parm: 0
 125 timevary_parm: 0.000433815
-126 timevary_parm: 0.000433815
+126 timevary_parm: 0
 127 timevary_parm: 0.000433815
-128 timevary_parm: 0
+128 timevary_parm: 0.000433815
 129 timevary_parm: 0.000433815
-130 timevary_parm: 0
+130 timevary_parm: 0.000433815
 131 timevary_parm: 0.000433815
-132 timevary_parm: 0.000433815
-133 timevary_parm: 0.000433815
-134 timevary_parm: 0.000433815
-135 timevary_parm: 0.000433815
 block pattern 4
 result by year:  0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0 0.000433815 0 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.000433815
 get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
 Finished initial_conditions
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
-get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
 Finished time_series
 Finished survey obj_fun  0 0 0 34030.2 18231.5 34870.3
 Finished agecomp obj_fun  1855.35 2931.93 1607.18 952.897 0 0
@@ -3208,11 +3116,11 @@ Finished recruitdev obj_fun 0 39.1274 2
  OK with obj_func 209372
 Wrote first version of output files (before hessian, benchmark, and forecast)
 Start benchmark and forecast, if requested
-Calculated Fspr 3.51134 0.4
-Calculated Btgt: 2.02182 0.4
-Calculated Fmsy 2.27651 64135.9
+Calculated Fspr 4.60853 0.4
+Calculated Btgt: 2.63413 0.4
+Calculated Fmsy 3.12552 60507.8
 Finished benchmark, forecast, and sdreporting
-Iterations: 2055
+Iterations: 1768
  finished COVAR.SSO
 Finished forecast
 Writing wtatage.ss_new

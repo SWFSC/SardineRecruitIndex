@@ -3,6 +3,7 @@
 
 library(tidyverse)
 library(r4ss)
+library(reshape2)
 
 # Original research assessment 
 resDir <- "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/sardine_research_assessment"
@@ -77,3 +78,44 @@ compBio %>% pivot_longer(cols = -c(Yr, Seas), names_to = "SSmodel", values_to = 
   # ggplot(aes(x = Yr, y = bioSmry, color = SSmodel)) +
   geom_line() +
   facet_wrap(~Seas)
+
+res25LorenzDir <- "../SardineRecruitIndex/scenarioModels/2025_research_assessment_LorenzM"
+
+res25Lorenz <- SS_output(dir = res25LorenzDir, repfile = "Report.sso", printstats = FALSE)
+
+
+# Compare estimated parameters --------------------------------------------
+
+# Include recruitment pattern from updated (2025) research assessment, run with 3.30.22.1
+res25BloxDir <- "../SardineRecruitIndex/scenarioModels/2025_research_assessment_newBlox"
+
+resAssmt2025Blox <- SS_output(dir = res25BloxDir, repfile = "Report.sso", printstats = FALSE)
+
+resAssmt$parameters
+
+# full_join(rownames_to_column(resAssmt$parameters), rownames_to_column(resAssmt2025.22$parameters), by = "rowname") %>%
+full_join(resAssmt$parameters, resAssmt2025.22$parameters, by = "Label") %>%
+  filter(grepl("AgeSel", Label)) %>% select(Label, Value.x, Value.y, Active_Cnt.x, Status.x, Active_Cnt.y, Status.y)
+
+full_join(resAssmt$parameters, resAssmt2025$parameters, by = "Label") %>%
+  filter(grepl("AgeSel", Label)) %>% select(Label, Value.x, Value.y, Active_Cnt.x, Status.x, Active_Cnt.y, Status.y)
+
+
+#extract the age selectivity for all fleets and seasons
+#since benchmark assessment only starts 2005, select more recent years
+S_at_age.y <- resAssmt2025.22$ageselex %>% filter(Yr %in% 2005:2023 & Sex == 1 & Factor=="Asel2")
+S_at_age.y <- mngtAssmt2024$ageselex %>% filter(Yr %in% 2005:2023 & Sex == 1 & Factor=="Asel2")
+S_at_age.y <- res25Lorenz$ageselex %>% filter(Yr %in% 2005:2023 & Sex == 1 & Factor=="Asel2")
+S_at_age.y <- resAssmt$ageselex %>% filter(Yr %in% 2005:2023 & Sex == 1 & Factor=="Asel2")
+Saa_long <- melt(S_at_age.y, id.vars=c("Factor", "Fleet", "Yr","Seas","Sex", "Morph", "Label"),
+                 variable.name = "Age", value.name = "Sa")
+fleet <- 2
+ggplot(Saa_long%>%filter(Fleet==fleet), aes(x = as.numeric(Age), y = Sa, color = as.factor(Yr))) +
+  geom_line(linewidth = 1) + facet_wrap(~Seas, nrow=2) + theme_bw() + ggtitle(paste0("Fleet",fleet))+
+  ylab("Selectivity at age") + xlab("Age") + labs(color = "Year") +
+  scale_color_viridis_d(option = "H")
+
+
+compSmry <- SSsummarize(list(resAssmt, resAssmt2025.22, mngtAssmt2024, resAssmt2025Blox, res25Lorenz))
+dev.off()
+SSplotComparisons(compSmry, legendlabels = c("resAssmt", "resAssmt2025.22", "mngtAssmt2024", "resAssmt2025Blox", "res25Lorenz"))

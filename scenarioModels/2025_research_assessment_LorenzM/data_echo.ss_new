@@ -4,7 +4,7 @@
 #_User_support_available_at:NMFS.Stock.Synthesis@noaa.gov
 #_User_info_available_at:https://vlab.noaa.gov/group/stock-synthesis
 #_Source_code_at:_https://github.com/nmfs-ost/ss3-source-code
-#_Start_time: Mon Mar 17 14:19:50 2025
+#_Start_time: Tue Mar 18 15:27:24 2025
 #_echo_input_data
 #C data file created using the SS_writedat function in the R package r4ss
 #C should work with SS version: 
