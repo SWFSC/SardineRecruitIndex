@@ -765,11 +765,11 @@ SR_parm_RD:  15.3516 0.5 1 0 0 -2.25458
 2 #_recdev_early_phase
 0 #_forecast_recruitment phase (incl. late recr) (0 value resets to maxphase+1)
 1 #_lambda for Fcast_recr_like occurring before endyr+1
-1976.1 #_last_early_yr_nobias_adj_in_MPD
-1984.2 #_first_yr_fullbias_adj_in_MPD
-2020.8 #_last_yr_fullbias_adj_in_MPD
-2023.1 #_first_recent_yr_nobias_adj_in_MPD
-0.9365 #_max_bias_adj_in_MPD
+1977.9 #_last_early_yr_nobias_adj_in_MPD
+1979.8 #_first_yr_fullbias_adj_in_MPD
+2020.7 #_last_yr_fullbias_adj_in_MPD
+2022 #_first_recent_yr_nobias_adj_in_MPD
+0.9071 #_max_bias_adj_in_MPD
  #_NOTE: biasadjustment forced to 0.0 after year recdev_end
 0 # period of cycle in recruitment 
 -5 #min rec_dev
@@ -777,7 +777,7 @@ SR_parm_RD:  15.3516 0.5 1 0 0 -2.25458
 0 #_read_recdevs
 #_end of advanced SR options
 #_recruitment bias adjustment
- 0 0 0 0 0 0 0.104056 0.219673 0.33529 0.450907 0.566525 0.682142 0.797759 0.913377 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.9365 0.855065 0.447891 0.0407174 0
+ 0 0 0 0 0 0 0 0.0477421 0.525163 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.9071 0.697769 0 0 0
 0.1 F ballpark is annual F, as specified in F_reporting, for a specified year
 -2006 F_ballpark_yr (<0 to ignore)  
 3 F_Method as read
@@ -3108,19 +3108,19 @@ result by year:  0.000433815 0.000433815 0.000433815 0.000433815 0.000433815 0.0
 get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  7.5242e-06 3.2332 15.44 -0.89252 1 0 0 0
 Finished initial_conditions
 Finished time_series
-Finished survey obj_fun  0 0 0 34030.2 18231.5 34870.3
-Finished agecomp obj_fun  1855.35 2931.93 1607.18 952.897 0 0
+Finished survey obj_fun  0 0 0 33928.5 18262.6 35738
+Finished agecomp obj_fun  1861.91 3037.12 1590.12 954.595 0 0
  initequ_catch -log(L)  0 407.444 0 0 0 0
- catch -log(L)  31397.8 33007.5 50487.2 0 0 0
-Finished recruitdev obj_fun 0 39.1274 2
- OK with obj_func 209372
+ catch -log(L)  31734.5 33396.9 52211.1 0 0 0
+Finished recruitdev obj_fun 0 38.4618 2
+ OK with obj_func 212715
 Wrote first version of output files (before hessian, benchmark, and forecast)
 Start benchmark and forecast, if requested
-Calculated Fspr 4.60853 0.4
-Calculated Btgt: 2.63413 0.4
-Calculated Fmsy 3.12552 60507.8
+Calculated Fspr 4.42565 0.4
+Calculated Btgt: 2.53456 0.4
+Calculated Fmsy 3.00447 60173.5
 Finished benchmark, forecast, and sdreporting
-Iterations: 1768
+Iterations: 1873
  finished COVAR.SSO
 Finished forecast
 Writing wtatage.ss_new

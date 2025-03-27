@@ -4099,8 +4099,8 @@ Warning 4096 : wtatage not assigned for: time, morph, fleet, age: 2166 1 6 7
 Warning 4097 : wtatage not assigned for: time, morph, fleet, age: 2166 1 6 8
 Warning 4098 : wtatage not assigned for: time, morph, fleet, age: 2166 1 6 9
 Warning 4099 : wtatage not assigned for: time, morph, fleet, age: 2166 1 6 10
-Warning 4100 : Setting in starter does not request all priors, and 5 parameters have priors and are not estimated, so their prior not included in obj_fun.
-Warning 4101 : 1st iteration warning: ssb(endyr)/ssb(styr)= 1.19487e-06; suggest start with larger R0 to get near 0.4; or use depletion fleet option
+Warning 4100 : Setting in starter does not request all priors, and 1 parameters have priors and are not estimated, so their prior not included in obj_fun.
+Warning 4101 : 1st iteration warning: ssb(endyr)/ssb(styr)= 3.6543e-06; suggest start with larger R0 to get near 0.4; or use depletion fleet option
 Warning 4102 : 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
 Warning 4103 : Early recdev biasadj is >2 times ratio of rmse to sigmaR
 Warning 4104 Adjustment: setting positive forecast relF for forecast only fleet: 1
@@ -4112,15 +4112,15 @@ Warning 4109 Adjustment: setting positive forecast relF for forecast only fleet:
 Warning 4110 Adjustment: setting positive forecast relF for forecast only fleet: 2
 Warning 4111 Adjustment: setting positive forecast relF for forecast only fleet: 3
 Warning 4112 : Forecast F capped by max possible F from control file4
-Warning 4113 Adjustment: setting positive forecast relF for forecast only fleet: 1
-Warning 4114 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 4113 : Final gradient: 7979.89 is larger than final_conv: 1e-05
+Warning 4114 Adjustment: setting positive forecast relF for forecast only fleet: 1
 Warning 4115 Adjustment: setting positive forecast relF for forecast only fleet: 2
-Warning 4116 Adjustment: setting positive forecast relF for forecast only fleet: 3
-Warning 4117 : Forecast F capped by max possible F from control file4
+Warning 4116 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 4117 Adjustment: setting positive forecast relF for forecast only fleet: 3
+Warning 4118 : Forecast F capped by max possible F from control file4
 Note 3 Information: A revised protocol for the Fcast_yr specification is available and recommended.
-Warning 4118 Adjustment: setting positive forecast relF for forecast only fleet: 1
-Warning 4119 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 4119 Adjustment: setting positive forecast relF for forecast only fleet: 1
 Warning 4120 Adjustment: setting positive forecast relF for forecast only fleet: 2
-Warning 4121 Adjustment: setting positive forecast relF for forecast only fleet: 3
-Note 4 Information:  N parameters that are on or within 1% of min-max bound: 1; check results, variance may be suspect
- 4121 warnings  and 4 notes 
+Warning 4121 Adjustment: setting positive forecast relF for forecast only fleet: 2
+Warning 4122 Adjustment: setting positive forecast relF for forecast only fleet: 3
+ 4122 warnings  and 3 notes 

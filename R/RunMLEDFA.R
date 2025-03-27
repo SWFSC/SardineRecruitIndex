@@ -7,7 +7,7 @@ library(MARSS)
 library(corrplot)
 
 # read prepped dataset
-datDFA <- read_csv("C:/Users/r.wildermuth/Documents/FutureSeas/RecruitmentIndex/recrmntDFA/recrDFAdat.csv")
+datDFA <- read_csv("../SardineRecruitIndex/Data/recrDFAdat.csv")
 
 
 # Function to process loadings from MARSS output --------------------------
@@ -54,39 +54,17 @@ ProcessLoadings <- function(outMARSS, ...){
 
 # Sardine only model -----------------------------------------------------------
 
-# subset for sardine DFA from 1990 to 2019
-sardDat <- datDFA %>% filter(year %in% 1990:2019) %>%
-            # remove contemporary adult biomass with recruits, should be S2 biomass -> S1 recs
-            select(-c(NOI,
-                      ENSO,
-                      NPGO,
-                      PDOsummer, 
-                      PDOspring,
-                      NCOPsummer,
+# subset for sardine DFA from 1990 to 2023 - no rec devs for 2024
+sardDat <- datDFA %>% filter(year %in% 1990:2023) %>%
+            select(-c(NCOPsummer,
                       SCOPsummer,
-                      sardBioSmrySeas1,
-                      sardBioSmrySeas2,
-                      anchBioSmrySeas1,
+                      # anchBioSmrySeas1,
                       anchBioSmrySeas2,
-                      copMeanSize,
-                      copPropBioSize,
-                      naupMeanSize,
-                      naupPropBioSize,
-                      ZL_NorCal,
-                      ZL_SoCal,
-                      age1SprAnchmeanWAA, # not enough data in time 
-                      anchLarv,
-                      anchYoY,
-                      anchRec,
-                      anchSpawnHab,
-                      anchNurseHab,
-                      daysAbove40pct,
                       # Potential redundant variables:
                       # CUTI_39N, 
                       # OC_LUSI_36N,
                       # OC_STI_36N,
                       summerSST,
-                      HCI_R3,
                       SCOPspring,
                       SCOPsummerlag1))
                       
@@ -106,25 +84,25 @@ corrplot(corrMat, p.mat = pTest$p, sig.level = 0.05, insig = "blank",
 
 # Create a custom R obs error matrix assuming each data source has it's own common error
 Rcustom <- matrix(list(0),length(datNames),length(datNames)) 
-diag(Rcustom) <- c("HCI", 
-                   "COP", "COP", 
+diag(Rcustom) <- c("COP", "COP", 
                    "BEUTI", "BEUTI", 
                    "CUTI", "CUTI",
+                   "HCI", 
                    "LUSI", "LUSI", "LUSI",
                    "STI", "STI", "STI",
-                   "RREAS",
+                   "RREAS", "RREAS",
                    "SSWI", "SSWI",
                    "CalCOFI", "CalCOFI", 
                    "WAA", "WAA",
-                   "PRPOOS", "PRPOOS", #"PRPOOS", "PRPOOS", "PRPOOS", #"PRPOOS", "PRPOOS",
-                   "NEMURO", "NEMURO",
+                   "CPac", 
                    # "SDM", "SDM", "TIME", "TIME", "SDM", "SDM",
                    "sardSDM", "sardSDM", 
                    "sardlarvSDM", 
                    "sardRec",
+                   "anchBio", #"anchBio",
                    "SST",
                    "Transp", "Transp", "Transp", "Transp",
-                   "Alb", "Hake")
+                   "SLiDERS")
 
 sardDFA <- MARSS(y = sardDat, 
                     form = "dfa",
@@ -134,15 +112,19 @@ sardDFA <- MARSS(y = sardDat,
                  #                allow.degen = TRUE),
                  inits = list(x0 = matrix(1, 1, 1)),
                  z.score = TRUE,
-                 model = list(# R = "diagonal and equal", # observation errors are the same
+                 model = list( R = "diagonal and equal", # observation errors are the same
                                # R = "diagonal and unequal", # observation errors independent
                                # R = "equalvarcov", # observation errors equal and covars equal
                                # R = "unconstrained", # all observation errors independent
-                               R = Rcustom,
-                               m = 3) # number of latent processes
+                               # R = Rcustom,
+                               m = 1) # number of latent processes
 )
+# 5 trends, diag equl - no sig loadings for rec devs
+# 4 trends, diag equl - no sig loadings for rec devs
+# 4 trends, custom - no sig loadings for rec devs
+# Work with 1 trend, diag equl for now
 
-# save(sardDFA, file = "marssFit_1990to2019_noBio_3trend_Rcustom.RData")
+# save(sardDFA, file = "out/marssFit_1990to2023_1trend_EqlVar.RData")
 
 # load(file = "marssFit_1990to2019_noBio_5trend_DiagEql.RData")
 
@@ -161,8 +143,8 @@ loadingsHist <- ProcessLoadings(sardDFA)
 
 loadingsDF <- loadingsHist$loadingsDF
 
-loadingsDF %>% filter(index %in% c("sardRec"), isSig) %>%
-  arrange(index)
+loadingsDF %>% filter(index %in% c("sardRec")) %>%
+  arrange(index, isSig)
 
 
 # investigate whether loadings are large/significant
@@ -282,17 +264,15 @@ projResids <- projResids %>% mutate(up = qnorm(1- alpha / 2) * .sigma + .fitted,
 # Plots for manuscript --------------------------------------------------
 
 # plots of model fit, physical variables
-# histResids %>% filter(name=="model" &
-projResids %>% filter(name=="model" &
-                      .rownames %in% c("HCI_R3", "HCI_R4", "BEUTI_33N", "BEUTI_39N",
+histResids %>% filter(name=="model" &
+# projResids %>% filter(name=="model" &
+                      .rownames %in% c("HCI_30N355N", "BEUTI_33N", "BEUTI_39N",
                                        "CUTI_33N", "CUTI_39N", "OC_LUSI_33N", 
-                                       "OC_LUSI_36N", "OC_LUSI_39N", "ENSO", "NPGO",
-                                       "PDOspring", "PDOsummer", "OC_STI_33N", 
+                                       "OC_LUSI_36N", "OC_LUSI_39N", "OC_STI_33N", 
                                        "OC_STI_36N", "OC_STI_39N", "avgSSWIspring", 
                                        "avgSSWIsummer", "sardSpawnHab", 
-                                       "anchSpawnHab", "daysAbove5pct", 
-                                       "daysAbove40pct", "sardNurseHab", 
-                                       "anchNurseHab", "springSST", "summerSST", 
+                                       "daysAbove5pct", "sardNurseHab", 
+                                       "springSST", "summerSST", 
                                        "avgNearTransspring", "avgNearTranssummer", 
                                        "avgOffTransspring", "avgOffTranssummer")) %>% 
   mutate(t = t+1989) %>% 
@@ -306,14 +286,14 @@ projResids %>% filter(name=="model" &
   theme_classic()
 
 # plots of model fit, biological variables
-# histResids %>% filter(name=="model" &
-projResids %>% filter(name=="model" &
-                      .rownames %in% c("NCOPspring", "NCOPsummerlag1", "SCOPspring", 
-                                       "SCOPsummerlag1", "swfscRockfishSurv_Myctophids",
-                                       "sardLarv", "anchLarv", "mesopelLarv", 
+histResids %>% filter(name=="model" &
+# projResids %>% filter(name=="model" &
+                      .rownames %in% c("NCOPspring", "NCOPsummerlag1", 
+                                       "RREAS_Myctophids", "RREAS_YOYsardine",
+                                       "sardLarv", "mesopelLarv", 
                                        "anchYoY", "age1SprSardmeanWAA", "meanSSBwt", 
-                                       "copBio", "naupBio", "ZM_NorCal", "ZM_SoCal",
-                                       "anchRec", "sardRec", "albacore", "hake")) %>% 
+                                       "C.pacificus", "sardRec", "anchBioSmrySeas1", 
+                                       "yoySardSL")) %>% 
   mutate(t = t+1989) %>% 
   ggplot() +
   geom_point(aes(t, value)) +
@@ -325,8 +305,8 @@ projResids %>% filter(name=="model" &
   theme_classic()
 
 # plots of model estimated latent trends
-# histResids %>% filter(name=="state") %>% 
-projResids %>% filter(name=="state") %>% 
+histResids %>% filter(name=="state") %>%
+# projResids %>% filter(name=="state") %>% 
   mutate(t = t+1989) %>% 
   ggplot() +
   geom_point(aes(t, value)) +
@@ -361,12 +341,11 @@ comResids %>% filter(name=="model" &
 # order loadings by magnitude and arrange for plotting
 varArrang <- loadingsDF %>% filter(trend == 1) %>% arrange(est) %>% pull(index)
 # leave out response variables
-varArrang <- varArrang[-which(varArrang %in% c("sardRec", "anchRec", "anchYoY",
-                                               "sardLarv", "anchLarv"))]
+varArrang <- varArrang[-which(varArrang %in% c("sardRec", "RREAS_YOYsardine", "sardLarv"))]
 loadingsDF <- loadingsDF %>% mutate(index = factor(index, 
-                                                   level = c("sardRec", "anchRec", 
-                                                             "sardLarv", "anchLarv",
-                                                             "anchYoY",
+                                                   level = c("sardRec", 
+                                                             "RREAS_YOYsardine", 
+                                                             "sardLarv",
                                                       varArrang)))
 
 myCols <- c("#F8766D", "black","#FFB000", "#619CFF", 
@@ -381,19 +360,19 @@ test1 <- loadingsDF %>% mutate(est = case_when(abs(est) < 0.05 ~ 0,
                                           "NCOPspring", "NCOPsummerlag1",                  
                                           "SCOPspring", "SCOPsummerlag1",
                                           "ZM_NorCal", "ZM_SoCal") ~"Preconditioning",#  "#FFB000",
-                             index %in% c("HCI_R3", "HCI_R4", "sardSpawnHab", "anchSpawnHab",                
+                             index %in% c("HCI_30N355N", "sardSpawnHab", "anchSpawnHab",                
                                           "daysAbove5pct", "daysAbove40pct",
                                           "springSST", "summerSST") ~ "Temperature", #"#00BA38",
                              index %in% c("BEUTI_33N", "BEUTI_39N", "CUTI_33N",
                                           "CUTI_39N", "OC_LUSI_33N","OC_LUSI_36N",
                                           "OC_LUSI_39N", "OC_STI_33N", "OC_STI_36N",
-                                          "OC_STI_39N", "swfscRockfishSurv_Myctophids",
+                                          "OC_STI_39N", "RREAS_Myctophids",
                                           "avgSSWIspring", "avgSSWIsummer",
-                                          "mesopelLarv", "copBio", "naupBio",
+                                          "mesopelLarv", "C.pacificus",
                                           "sardNurseHab", "anchNurseHab",
                                           "avgNearTransspring", "avgNearTranssummer",
                                           "avgOffTransspring", "avgOffTranssummer") ~ "Foraging",#"#F8766D",
-                             index %in% c("albacore", "hake") ~ "Predation",#"#619CFF",
+                             index %in% c("yoySardSL", "anchBioSmrySeas1") ~ "Predation",#"#619CFF",
                              TRUE ~ "Interest Var" ),
          colCode = as.factor(colCode),
               hypoth =  case_when(trend == 1 ~ "Upwelling Strength",
@@ -419,7 +398,7 @@ test1 %>%
   geom_hline(yintercept = 5.5, color = "black") +
   theme_classic() +
   facet_wrap(~labl, nrow = 1) +
-  geom_text(x = .8, color = "black", 
+  geom_text(x = .5, color = "black", 
             label = ifelse(test1$isSig & abs(test1$est) > 0.05, "*", "")) +
   guides(linewidth = "none",
          color = guide_legend(override.aes = list(linewidth = 4)))
@@ -436,11 +415,11 @@ loadingsDF %>% filter(index %in% c("avgSSWIspring", "avgNearTransspring","avgOff
 loadingsDF %>% filter(index %in% c("avgSSWIsummer", "avgNearTranssummer", "avgOffTranssummer"))
 
 
-trendsAll <- tsSmooth(overallDFA, type = "xtT", interval = "confidence") %>%
+trendsAll <- tsSmooth(sardDFA, type = "xtT", interval = "confidence") %>%
                 mutate(model = "Local")
-trendsAll <- tsSmooth(projectDFA, type = "xtT", interval = "confidence") %>%
-                mutate(model = "Project") %>%
-                bind_rows(trendsAll)
+# trendsAll <- tsSmooth(projectDFA, type = "xtT", interval = "confidence") %>%
+#                 mutate(model = "Project") %>%
+#                 bind_rows(trendsAll)
 
 trendsAll %>%  
   mutate(t = t+1989) %>%

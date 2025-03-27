@@ -8,52 +8,48 @@ source("R/LFOXV.R")
 source("R/OSAResids.R")
 
 # read prepped dataset
-datDFA <- read_csv("C:/Users/r.wildermuth/Documents/FutureSeas/RecruitmentIndex/recrmntDFA/recrDFAdat.csv")
+datDFA <- read_csv("../SardineRecruitIndex/Data/recrDFAdat.csv")
 
 # Assess LFOIC for last 10 years of data
-peels <- 5
+peels <- 10
 
 
 # Data for full historical dataset ---------------------------------------
 
-# remove contemporary adult biomass with recruits, should be S2 biomass -> S1 recs
-allDat <- test1 %>% select(-c(
-                              anchBioSmrySeas1,
-                              sardBioSmrySeas1,
-                              # anchBioSmrySeas2, # leave out, sardine recruitment in season 1
-                              sardBioSmrySeas2,
-                              anchRec,
-                              # NCOPspring,
-                              # SCOPspring, # updated data not yet available
-                              # NCOPsummer,
-                              # SCOPsummer,
-                              ZL_NorCal,
-                              ZL_SoCal)) 
+# remove unused indicators
+allDat <- datDFA %>% select(-c(NCOPsummer,
+                               SCOPsummer,
+                               # anchBioSmrySeas1,
+                               anchBioSmrySeas2,
+                               # Potential redundant variables:
+                               # CUTI_39N, 
+                               # OC_LUSI_36N,
+                               # OC_STI_36N,
+                               summerSST,
+                               SCOPspring,
+                               SCOPsummerlag1)) 
 
 datNames <- names(allDat)[-1]
 
 # Create a custom R obs error matrix assuming each data source has it's own common error
 Rcustom <- matrix(list(0),length(datNames),length(datNames))
-diag(Rcustom) <- c(
-                   # "COP", "COP", "COP", "COP",
-                   "BEUTI", "BEUTI",
+diag(Rcustom) <- c("COP", "COP", 
+                   "BEUTI", "BEUTI", 
                    "CUTI", "CUTI",
-                   "HCI",
+                   "HCI", 
                    "LUSI", "LUSI", "LUSI",
                    "STI", "STI", "STI",
                    "RREAS", "RREAS",
                    "SSWI", "SSWI",
-                   "CalCOFI", "CalCOFI",
+                   "CalCOFI", "CalCOFI", 
                    "WAA", "WAA",
-                   "PRPOOS", "PRPOOS", #"PRPOOS", "PRPOOS", "PRPOOS", #"PRPOOS", "PRPOOS",
-                   "NEMURO", "NEMURO",
-                   "CalCOFI",
+                   "CPac", 
+                   # "SDM", "SDM", "TIME", "TIME", "SDM", "SDM",
                    "sardSDM", "sardSDM", 
-                   # "sardlarvSDM",
+                   "sardlarvSDM", 
                    "sardRec",
-                   "anchBio",
-                   # "sardBio",
-                   "SST", "SST",
+                   "anchBio", #"anchBio",
+                   "SST",
                    "Transp", "Transp", "Transp", "Transp",
                    "SLiDERS")
 
@@ -120,6 +116,7 @@ for(y in c(#1980, 1985,
                        Rstructure = "diagonal and equal",
                        mTrends = m,
                        peels = peels,
+                      horizon = 5,
                       colsRMSE = "sardRec")
 
     itEqRMSE <- itEqRMSE %>% mutate(initYr = y,
@@ -132,6 +129,7 @@ for(y in c(#1980, 1985,
                       Rstructure = "diagonal and unequal",
                       mTrends = m,
                       peels = peels,
+                      horizon = 5,
                       colsRMSE = "sardRec")
 
     itUneqRMSE <- itUneqRMSE %>% mutate(initYr = y,
@@ -144,6 +142,7 @@ for(y in c(#1980, 1985,
                         Rstructure = Rcustom,
                         mTrends = m,
                         peels = peels,
+                        horizon = 5,
                         colsRMSE = "sardRec")
 
     itCustRMSE <- itCustRMSE %>% mutate(initYr = y,
@@ -158,25 +157,38 @@ for(y in c(#1980, 1985,
 xvModSel <- xvModSel %>% mutate(nIndices = length(datNames),
                                 peels = peels)
   
-# write_csv(xvModSel, file = "fullHistoricalModelSelection.csv")
+
 
 
 # Calculate Persistence Prediction RMSE -----------------------------------
 
-allDat %>% select(year, sardRec, anchRec) %>% 
-  filter(year >= 1990, year < 2020) %>% 
-  mutate(zscoreSardRec = zscore(sardRec),
-         zscoreAnchRec = zscore(anchRec),
-         perstSard = c(NA, zscoreSardRec[1:29]),
-         perstAnch = c(NA, zscoreAnchRec[1:29]),
-         residSard = zscoreSardRec - perstSard,
-         residAnch = zscoreAnchRec - perstAnch) %>% 
-  select(year, residAnch, residSard) %>% 
-  pivot_longer(cols = -year, names_prefix = "resid", names_to = "VoI", 
-               values_to = "perstResid") %>% 
-  filter(year %in% 2010:2019) %>%
-  group_by(VoI) %>%
-  summarize(sosRes = sum(perstResid^2, na.rm = TRUE),
-            nObs = sum(!is.na(perstResid))) %>%
-  mutate(RMSE = sqrt(sosRes/nObs)) %>% pull(RMSE) %>% sum() #%>% summarize(totRMSE = sum(RMSE))
+datLen <- length(1990:2023)
 
+perstResids <- allDat %>% select(year, sardRec) %>% 
+                  filter(year >= 1990, year < 2024) %>% 
+                  mutate(zscoreSardRec = zscore(sardRec),
+                         perst1Sard = c(NA, zscoreSardRec[1:(datLen-1)]),
+                         resid1Sard = zscoreSardRec - perst1Sard,
+                         perst2Sard = c(NA,NA, zscoreSardRec[1:(datLen-2)]),
+                         resid2Sard = zscoreSardRec - perst2Sard,
+                         perst3Sard = c(NA,NA,NA, zscoreSardRec[1:(datLen-3)]),
+                         resid3Sard = zscoreSardRec - perst3Sard,
+                         perst4Sard = c(NA,NA,NA,NA, zscoreSardRec[1:(datLen-4)]),
+                         resid4Sard = zscoreSardRec - perst4Sard,
+                         perst5Sard = c(NA,NA,NA,NA,NA, zscoreSardRec[1:(datLen-5)]),
+                         resid5Sard = zscoreSardRec - perst5Sard) %>% 
+                  select(year, resid1Sard, resid2Sard, resid3Sard, resid4Sard, resid5Sard) %>% 
+                  pivot_longer(cols = -year, names_prefix = "resid", names_sep = 1, 
+                               names_to = c("predHoriz", "variable"), 
+                               values_to = "perstResid") %>% 
+                  filter(year %in% 2014:2023) %>%
+                  group_by(variable, predHoriz) %>%
+                  summarize(sosRes = sum(perstResid^2, na.rm = TRUE),
+                            peels = sum(!is.na(perstResid))) %>%
+                  mutate(RMSE = sqrt(sosRes/peels),
+                         resType = "resid.Perst") %>%
+                  select(-sosRes)
+
+xvModSel <- bind_rows(xvModSel, perstResids)
+
+write_csv(xvModSel, file = "out/fullHistoricalModelSelection.csv")

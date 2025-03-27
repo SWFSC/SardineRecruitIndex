@@ -8,6 +8,7 @@ LFOXV <- function(dfaDat, # data matrix formatted for MARSS input (variables in 
                   Rstructure, # either MARSS model 'R' matrix character arguments or custom matrix format
                   mTrends, # number of trends as MARSS model 'm' argument
                   peels, # number of years to peel from end of time series
+                  horizon = 1, # number of forecast years to predict out-of-sample residuals for. Default is 1 yr
                   colsRMSE = c("sardRec", "anchRec") # column names to calculate RMSE for. Default: c("sardRec", "anchRec")
 ){
   
@@ -35,14 +36,15 @@ LFOXV <- function(dfaDat, # data matrix formatted for MARSS input (variables in 
     }
     
     # get one-step-ahead residuals
-    resids <- OSAResids(objMARSS = peelDFA, fullDat = dfaDat, p = i,
+    resids <- OSAResids(objMARSS = peelDFA, fullDat = dfaDat, p = i, horizon = horizon,
                         colsRMSE = colsRMSE)
     
     # collect residuals for datum of interest
     peelRMSE <- resids %>% select(.rownames, t, resid.Naiv,
                                   resid.Inf, resid.Cont, resid.Proj) %>% 
-                  filter(.rownames %in% colsRMSE, t == max(t)) %>%
-                  mutate(peel = i) %>%
+                  filter(.rownames %in% colsRMSE, t %in% (max(t)-horizon+1):max(t)) %>% 
+                  mutate(peel = i,
+                         predHoriz = 1:horizon) %>%
                   bind_rows(peelRMSE)
   } # end peel for-loop
     
@@ -51,35 +53,35 @@ LFOXV <- function(dfaDat, # data matrix formatted for MARSS input (variables in 
                                         resid.Cont, resid.Proj),
                                values_to = "resids", names_to = "resType") %>%
                   # Calc RMSE over all time points
-                  group_by(.rownames, resType) %>%
+                  group_by(.rownames, resType, predHoriz) %>%
                   summarize(sosRes = sum(resids^2, na.rm = TRUE),
                             nObs = sum(!is.na(resids)),
                             avgAbsRes = mean(abs(resids), na.rm = TRUE)) %>%
                   mutate(RMSE = sqrt(sosRes/nObs)) %>% arrange(RMSE)
-  overPeelthenVar <- overPeel %>% group_by(resType) %>%
+  overPeelthenVar <- overPeel %>% group_by(resType, predHoriz) %>%
                   summarize(totRMSE = sum(RMSE),
                             meanRMSE = mean(RMSE))
-  # Over variables then peels
-  overVarthenPeel <- peelRMSE %>% 
-                      pivot_longer(cols = c(resid.Naiv, resid.Inf,
-                                            resid.Cont, resid.Proj),
-                                   values_to = "resids", names_to = "resType") %>%
-                      # Calc RMSE over all time points
-                      group_by(peel, resType) %>%
-                      summarize(sosRes = sum(resids^2, na.rm = TRUE),
-                                nObs = sum(!is.na(resids)),
-                                avgAbsRes = mean(abs(resids), na.rm = TRUE)) %>%
-                      mutate(RMSE = sqrt(sosRes/nObs)) %>% arrange(RMSE) %>%
-                      group_by(resType) %>%
-                      summarize(totRMSE = sum(RMSE),
-                                meanRMSE = mean(RMSE))
+  # # Over variables then peels
+  # overVarthenPeel <- peelRMSE %>% 
+  #                     pivot_longer(cols = c(resid.Naiv, resid.Inf,
+  #                                           resid.Cont, resid.Proj),
+  #                                  values_to = "resids", names_to = "resType") %>%
+  #                     # Calc RMSE over all time points
+  #                     group_by(peel, resType, predHoriz) %>%
+  #                     summarize(sosRes = sum(resids^2, na.rm = TRUE),
+  #                               nObs = sum(!is.na(resids)),
+  #                               avgAbsRes = mean(abs(resids), na.rm = TRUE)) %>%
+  #                     mutate(RMSE = sqrt(sosRes/nObs)) %>% arrange(RMSE) %>%
+  #                     group_by(resType, predHoriz) %>%
+  #                     summarize(totRMSE = sum(RMSE),
+  #                               meanRMSE = mean(RMSE))
    # OR can calculate over all vars of interest AND peel
   overPeelandVar <- peelRMSE %>% 
                       pivot_longer(cols = c(resid.Naiv, resid.Inf,
                                             resid.Cont, resid.Proj),
                                    values_to = "resids", names_to = "resType") %>%
                       # Calc RMSE over all time points
-                      group_by(resType) %>%
+                      group_by(resType, predHoriz) %>%
                       summarize(sosRes = sum(resids^2, na.rm = TRUE),
                                 nObs = sum(!is.na(resids)),
                                 avgAbsRes = mean(abs(resids), na.rm = TRUE)) %>%
@@ -88,10 +90,10 @@ LFOXV <- function(dfaDat, # data matrix formatted for MARSS input (variables in 
   # set up ability to compare across calculation methods
   overPeelandVar <- overPeelandVar %>% mutate(compMethod = "peel & variable combined",
                                               variable = "total") %>% 
-                        select(compMethod, variable, resType, RMSE)
+                        select(compMethod, variable, resType, predHoriz, RMSE)
   overPeel <- overPeel %>% rename(variable = .rownames) %>%
                 mutate(compMethod = "individual") %>% 
-                select(compMethod, variable, resType, RMSE)
+                select(compMethod, variable, resType, predHoriz, RMSE)
   overPeelthenVar <- overPeelthenVar %>% mutate(compMethod = "peel then variable") %>%
                         pivot_longer(cols = c(totRMSE, meanRMSE), 
                                      names_to = "variable", values_to = "RMSE")

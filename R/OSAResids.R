@@ -1,4 +1,4 @@
-# Function to calculate one-step-ahead residuals 
+# Function to calculate out of sample residuals given a prediction horizon
 # where the DFA model used for prediction is only fit to 
 # data available at the time of the forecast. Calculates naive and informed innovation 
 # residuals, contemporaneous residuals, and projection residuals.
@@ -6,6 +6,7 @@
 #' @param objMARSS MARSS object fitted outside this function to data up to a specified peel
 #' @param fullDat all available data
 #' @param p peel used when fitting objMARSS
+#' @param horizon integer for steps ahead in the prediction horizon
 #' @param colsRMSE # column names to calculate RMSE for. Default: c("sardRec", "anchRec")
 #' @return dataframe of residuals for the specified 
 #' datasets, scaled observations fed into the model estimate (y.*),
@@ -14,15 +15,16 @@
 #' informed innovation residuals with only 'colsRMSE' data missing from the forecast (Inf),
 #' contemporaneous residuals with all data in the forecast (Cont), and projection residuals
 #' with 'colsRMSE' data missing from full time series (Proj).
-#' Note only the residuals for the last time step where y=NA are 
+#' Note only the residuals for the last 'horizon' time steps where y=NA are 
 #' out of sample and true innovation residuals
 
-OSAResids <- function(objMARSS, fullDat, p, 
+OSAResids <- function(objMARSS, fullDat, p, horizon = 1,
                           colsRMSE = c("sardRec", "anchRec") 
 ){
   
   
-  origDat <- fullDat[,1:(ncol(fullDat)-p+1)] #data including 1 step ahead of peel
+  origDat <- fullDat[,1:min(ncol(fullDat), # either full data set or ...
+                            ncol(fullDat)-p+horizon)] # including 'horizon' steps ahead of peel
   # need to scale data for residual calcs and 'newdata' input
   origDat <- apply(origDat, 1, scale, simplify = TRUE) %>% t() 
   # !RW: scales slightly different from those used to fit the DFA model 'objMARSS'
@@ -30,11 +32,11 @@ OSAResids <- function(objMARSS, fullDat, p,
   
   # create 'YStar' by removing last observation of 'colsRMSE' variables
   YStar <- origDat
-  YStar[colsRMSE, ncol(YStar)] <- NA
+  YStar[colsRMSE, (ncol(YStar)-p+1):ncol(YStar)] <- NA
   
   # naive innovations
   yExpctNaive <- predict(object = objMARSS, interval = "none", 
-                    n.ahead = 1, type = 'ytT')
+                    n.ahead = horizon, type = 'ytT')
   yExpctNaive <- yExpctNaive$pred %>% rename(y.Naiv = y,
                                              est.Naiv = estimate)
   

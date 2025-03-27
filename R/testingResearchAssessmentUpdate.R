@@ -116,6 +116,16 @@ ggplot(Saa_long%>%filter(Fleet==fleet), aes(x = as.numeric(Age), y = Sa, color =
   scale_color_viridis_d(option = "H")
 
 
-compSmry <- SSsummarize(list(resAssmt, resAssmt2025.22, mngtAssmt2024, resAssmt2025Blox, res25Lorenz))
+compSmry <- SSsummarize(list(resAssmt, 
+                             resAssmt2025, 
+                             mngtAssmt2024, 
+                             resAssmt2025Blox, 
+                             # resAssmt2025yrlyBlox, 
+                             res25Lorenz))
 dev.off()
-SSplotComparisons(compSmry, legendlabels = c("resAssmt", "resAssmt2025.22", "mngtAssmt2024", "resAssmt2025Blox", "res25Lorenz"))
+SSplotComparisons(compSmry, legendlabels = c("resAssmt", 
+                                             "resAssmt2025", 
+                                             "mngtAssmt2024", 
+                                             "resAssmt2025Blox", 
+                                             # "resAssmt2025yrlyBlox", 
+                                             "res25Lorenz"))
