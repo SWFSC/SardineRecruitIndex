@@ -58,7 +58,7 @@ ProcessLoadings <- function(outMARSS, ...){
 sardDat <- datDFA %>% filter(year %in% 1990:2023) %>%
             select(-c(NCOPsummer,
                       SCOPsummer,
-                      # anchBioSmrySeas1,
+                      anchBioSmrySeas1,
                       anchBioSmrySeas2,
                       # Potential redundant variables:
                       # CUTI_39N, 
@@ -99,7 +99,7 @@ diag(Rcustom) <- c("COP", "COP",
                    "sardSDM", "sardSDM", 
                    "sardlarvSDM", 
                    "sardRec",
-                   "anchBio", #"anchBio",
+                   # "anchBio", #"anchBio",
                    "SST",
                    "Transp", "Transp", "Transp", "Transp",
                    "SLiDERS")
@@ -124,9 +124,9 @@ sardDFA <- MARSS(y = sardDat,
 # 4 trends, custom - no sig loadings for rec devs
 # Work with 1 trend, diag equl for now
 
-# save(sardDFA, file = "out/marssFit_1990to2023_1trend_EqlVar.RData")
+# save(sardDFA, file = "out/marssFit_1990to2023_noAnch_1trend_EqlVar.RData")
 
-# load(file = "marssFit_1990to2019_noBio_5trend_DiagEql.RData")
+# load(file = "out/marssFit_1990to2023_noAnch_1trend_EqlVar.RData")
 
 # calc RMSE
 histResids <- residuals(sardDFA, type = "tT")
@@ -395,7 +395,7 @@ test1 %>%
   #                               "Foraging", "Predation", "Interest Var")) +
   labs(x = "Loadings", y = "Index", color = "Hypothesis") +
   geom_vline(xintercept = 0, color = "grey") +
-  geom_hline(yintercept = 5.5, color = "black") +
+  geom_hline(yintercept = 3.5, color = "black") +
   theme_classic() +
   facet_wrap(~labl, nrow = 1) +
   geom_text(x = .5, color = "black", 
@@ -403,12 +403,6 @@ test1 %>%
   guides(linewidth = "none",
          color = guide_legend(override.aes = list(linewidth = 4)))
 
-loadingsDF %>% filter(index %in% c("sardRec", "anchRec", "anchYoY",
-                                   "sardLarv", "anchLarv"))
-
-# check correlations between zooplankton indicators
-loadingsDF %>% filter(index %in% c("NCOPspring", "SCOPspring", "ZM_NorCal"))
-loadingsDF %>% filter(index %in% c("copBio", "naupBio", "ZM_SoCal"))
 
 # check correlations between advection indicators
 loadingsDF %>% filter(index %in% c("avgSSWIspring", "avgNearTransspring","avgOffTransspring"))

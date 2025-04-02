@@ -42,7 +42,7 @@ sel_SS <- "v3.30.22" # indicate version of SS to run this analysis with
   # 2023 Benchmark used v3.30.22
 
 # Set directory for SS files
-ex_AsData_wd <- here::here("SS files", "Example As-Data")
+ex_AsData_wd <- here::here("scenarioModels", "Example As-Data")
 
 # Run Example As-Data assessment, save output/plots ---------------------------
   # Run model, save results as .rds file ----
@@ -52,7 +52,7 @@ r4ss::run(dir = ex_AsData_wd,
           skipfinished = FALSE)
 
 ex_AsData_assess <- SS_output(ex_AsData_wd)
-saveRDS(ex_AsData_assess, file.path(ex_AsData_wd, "ex_AsData_assess.rds"))
+# saveRDS(ex_AsData_assess, file.path(ex_AsData_wd, "ex_AsData_assess.rds"))
 
   # Read model output, make default plots ----
 

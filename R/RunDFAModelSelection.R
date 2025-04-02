@@ -19,7 +19,7 @@ peels <- 10
 # remove unused indicators
 allDat <- datDFA %>% select(-c(NCOPsummer,
                                SCOPsummer,
-                               # anchBioSmrySeas1,
+                               anchBioSmrySeas1,
                                anchBioSmrySeas2,
                                # Potential redundant variables:
                                # CUTI_39N, 
@@ -48,7 +48,7 @@ diag(Rcustom) <- c("COP", "COP",
                    "sardSDM", "sardSDM", 
                    "sardlarvSDM", 
                    "sardRec",
-                   "anchBio", #"anchBio",
+                   # "anchBio", #"anchBio",
                    "SST",
                    "Transp", "Transp", "Transp", "Transp",
                    "SLiDERS")
@@ -176,8 +176,9 @@ perstResids <- allDat %>% select(year, sardRec) %>%
                          perst4Sard = c(NA,NA,NA,NA, zscoreSardRec[1:(datLen-4)]),
                          resid4Sard = zscoreSardRec - perst4Sard,
                          perst5Sard = c(NA,NA,NA,NA,NA, zscoreSardRec[1:(datLen-5)]),
-                         resid5Sard = zscoreSardRec - perst5Sard) %>% 
-                  select(year, resid1Sard, resid2Sard, resid3Sard, resid4Sard, resid5Sard) %>% 
+                         resid5Sard = zscoreSardRec - perst5Sard,
+                         resid0Mean = zscoreSardRec - 0) %>% # residual from mean S-R value is just the rec dev
+                  select(year, resid1Sard, resid2Sard, resid3Sard, resid4Sard, resid5Sard, resid0Mean) %>% 
                   pivot_longer(cols = -year, names_prefix = "resid", names_sep = 1, 
                                names_to = c("predHoriz", "variable"), 
                                values_to = "perstResid") %>% 
@@ -186,9 +187,27 @@ perstResids <- allDat %>% select(year, sardRec) %>%
                   summarize(sosRes = sum(perstResid^2, na.rm = TRUE),
                             peels = sum(!is.na(perstResid))) %>%
                   mutate(RMSE = sqrt(sosRes/peels),
-                         resType = "resid.Perst") %>%
+                         resType = "resid.Perst",
+                         predHoriz = as.numeric(predHoriz)) %>%
                   select(-sosRes)
 
 xvModSel <- bind_rows(xvModSel, perstResids)
 
-write_csv(xvModSel, file = "out/fullHistoricalModelSelection.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_noAnch.csv")
+
+xvModSel <- read_csv("out/historicalModelSelection_noAnch.csv") %>%
+              mutate(dataset = "noAnch")
+testAnch <- read_csv("out/fullHistoricalModelSelection.csv") %>%
+              mutate(dataset = "Anch")
+
+xvModSel <- bind_rows(xvModSel, testAnch)
+
+# plot out best performing model structures over prediction horizons
+xvModSel %>% filter(resType %in% "resid.Inf", variable %in% c("Sard", "sardRec")) %>%
+  ggplot(aes(x = predHoriz, y = RMSE)) +
+  geom_line(aes(color = as.character(mTrends))) + #paste(mTrends, Rstructure, sep = "-"))) +
+  geom_point(data = perstResids %>% filter(!variable == "Mean")) +
+  geom_hline(yintercept = perstResids %>% filter(variable == "Mean") %>% pull(RMSE)) + 
+  scale_color_viridis_d() +
+  facet_grid(cols= vars(Rstructure), rows = vars(dataset))
+  
