@@ -191,7 +191,7 @@ perstResids <- allDat %>% select(year, sardRec) %>%
                          predHoriz = as.numeric(predHoriz)) %>%
                   select(-sosRes)
 
-xvModSel <- bind_rows(xvModSel, perstResids)
+
 
 # write_csv(xvModSel, file = "out/historicalModelSelection_noAnch.csv")
 
@@ -201,7 +201,7 @@ testAnch <- read_csv("out/fullHistoricalModelSelection.csv") %>%
               mutate(dataset = "Anch")
 
 xvModSel <- bind_rows(xvModSel, testAnch)
-
+xvModSel <- bind_rows(xvModSel, perstResids)
 # plot out best performing model structures over prediction horizons
 xvModSel %>% filter(resType %in% "resid.Inf", variable %in% c("Sard", "sardRec")) %>%
   ggplot(aes(x = predHoriz, y = RMSE)) +
