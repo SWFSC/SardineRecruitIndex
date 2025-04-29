@@ -58,12 +58,14 @@ ProcessLoadings <- function(outMARSS, ...){
 sardDat <- datDFA %>% filter(year %in% 1990:2023) %>%
             select(-c(NCOPsummer,
                       SCOPsummer,
-                      # anchBioSmrySeas1,
+                      anchBioSmrySeas1,
                       anchBioSmrySeas2,
                       # Potential redundant variables:
                       # CUTI_39N, 
                       # OC_LUSI_36N,
                       # OC_STI_36N,
+                      # Leave recruitment out for input to assessment
+                      sardRec,
                       summerSST,
                       SCOPspring,
                       SCOPsummerlag1))
@@ -98,8 +100,8 @@ diag(Rcustom) <- c("COP", "COP",
                    # "SDM", "SDM", "TIME", "TIME", "SDM", "SDM",
                    "sardSDM", "sardSDM", 
                    "sardlarvSDM", 
-                   "sardRec",
-                   "anchBio", #"anchBio",
+                   # "sardRec",
+                   # "anchBio", #"anchBio",
                    "SST",
                    "Transp", "Transp", "Transp", "Transp",
                    "SLiDERS")
@@ -124,9 +126,10 @@ sardDFA <- MARSS(y = sardDat,
 # 4 trends, custom - no sig loadings for rec devs
 # Work with 1 trend, diag equl for now
 
-# save(sardDFA, file = "out/marssFit_1990to2023_1trend_EqlVar.RData")
 
-# load(file = "marssFit_1990to2019_noBio_5trend_DiagEql.RData")
+# save(sardDFA, file = "out/marssFit_1990to2023_noAnch_noSardRec_1trend_EqlVar.RData")
+
+# load(file = "out/marssFit_1990to2023_noAnch_1trend_EqlVar.RData")
 
 # calc RMSE
 histResids <- residuals(sardDFA, type = "tT")
@@ -171,95 +174,7 @@ histResids <- histResids %>% mutate(up = qnorm(1- alpha / 2) * .sigma + .fitted,
                                     lo = qnorm(alpha / 2) * .sigma + .fitted,
                                     model = "Local")
 
-# Projection Model -----------------------------------------------------------
 
-# subset from 1980 to 2019
-projDat <- datDFA %>% filter(year %in% 1990:2019) %>%
-  # select only projectable vars and vars of interest
-  select("year", "HCI_R3", "HCI_R4", "BEUTI_33N", "BEUTI_39N", "CUTI_33N", 
-         "CUTI_39N", "OC_LUSI_33N",
-         "OC_LUSI_36N", "OC_LUSI_39N", "OC_STI_33N", "OC_STI_36N", "OC_STI_39N",
-         "sardLarv", "anchLarv", "anchYoY", 
-         "ZM_NorCal", "ZM_SoCal", "sardSpawnHab", "anchSpawnHab", "daysAbove5pct",
-         "daysAbove40pct", "sardNurseHab", "anchNurseHab", "anchRec", "sardRec",
-         "springSST", "summerSST", "avgNearTransspring", "avgNearTranssummer",
-         "avgOffTransspring", "avgOffTranssummer") 
-
-datNames <- names(projDat)[-1]
-
-# transpose for MARSS formatting
-projDat <- projDat %>% select(-year) %>% t()
-
-# Create a custom R obs error matrix assuming each data source has it's own common error
-RcustProj <- matrix(list(0),length(datNames),length(datNames)) 
-diag(RcustProj) <- c("HCI", "HCI", 
-                     "BEUTI", "BEUTI", 
-                     "CUTI", "CUTI",
-                     "LUSI", "LUSI", "LUSI", 
-                     "STI", "STI", "STI",
-                     "CalCOFI", "CalCOFI",
-                     "RREAS",
-                     "NEMURO", "NEMURO",
-                     # "SDM", "SDM", "TIME", "TIME", "SDM", "SDM",
-                     "sardSDM", "anchSDM", "sardSDM", "anchSDM", 
-                     "sardlarvSDM", "anchlarvSDM",
-                     # "SDM1", "SDM2", "SDM1", "SDM2", "SDM1", "SDM2",
-                     "anchRec",
-                     "sardRec",
-                     "SST", "SST",
-                     "Transp", "Transp", "Transp", 
-                     "Transp")
-
-projectDFA <- MARSS(y = projDat, 
-                    form = "dfa",
-                    method = "BFGS",
-                    # control = list(maxit = 10000,
-                    #                conv.test.slope.tol = 0.1,
-                    #                allow.degen = TRUE),
-                    inits = list(x0 = matrix(1, 1, 1)),
-                    z.score = TRUE,
-                    model = list(R = "diagonal and equal", # observation errors are the same
-                      # R = "diagonal and unequal", # observation errors independent
-                      # R = "equalvarcov", # observation errors equal and covars equal
-                      # R = "unconstrained", # all observation errors independent
-                      # R = RcustProj,
-                      m = 5) # number of latent processes
-)
-
-# save(projectDFA, file = "marssFit_1990to2019_ProjDFA_5trend_Rcustom.RData")
-# save(projectDFA, file = "marssFit_1990to2019_ProjDFA_3trend_DiagEql.RData")
-load(file = "marssFit_1990to2019_ProjDFA_5trend_Rcustom.RData")
-
-# calc RMSE
-projResids <- residuals(projectDFA, type = "tT")
-
-projRMSE <- projResids %>% filter(name == "model") %>%
-              group_by(.rownames) %>%
-              summarize(sosRes = sum(.resids^2, na.rm = TRUE),
-                        nObs = sum(!is.na(.resids))) %>%
-              mutate(RMSE = sqrt(sosRes/nObs))
-projRMSE %>% filter(.rownames %in% c(#"anchYoY", 
-                                     "anchRec", "sardRec")) %>%
-  summarize(totRMSE = sum(RMSE)) %>% pull(totRMSE)
-
-loadingsProj <- ProcessLoadings(projectDFA)
-
-loadingsDF <- loadingsProj$loadingsDF
-
-# investigate whether loadings are large/significant
-loadingsDF %>% filter(isSig, abs(est) > 0.05) # all trends have variables with moderate significant loadings 
-loadingsDF %>% filter(isSig, abs(est) > 0.2) # all trends have variables with strong significant loadings 
-
-
-projResids <- projResids %>% mutate(up = qnorm(1- alpha / 2) * .sigma + .fitted,
-                                    lo = qnorm(alpha / 2) * .sigma + .fitted,
-                                    model = "Projection")
-
-# fits to data from pg 137 in MARSS User Guide
-# alpha <- 0.05 
-# d <- residuals(projectDFA, type = "tT") 
-# d$up <- qnorm(1- alpha / 2) * d$.sigma + d$.fitted 
-# d$lo <- qnorm(alpha / 2) * d$.sigma + d$.fitted 
 
 # Plots for manuscript --------------------------------------------------
 
@@ -395,7 +310,7 @@ test1 %>%
   #                               "Foraging", "Predation", "Interest Var")) +
   labs(x = "Loadings", y = "Index", color = "Hypothesis") +
   geom_vline(xintercept = 0, color = "grey") +
-  geom_hline(yintercept = 5.5, color = "black") +
+  geom_hline(yintercept = 3.5, color = "black") +
   theme_classic() +
   facet_wrap(~labl, nrow = 1) +
   geom_text(x = .5, color = "black", 
@@ -403,12 +318,6 @@ test1 %>%
   guides(linewidth = "none",
          color = guide_legend(override.aes = list(linewidth = 4)))
 
-loadingsDF %>% filter(index %in% c("sardRec", "anchRec", "anchYoY",
-                                   "sardLarv", "anchLarv"))
-
-# check correlations between zooplankton indicators
-loadingsDF %>% filter(index %in% c("NCOPspring", "SCOPspring", "ZM_NorCal"))
-loadingsDF %>% filter(index %in% c("copBio", "naupBio", "ZM_SoCal"))
 
 # check correlations between advection indicators
 loadingsDF %>% filter(index %in% c("avgSSWIspring", "avgNearTransspring","avgOffTransspring"))
