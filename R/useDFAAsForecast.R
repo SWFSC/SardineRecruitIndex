@@ -16,7 +16,7 @@ yExpNaive <- predict(object = sardDFA, interval = "none",
 yExpHist <- fitted(sardDFA, type = "ytT", interval = "confidence") %>%
   mutate(t = t+1989)
 yExpHist %>% filter(.rownames == "sardRec")
-yExpctNaive <- yExpctNaive$pred %>%
+yExpNaive <- yExpNaive$pred %>%
                   mutate(t = t+1989) %>% 
                   filter(.rownames == "sardRec")
 # For now, these are the same as the 2023 values because no other indicators are 
