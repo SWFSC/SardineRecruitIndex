@@ -158,3 +158,19 @@ rho_output <- SSmohnsrho(summaryoutput = retroSummary,
                          verbose = FALSE)
 rho_output$AFSC_Hurtado_SSB # Hurtado-Ferro et al. 2015 rho
 rho_output$AFSC_Hurtado_Rec # Hurtado-Ferro et al. 2015 rho
+
+# Compare retro to re-forecast --------------------------------------------
+
+# Retrospective run as done above
+retro4 <- "../SardineRecruitIndex/scenarioModels/benchmarkDFA_AsForecast/Retro_runs/retro-4"
+retro4 <- SS_output(dir = retro4, repfile = "Report.sso", printstats = FALSE)
+
+# Re-forecast by changing endyr, time varying blocks in control file, and benchmarks in forecast file
+retro4end2019 <- "../SardineRecruitIndex/scenarioModels/benchmarkDFA_AsForecast/Retro_runs/retro-4_end2019"
+retro4end2019 <- SS_output(dir = retro4end2019, repfile = "Report.sso", printstats = FALSE)
+
+compSmry <- SSsummarize(list(retro4, 
+                             retro4end2019))
+dev.off()
+SSplotComparisons(compSmry, legendlabels = c("retro4", 
+                                             "retro4end2019"))
