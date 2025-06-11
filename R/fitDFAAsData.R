@@ -14,49 +14,6 @@ trendsHist <- tsSmooth(sardDFA, type = "xtT", interval = "confidence") %>%
                        t = t+1989)
 
 
-# Regression of DFA trend on rec devs -------------------------------------
-
-mngtBench2024 <- SS_output("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/scenarioModels/Pacific sardine 2024 benchmark",)
-mngt2024recdevs <- mngtBench2024$recruit %>% filter(era == "Main")
-
-regrDat <- mngt2024recdevs %>% select(Yr, dev) %>%
-              left_join(y = trendsHist, by = c("Yr" = "t"))
-
-regrFit <- lm(dev ~ .estimate, data = regrDat)
-summary(regrFit) # no sig relationship
-
-# plot(regrFit)
-
-regrDat <- regrDat %>% mutate(predPts = predict(regrFit, newdata = regrDat))
-
-regrDat %>% ggplot(aes(x = .estimate, y = dev)) +
-  geom_point() + 
-  geom_line(aes(y = predPts)) +
-  theme_classic()
-
-# see what it looks like with research model time series
-resAssess2025 <- SS_output("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/scenarioModels/2025_research_assessment_LorenzM",)
-res2025recdevs <- resAssess2025$recruit %>% filter(era == "Main")
-
-regrDat <- res2025recdevs %>% select(Yr, dev) %>%
-              left_join(y = trendsHist, by = c("Yr" = "t"))
-
-regrFit <- lm(dev ~ .estimate, data = regrDat)
-summary(regrFit) # sig relationship over longer historical period
-
-# plot(regrFit)
-
-regrDat <- regrDat %>% mutate(predPts = predict(regrFit, newdata = regrDat),
-                              # color points by era
-                              colr = case_when(Yr >= 2005 ~ "benchmark",
-                                               TRUE ~ "DFA"))
-              
-
-regrDat %>% ggplot(aes(x = .estimate, y = dev)) +
-  geom_point(aes(color = colr)) + 
-  geom_line(aes(y = predPts)) +
-  theme_classic()
-
 # Fit As Data SS model ----------------------------------------------------
 
 # read in and modify data.ss file

@@ -65,11 +65,14 @@ sardDat <- datDFA %>% filter(year %in% 1990:2023) %>%
                       # OC_LUSI_36N,
                       # OC_STI_36N,
                       # Leave recruitment out for input to assessment
-                      sardRec,
+                      #sardRec,
                       summerSST,
                       SCOPspring,
                       SCOPsummerlag1))
                       
+# add random vector to test strength of loadings relative to random var
+# sardDat <- sardDat %>% mutate(randTest = rnorm(n = nrow(sardDat)))
+
 datNames <- names(sardDat)[-1]
 
 # transpose for MARSS formatting
@@ -100,7 +103,7 @@ diag(Rcustom) <- c("COP", "COP",
                    # "SDM", "SDM", "TIME", "TIME", "SDM", "SDM",
                    "sardSDM", "sardSDM", 
                    "sardlarvSDM", 
-                   # "sardRec",
+                   "sardRec",
                    # "anchBio", #"anchBio",
                    "SST",
                    "Transp", "Transp", "Transp", "Transp",
@@ -152,7 +155,7 @@ loadingsDF %>% filter(index %in% c("sardRec")) %>%
 
 # investigate whether loadings are large/significant
 # loadingsDF %>% filter(isSig, abs(est) > 0.05) # only 2 variables with moderate significant loadings on trend 5
-loadingsDF %>% filter(isSig, abs(est) > 0.2)
+loadingsDF %>% filter(isSig, abs(est) > 0.2) %>% arrange(abs(est))
 
 
 # fits to data from pg 137 in MARSS User Guide
@@ -313,7 +316,7 @@ test1 %>%
   geom_hline(yintercept = 3.5, color = "black") +
   theme_classic() +
   facet_wrap(~labl, nrow = 1) +
-  geom_text(x = .5, color = "black", 
+  geom_text(x = .7, color = "black", 
             label = ifelse(test1$isSig & abs(test1$est) > 0.05, "*", "")) +
   guides(linewidth = "none",
          color = guide_legend(override.aes = list(linewidth = 4)))
@@ -373,3 +376,60 @@ trendsAll %>%
   labs(x= "Year", y = "State") +
   geom_hline(yintercept = 0) +
   theme_classic()
+
+
+# Test against random time series -----------------------------------------
+
+# record estimated loading and significance for random variable over 100 iterations
+randLoading <- tibble(est = 0, conf.up = 0, conf.low = 0, trend = 0, index = "", 
+                      dummy0 = 0, isSig = 0)
+
+for(ii in 1:100){
+  # subset for sardine DFA from 1990 to 2023 - no rec devs for 2024
+  sardDat <- datDFA %>% filter(year %in% 1990:2023) %>%
+    select(-c(NCOPsummer,
+              SCOPsummer,
+              anchBioSmrySeas1,
+              anchBioSmrySeas2,
+              # Potential redundant variables:
+              # CUTI_39N, 
+              # OC_LUSI_36N,
+              # OC_STI_36N,
+              # Leave recruitment out for input to assessment
+              sardRec,
+              summerSST,
+              SCOPspring,
+              SCOPsummerlag1))
+  
+  # add random vector to test strength of loadings relative to random var
+  sardDat <- sardDat %>% mutate(randTest = rnorm(n = nrow(sardDat)))
+  
+  datNames <- names(sardDat)[-1]
+  
+  # transpose for MARSS formatting
+  sardDat <- sardDat %>% select(-year) %>% t()
+  
+  sardDFA <- MARSS(y = sardDat, 
+                   form = "dfa",
+                   method = "BFGS",
+                   # control = list(maxit = 10000,
+                   #                conv.test.slope.tol = 0.1,
+                   #                allow.degen = TRUE),
+                   inits = list(x0 = matrix(1, 1, 1)),
+                   z.score = TRUE,
+                   model = list( R = "diagonal and equal", # observation errors are the same
+                                 m = 1) # number of latent processes
+  )
+  
+  loadingsHist <- ProcessLoadings(sardDFA)
+  
+  loadingsDF <- loadingsHist$loadingsDF
+  
+  randLoading <- loadingsDF %>% filter(index == "randTest") %>% 
+                    bind_rows(randLoading)
+}
+
+summary(abs(randLoading$est))
+
+randLoading %>% filter(index != "", isSig == 1) %>% pull(est) %>% abs() %>% summary()
+# most absolute loadings < 0.3 no better than random!

@@ -63,16 +63,25 @@ SS_writedat(datlist = ssDat, outfile = "scenarioModels/benchmarkDFA_AsNowcast/da
 # datTest <- SS_readdat(file = "scenarioModels/benchmarkDFA_AsData/data.ss")
 
 # need to add catchability (Q) parameters for the new index
-ssCtl <- SS_readctl(file = "scenarioModels/Example As-Data/control.ss")
+ssCtl <- SS_readctl(file = "scenarioModels/benchmarkDFA_AsData/control.ss")
 
 # add an extra SE for Q
+# RW: didn't have much affect and estimate loaded near lower bound (0.001)
+# ssCtl$Q_options <- ssCtl$Q_options %>% 
+#                     mutate(extra_se = case_when(fleet == 5 ~ 1,
+#                                                 TRUE ~ extra_se))
+# do catchability offset instead, as recommended for rec dev indices in SS3.30.23
 ssCtl$Q_options <- ssCtl$Q_options %>% 
-                    mutate(extra_se = case_when(fleet == 5 ~ 1,
+                    mutate(link = case_when(fleet == 5 ~ 5,
+                                            TRUE ~ link),
+                           extra_se = case_when(fleet == 5 ~ 0,
                                                 TRUE ~ extra_se))
 
 # fix Q = 1 and estimate extra_se
+ssCtl$Q_parms <- ssCtl$Q_parms[1:2,]
 ssCtl$Q_parms$INIT <- c(0,1)
-newQparms <- as.data.frame(t(c(0.001, 1.3, 0.949309, 0, 99, 0, 2, 0, 0, 0, 0, 0, 0, 0)))# extra_se estimate, borrowed from sablefish assessment
+# newQparms <- as.data.frame(t(c(0.001, 1.3, 0.949309, 0, 99, 0, 2, 0, 0, 0, 0, 0, 0, 0)))# extra_se estimate, borrowed from sablefish assessment
+newQparms <- as.data.frame(t(c(-3, 3, 0, 0, 99, 0, 2, 0, 0, 0, 0, 0, 0, 0)))# link estimate
 names(newQparms) <- names(ssCtl$Q_parms)
 ssCtl$Q_parms <- ssCtl$Q_parms %>% bind_rows(newQparms) 
 
@@ -90,16 +99,24 @@ r4ss::run(dir = "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/Sard
 dfaAsNowFit <- SS_output("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/scenarioModels/benchmarkDFA_AsNowcast",)
 SS_plots(dfaAsNowFit)
 
+dfaAsNowFit$parameters %>% filter(!is.na(Active_Cnt), !Status %in% c("OK", "act"))
+
 # Compare to recruitment pattern from 2024 assessment
 mngtDir <- "../SardineRecruitIndex/scenarioModels/Pacific sardine 2024 benchmark"
 
 mngtAssmt2024 <- SS_output(dir = mngtDir, repfile = "Report.sso", printstats = FALSE)
 
+res25LorenzDir <- "../SardineRecruitIndex/scenarioModels/2025_research_assessment_LorenzM"
+
+res25Lorenz <- SS_output(dir = res25LorenzDir, repfile = "Report.sso", printstats = FALSE)
+
 compSmry <- SSsummarize(list(dfaAsNowFit, 
-                             mngtAssmt2024))
+                             mngtAssmt2024,
+                             res25Lorenz))
 dev.off()
 SSplotComparisons(compSmry, legendlabels = c("dfaAsNowcast", 
-                                             "mngtAssmt2024"))
+                                             "mngtAssmt2024",
+                                             "res25Lorenz"))
 
 # diff in estimated rec devs
 recdevDiffs <- compSmry$recdevs %>% mutate(recdevDiff = model1 - model2) # w/Envt - benchmark

@@ -1,6 +1,7 @@
 # Leave-Future-Out Cross  validation for MARSS DFA model selection
 # Created: 12/13/2023, Robert Wildermuth
 
+source("R/OSAResids.R")
 
 # Leave-Future-Out Cross-Validation ---------------------------------------
 
@@ -40,11 +41,11 @@ LFOXV <- function(dfaDat, # data matrix formatted for MARSS input (variables in 
                         colsRMSE = colsRMSE)
     
     # collect residuals for datum of interest
-    peelRMSE <- resids %>% select(.rownames, t, resid.Naiv,
+    itPeelRMSE <- resids %>% select(.rownames, t, resid.Naiv,
                                   resid.Inf, resid.Cont, resid.Proj) %>% 
-                  filter(.rownames %in% colsRMSE, t %in% (max(t)-horizon+1):max(t)) %>% 
-                  mutate(peel = i,
-                         predHoriz = 1:horizon) %>%
+                    filter(.rownames %in% colsRMSE, t %in% (ncol(dfaDat)-i+1):max(t)) %>% 
+                    mutate(peel = i)
+    peelRMSE <- itPeelRMSE %>% mutate(predHoriz = 1:nrow(itPeelRMSE)) %>%
                   bind_rows(peelRMSE)
   } # end peel for-loop
     

@@ -5,6 +5,7 @@
 require(r4ss)
 require(tidyverse)
 library(MARSS)
+library(ss3diags)
 
 # Fit As Forecast SS model ------------------------------------------------
 
@@ -51,6 +52,53 @@ ChangeCtlRecDevs <- function(dfDFAExp, # data.frame of DFA expected rec devs
             skipfinished = FALSE)
 }
 
+# Fit As Nowcast SS model ------------------------------------------------
+
+# Function to modify control file to shorten Main rec devs period and
+# input late  rec devs from DFA as index
+# and re-run model
+
+ChangeIndexRecDevs <- function(dfDFAExp, # data.frame of DFA expected rec devs
+                             rmYr, # retro peel directory suffix
+                             lastYr = 2023 # give last year of main rec devs since SS_readctl() doesn't work
+                             ){
+
+  # # edit control file to read in the 2024 estimated rec dev
+  # ssCtl <- SS_readctl(file = file.path("scenarioModels/benchmarkDFA_AsNowcast/Retro_runs",
+  #                                      paste0("retro", rmYr), "control.ss"))
+  # 
+  # # change reference years for main rec devs
+  # # last year of main (calibration) rec devs
+  # lastMainRecs <- ssCtl$MainRdevYrLast
+  lastMainRecs <- lastYr
+  
+  # change the input recruitment index
+  # read in and modify data.ss file
+  ssDat <- SS_readdat(file = file.path("scenarioModels/benchmarkDFA_AsNowcast/Retro_runs",
+                                       paste0("retro", rmYr), "data.ss"))
+  
+  newRecDevs <- dfDFAExp %>% filter(t %in% ((lastMainRecs+rmYr-1):(lastMainRecs+rmYr))) %>% 
+                  select(t, estimate, se) %>% 
+                  rename(year = t,
+                         obs = estimate,
+                         se_log = se) %>%
+                  mutate(month = 1,
+                         index = 5)
+  
+  ssDat$CPUE <- ssDat$CPUE %>% filter(index != 5) %>% bind_rows(newRecDevs)
+  
+  # save updated data file
+  SS_writedat(datlist = ssDat, outfile = file.path("scenarioModels/benchmarkDFA_AsNowcast/Retro_runs",
+                                                   paste0("retro", rmYr), "data.ss"),
+              overwrite = TRUE)
+  
+  
+  r4ss::run(dir = file.path("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/scenarioModels/benchmarkDFA_AsNowcast",
+                            "Retro_runs", paste0("retro", rmYr)),
+            exe = "C:/Users/r.wildermuth/Documents/SS3.30/ss3_win.exe",
+            skipfinished = FALSE)
+}
+
 # -------------------------------------------------------------------------
 
 cbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
@@ -61,7 +109,8 @@ max_yr <- 2023
 
 # Run the retrospective analyses
 # retro(dir = "scenarioModels/benchmarkDFA_AsData/", # ID base directory
-retro(dir = "scenarioModels/Pacific sardine 2024 benchmark/", # ID base directory
+# retro(dir = "scenarioModels/Pacific sardine 2024 benchmark/", # ID base directory
+retro(dir = "scenarioModels/benchmarkDFA_AsNowcast/", # ID base directory
       oldsubdir = "", # ID input files
       newsubdir = "Retro_runs", # ID new place to store retro runs within dir
       subdirstart = "retro",
@@ -82,7 +131,7 @@ retro(dir = "scenarioModels/benchmarkDFA_AsForecast/", # ID base directory
 load(file = "out/marssFit_1990to2023_noAnch_1trend_EqlVar.RData")
 
 # For now use naive innovations
-yExpNaive <- predict(object = sardDFA, interval = "none", 
+yExpNaive <- predict(object = sardDFA, interval = "confidence", 
                      n.ahead = 1, type = 'ytT')
 
 # extract estimated historical trends
@@ -100,11 +149,17 @@ for(i in yrs_rm) {
   ChangeCtlRecDevs(dfDFAExp = yExpNaive, rmYr = i)
 }
 
+# update estimated recruitments using DFA and re-run models
+for(i in yrs_rm) {
+  ChangeIndexRecDevs(dfDFAExp = yExpNaive, rmYr = i)
+}
+
 # Calculate Mohn's rho values ---------------------------------------------
 
 # Extract, process retrospective results
 # retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/benchmarkDFA_AsData/Retro_runs",
-retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/benchmarkDFA_AsForecast/Retro_runs",
+# retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/benchmarkDFA_AsForecast/Retro_runs",
+retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/benchmarkDFA_AsNowcast/Retro_runs",
 # retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/Pacific sardine 2024 benchmark/Retro_runs",
                                               paste0("retro", yrs_rm)))
 retroSummary <- SSsummarize(retroModels) # summarize the model results
@@ -158,6 +213,11 @@ rho_output <- SSmohnsrho(summaryoutput = retroSummary,
                          verbose = FALSE)
 rho_output$AFSC_Hurtado_SSB # Hurtado-Ferro et al. 2015 rho
 rho_output$AFSC_Hurtado_Rec # Hurtado-Ferro et al. 2015 rho
+
+# hindcast cross-validation scores:
+
+SSplotHCxval(retroSummary = retroSummary, Season = 1, subplots = "cpue", indexselect = 1)
+
 
 # Compare retro to re-forecast --------------------------------------------
 
