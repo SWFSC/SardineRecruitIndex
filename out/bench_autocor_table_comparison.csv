@@ -1,0 +1,22 @@
+"Type","Component","2024 Benchmark","Autocor Recr"
+"Likelihoods","TOTAL",225.539,224.833
+"Likelihoods","Age_comp",119.516,119.921
+"Likelihoods","Parm_devs",92.092,92.035
+"Likelihoods","Recruitment",13.025,12.284
+"Likelihoods","Survey",0.631,0.329
+"Likelihoods","Parm_priors",0.234,0.221
+"Likelihoods","Parm_softbounds",0.042,0.042
+"Likelihoods","Catch",0,0
+"Likelihoods","Equil_catch",0,0
+"Likelihoods","InitEQ_Regime",0,0
+"Likelihoods","Forecast_Recruitment",0,0
+"Likelihoods","Crash_Pen",0,0
+"Parameters","NatM_Lorenzen_averageFem_GP_1",0.546,0.549
+"Parameters","SR_LN(R0)",14.561,14.551
+"Parameters","SR_BH_steep",0.6,0.6
+"Parameters","SR_sigmaR",1.2,1.2
+"Summary biomass","2020",44581,45282
+"Summary biomass","2021",116358,115432
+"Summary biomass","2022",53391,53354
+"Summary biomass","2023",56811,56325
+"Summary biomass","2024",58614,56726
