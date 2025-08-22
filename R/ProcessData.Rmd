@@ -355,6 +355,58 @@ yoySLiDERS %>% filter(Season == "2-Su") %>%
   geom_line()
 ```
 
+Common thresher shark stomach contents from Antonella Preti (6/12/2025)
+```{r}
+thresher <- readxl::read_xlsx(path = paste0(datPath, "SWORDFISH_CCTD_FINAL_robert.xlsx"),
+                              sheet = "Predator_Information")
+shkCollections <- readxl::read_xlsx(path = paste0(datPath, "SWORDFISH_CCTD_FINAL_robert.xlsx"),
+                              sheet = "Collection_Information")
+preyComp <- readxl::read_xlsx(path = paste0(datPath, "SWORDFISH_CCTD_FINAL_robert.xlsx"),
+                              sheet = "Prey_Composition")
+preyComp <- preyComp %>% filter(Scientific_Name == "Sardinops sagax") %>% 
+              select(Predator_ID, Prey_ID, Scientific_Name, Prey_N)
+
+thresher <- thresher %>% left_join(y = shkCollections, by = "Collection_ID") %>% 
+              select(Collection_ID, Predator_ID, Predator_Species, Month, Year, Region) %>%
+              left_join(y = preyComp, by = "Predator_ID") %>%
+              mutate(Prey_N = case_when(is.na(Prey_N) ~ 0,
+                                        TRUE ~ Prey_N),
+                     Month = as.numeric(Month),
+                     Year = as.numeric(Year))
+
+prevThresher <- readxl::read_xlsx(path = paste0(datPath, "Diet_Data_Preti_110320_FINAL_SUBMITTED.xlsx"),
+                              sheet = "Predator_Information")
+prevCollections <- readxl::read_xlsx(path = paste0(datPath, "Diet_Data_Preti_110320_FINAL_SUBMITTED.xlsx"),
+                              sheet = "Collection_Information")
+prevPreyComp <- readxl::read_xlsx(path = paste0(datPath, "Diet_Data_Preti_110320_FINAL_SUBMITTED.xlsx"),
+                              sheet = "Prey_Composition")
+prevPreyComp <- prevPreyComp %>% filter(Scientific_Name == "Sardinops sagax") %>% 
+                  select(Predator_ID, Prey_ID, Scientific_Name, Prey_N)
+
+prevThresher <- prevThresher %>% filter(Predator_Species == "Common Thresher Shark") %>%
+                  left_join(y = prevCollections, by = "Collection_ID") %>% 
+                  select(Collection_ID, Predator_ID, Predator_Species, Month, Year, Region) %>%
+                  left_join(y = prevPreyComp, by = "Predator_ID") %>%
+                  mutate(Prey_N = case_when(is.na(Prey_N) ~ 0,
+                                            TRUE ~ Prey_N))
+
+thresher <- bind_rows(thresher, prevThresher) %>% filter(Region != "NorCal, OR, WA") %>%
+              mutate(Year = case_when(Month == 1 ~ Year - 1,
+                                      TRUE ~ Year)) %>%
+              group_by(Year) %>% 
+              summarize(totSard = sum(Prey_N),
+                        nStomachs = n(),
+                        meanSard = mean(Prey_N),
+                        nZeros = sum(Prey_N==0)) %>%
+              mutate(meanPosSard = totSard/(nStomachs - nZeros))
+
+thresher %>% select(Year, totSard, meanSard, meanPosSard) %>% 
+  pivot_longer(cols = -Year, names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = Year, y = log(value))) +
+  geom_line() +
+  facet_wrap(~variable, scales = "free_y")
+```
+
 # Weight-at-age data
 ```{r}
 # From Alex Jensen (3/25/2025): columns(cruise, ship, haul, species, and specimen) is a unique fish identifier
@@ -404,6 +456,39 @@ sardSSBwt %>% ggplot(aes(x = year, y = meanSSBwt, color = seas)) +
   facet_wrap(~seas, scales = "free_y") +
   labs(y = "Mean SSB weight (g)")
 
+```
+
+Weight-length residuals using data from Caitlin Allen Akselrud 6/2/2025
+```{r}
+atBiolDat <- read_csv(file= paste0(datPath, "raw_trawl_specimen_data.csv"))
+
+# get estimated length intervals, assuming extra
+lengths <- data.frame(lenSL = seq(from = min(atBiolDat$standardLength_mm, na.rm = TRUE), 
+                                  to = max(atBiolDat$standardLength_mm, na.rm = TRUE), 
+                                  by = 1))
+# convert to total length mm 
+lengths$lenTL <- atm::convert_length(scientificName = "Sardinops sagax",
+                                     L.in = lengths$lenSL, 
+                                     from = "SL", to = "TL")
+
+lengths$weight_est <- atm::estimate_weight(scientificName = "Sardinops sagax", 
+                                           season = 1, model.type = "GLM", 
+                                           totalLength_mm = lengths$lenTL)
+
+atBiolDat <- atBiolDat %>% left_join(y = lengths, by = c("standardLength_mm" = "lenSL")) %>%
+                mutate(year = year(final_date),
+                       wtResid = weightg - weight_est,
+                       condK = weightg/(lenTL^3)) %>%
+                filter(sex == "female", standardLength_mm >= 160) %>%
+                group_by(year) %>%
+                summarize(meanResid = mean(wtResid, na.rm = TRUE),
+                          sdResid = sd(wtResid, na.rm = TRUE),
+                          meanK = mean(condK, na.rm = TRUE))
+
+atBiolDat %>% pivot_longer(cols = -year, names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = year, y = value)) +
+  geom_line() +
+  facet_wrap(~variable, scales = "free_y")
 ```
 
 # Zooplankton data
@@ -540,7 +625,7 @@ nemuroZ <- nemuroZ %>% filter(GCM == "HIST") %>%
               pivot_wider(names_from = zone, values_from = c(PS, PL, ZS, ZM, ZL))
 ```
 
-Spring Copepoda pacificus
+Spring Calanus pacificus
 ```{r}
 spCpacificus <- read_csv(paste0(datPath, "Spring copepod community for Andrew 20221116.csv"))
 spCpacificus <- spCpacificus %>% filter(Species_new == "Calanus pacificus")
