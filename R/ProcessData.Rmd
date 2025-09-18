@@ -982,6 +982,10 @@ yoySLiDERS <- yoySLiDERS %>% filter(Season == "2-Su") %>%
                        yoySardSL = xn) %>%
                 select(year, yoySardSL)
 
+thresher <- thresher %>% select(Year, meanPosSard) %>%
+              rename(year = Year,
+                     posCThSk = meanPosSard)
+
 # # take only small zooplkn groups in spring for larvae forage
 # zooplkn <- zooplkn %>% group_by(Class, year, seas) %>%
 #               summarize(meanZooplkn = mean(`Carbon Biomass Sum (mgC m-2)`)) %>%
@@ -1017,22 +1021,21 @@ recrDat <- recrDat %>% full_join(indxGAM, by = "year") %>%
               # full_join(copMeanSize, by = "year") %>%
               # full_join(naupMeanSize, by = "year") %>%
               # full_join(copGAM, by = "year") %>%
-              # full_join(nemuroZ, by = "year") %>%
+              full_join(nemuroZ, by = "year") %>%
               full_join(spCpacificus, by = "year") %>%
               full_join(spawnTS, by = "year") %>%
               full_join(sardSpawnDays, by = "year") %>%
               full_join(nurseTS, by = "year") %>%
               full_join(outSS3, by = "year") %>%
-              # full_join(anchBio, by = "year") %>%
               # full_join(sardBio, by = "year") %>%
               full_join(sst, by = "year") %>%
               full_join(transport, by = "year") %>%
               full_join(yoySLiDERS, by = "year") %>%
-  
-  
+              full_join(thresher, by = "year") %>%
+              full_join(atBiolDat, by = "year") %>%
               select(-c(sprCalCOFILarvalSardine,
                         sprCalCOFISouthernMesopels,
                         sardGAMcoef, mesopelGAMcoef))
 
-#write_csv(recrDat, file = "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/Data/recrDFAdat.csv")
+write_csv(recrDat, file = "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/Data/recrDFAdat.csv")
 ```
