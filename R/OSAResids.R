@@ -36,7 +36,7 @@ OSAResids <- function(objMARSS, fullDat, p, horizon = 1,
   
   # naive innovations
   yExpctNaive <- predict(object = objMARSS, interval = "none", 
-                    n.ahead = horizon, type = 'ytT')
+                    n.ahead = horizon, type = 'ytt')
   yExpctNaive <- yExpctNaive$pred %>% rename(y.Naiv = y,
                                              est.Naiv = estimate)
   
@@ -44,7 +44,7 @@ OSAResids <- function(objMARSS, fullDat, p, horizon = 1,
   yExpctInf <- predict(object = objMARSS, interval = "none", 
                     newdata = list(t = 1:ncol(origDat),
                                    y = YStar),
-                    type = 'ytT', x0 = "use.model")
+                    type = 'ytt', x0 = "use.model")
   yExpctInf <- yExpctInf$pred %>% rename(y.Inf = y,
                                          est.Inf = estimate)
   
@@ -52,7 +52,7 @@ OSAResids <- function(objMARSS, fullDat, p, horizon = 1,
   yExpctCont <- predict(object = objMARSS, interval = "none", 
                        newdata = list(t = 1:ncol(origDat),
                                       y = origDat),
-                       type = 'ytT', x0 = "use.model")
+                       type = 'ytt', x0 = "use.model")
   yExpctCont <- yExpctCont$pred %>% rename(y.Cont = y,
                                            est.Cont = estimate)
   
@@ -61,7 +61,7 @@ OSAResids <- function(objMARSS, fullDat, p, horizon = 1,
   yExpctProj <- predict(object = objMARSS, n.ahead = 0, interval = "none", 
                     newdata = list(t = 1:ncol(origDat),
                                    y = YStar),
-                    type = 'ytT', x0 = "use.model")
+                    type = 'ytt', x0 = "use.model")
   yExpctProj <- yExpctProj$pred %>% rename(y.Proj = y,
                                            est.Proj = estimate)
   

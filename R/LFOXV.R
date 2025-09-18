@@ -45,7 +45,7 @@ LFOXV <- function(dfaDat, # data matrix formatted for MARSS input (variables in 
                                   resid.Inf, resid.Cont, resid.Proj) %>% 
                     filter(.rownames %in% colsRMSE, t %in% (ncol(dfaDat)-i+1):max(t)) %>% 
                     mutate(peel = i)
-    peelRMSE <- itPeelRMSE %>% mutate(predHoriz = 1:nrow(itPeelRMSE)) %>%
+    peelRMSE <- itPeelRMSE %>% mutate(predHoriz = (t-(ncol(dfaDat)-i))) %>%
                   bind_rows(peelRMSE)
   } # end peel for-loop
     
