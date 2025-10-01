@@ -22,6 +22,7 @@ library(sf)
 library(stars)
 library(cubelyr)
 library(r4ss)
+library(units)
 ```
 
 # California Current Integrated Ecosystem Assessment data
@@ -301,12 +302,31 @@ transport <- bind_rows(nearshoreTrans, nearTransNRT) %>%
                                           month %in% c(12,1,2) ~ "winter")) %>%
                 group_by(year, seas) %>%
                 summarize(avgNearshTran = mean(nearshTrans)) %>% 
-                # ggplot(aes(x = year, y = avgNearshTran, color = season)) +
-                # geom_line()
         
                 pivot_wider(names_from = seas, names_prefix = "avgNearTrans",
                             values_from = avgNearshTran) %>%
                 full_join(y = transport, by = "year")
+
+transport %>% pivot_longer(cols = -year) %>%
+  ggplot(aes(x = year, y = value)) +
+    geom_line() + 
+    facet_wrap(~name)
+
+# create proportional offshore:nearshore flow index
+#!!Note: this isn't a continuous metric:
+#  - switches to negative when nearshore flow has net positive (northward) direction
+#  - also only works if offshore flow is negative (southward)
+#  - Sqrt transform removes some years with high positive northward flow
+transport <- transport %>% mutate(sprRelOffTrans = as.numeric(avgOffTransspring/(avgOffTransspring+avgNearTransspring)),
+                                  sumRelOffTrans = as.numeric(avgOffTranssummer/(avgOffTranssummer+avgNearTranssummer)),
+                                  sprRelOffTrans = sqrt(sprRelOffTrans), # deal with some of the skewness
+                                  sumRelOffTrans = sqrt(sumRelOffTrans),
+                                  sumRelOffTrans = case_when(is.nan(sumRelOffTrans) ~ 0,
+                                                             TRUE ~ sumRelOffTrans))
+transport %>% pivot_longer(cols = c(sprRelOffTrans, sumRelOffTrans)) %>%
+  ggplot(aes(x = year, y = value)) +
+    geom_line() + 
+    facet_wrap(~name)
 ```
 
 # Larval indices
@@ -1037,5 +1057,5 @@ recrDat <- recrDat %>% full_join(indxGAM, by = "year") %>%
                         sprCalCOFISouthernMesopels,
                         sardGAMcoef, mesopelGAMcoef))
 
-write_csv(recrDat, file = "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/Data/recrDFAdat.csv")
+#write_csv(recrDat, file = "C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/Data/recrDFAdat.csv")
 ```

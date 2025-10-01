@@ -6,37 +6,12 @@ library(MARSS)
 library(corrplot)
 
 # read prepped dataset
-datDFA <- read_csv("C:/Users/r.wildermuth/Documents/FutureSeas/RecruitmentIndex/recrmntDFA/recrDFAdat.csv")
+datDFA <- read_csv("Data/recrDFAdat.csv")
 
-allDat <- datDFA %>% filter(year %in% 1990:2019) %>%
-  # remove contemporary adult biomass with recruits, should be S2 biomass -> S1 recs
-  select(-c(NOI,
-            ENSO,
-            NPGO,
-            #All_Copepods, # ~same as calanoid copepods
-            #euphausiids, # too large for larval mouth gape
-            anchBioSmrySeas1,
-            sardBioSmrySeas1,
-            anchBioSmrySeas2, # leave out biomass since not fit well
-            sardBioSmrySeas2,
-            # NCOPspring,
-            # SCOPspring, # summer copepod index had higher loadings
-            PDOsummer, # lower loading than spring, may want to try a lag
-            PDOspring,
-            NCOPsummer,
-            SCOPsummer,
-            # BEUTI_33N, # oceanography at 39N had highest loadings
-            # OC_LUSI_33N,
-            # OC_LUSI_36N,
-            # OC_STI_33N,
-            # OC_STI_36N,
-            copMeanSize,
-            copPropBioSize,
-            naupMeanSize,
-            naupPropBioSize,
-            ZL_NorCal,
-            ZL_SoCal,
-            age1SprAnchmeanWAA)) # not enough data in time windowselect(-c(#sprCalCOFILarvalSardine,
+allDat <- datDFA %>% filter(year %in% 1985:2021) %>%
+            select(-c(NCOPsummer,
+                      SCOPsummer,
+                      GCM)) 
 
 datNames <- names(allDat)[-1]
 
@@ -70,8 +45,9 @@ caret::findCorrelation(x = corrMat, cutoff = 0.8, names = TRUE)
 # similar, but can use different ways to determine removal of vars
 fuzzySim::corSelect(data = t(datZscore),  var.cols = datNames,
                     coeff = FALSE) # based on p-value cutoff (0.05)
-fuzzySim::corSelect(data = t(datZscore), var.cols = datNames,
-                    coeff = TRUE) # based on correlation coefficient magnitude (0.8)
+hiCorrs <- fuzzySim::corSelect(data = t(datZscore), var.cols = datNames,
+                               coeff = TRUE) # based on correlation coefficient magnitude (0.8)
+hiCorrs$high.correlations %>% arrange(var1)
 
 # Check for repetitive indicators
 corrMat[rownames(corrMat) %in% c("OC_STI_33N", "OC_STI_36N", "OC_STI_39N"),
@@ -88,24 +64,23 @@ corrMat[rownames(corrMat) %in% c("BEUTI_33N", "BEUTI_39N", "CUTI_33N", "CUTI_39N
 # BEUTI and CUTI at 39N highly correlated
 
 # temperature indicators
-corrMat[rownames(corrMat) %in% c("HCI_R3", "HCI_R4", "springSST", "summerSST"),
-        colnames(corrMat) %in% c("HCI_R3", "HCI_R4", "springSST", "summerSST")]
+corrMat[rownames(corrMat) %in% c("HCI_30N355N", "springSST", "summerSST"),
+        colnames(corrMat) %in% c("HCI_30N355N", "springSST", "summerSST")]
 # springSST highly correlated with all
-# HCI in R3 and R4 highly correlated
-# HCI_R3 highly correlated with summerSST
+# HCI also correlated with summerSST
 
 # check correlations between zooplankton indicators
-corrMat[rownames(corrMat) %in% c("copBio", "naupBio", "ZM_SoCal"),
-        colnames(corrMat) %in% c("copBio", "naupBio", "ZM_SoCal")]
-# copBio and ZM_SoCal somewhat correlated in SoCal Bight
+corrMat[rownames(corrMat) %in% c("C.pacificus", "ZM_SoCal", "ZL_SoCal"),
+        colnames(corrMat) %in% c("C.pacificus", "ZM_SoCal", "ZL_SoCal")]
+# C.pacificus and ZM_SoCal not correlated in SoCal Bight
 
-corrMat[rownames(corrMat) %in% c("NCOPspring", "SCOPspring", "ZM_NorCal"),
-        colnames(corrMat) %in% c("NCOPspring", "SCOPspring", "ZM_NorCal")]
+corrMat[rownames(corrMat) %in% c("NCOPspring", "SCOPspring", "ZM_NorCal", "ZL_NorCal"),
+        colnames(corrMat) %in% c("NCOPspring", "SCOPspring", "ZM_NorCal", "ZL_NorCal")]
 # NCOP and SCOP strongly negatively correlated - can drop SCOP
-# both highly correlated with ZM_NorCal
+# both correlated with ZM_NorCal and ZL_NorCal
 corrMat[rownames(corrMat) %in% c("NCOPspring", "SCOPspring", "SCOPsummerlag1", "NCOPsummerlag1"),
         colnames(corrMat) %in% c("NCOPspring", "SCOPspring", "SCOPsummerlag1", "NCOPsummerlag1")]
-#SCOPsummerlag1 less correlated with others - keep
+#SCOPsummerlag1 with NCOPspring, or NCOPsummerlag1 with SCOPspring
 corrMat[rownames(corrMat) %in% c("ZM_SoCal", "ZM_NorCal"),
         colnames(corrMat) %in% c("ZM_SoCal", "ZM_NorCal")]
 
@@ -117,54 +92,131 @@ corrMat[rownames(corrMat) %in% c("avgSSWIsummer", "avgOffTranssummer", "avgNearT
         colnames(corrMat) %in% c("avgSSWIsummer", "avgOffTranssummer", "avgNearTranssummer")]
 # strongest association with SSWI and NearTrans in summer
 
+corrMat[rownames(corrMat) %in% c("avgOffTransspring", "avgNearTransspring", 
+                                 "avgOffTranssummer", "avgNearTranssummer",
+                                 "sprRelOffTrans", "sumRelOffTrans"),
+        colnames(corrMat) %in% c("avgOffTransspring", "avgNearTransspring", 
+                                 "avgOffTranssummer", "avgNearTranssummer",
+                                 "sprRelOffTrans", "sumRelOffTrans")]
+# transport not super correlated with each other
+# spring NearTrans highly correlated with sprRelOffTrans
+
 # Check correlations with condition factors
 corrMat[rownames(corrMat) %in% c("age1SprSardmeanWAA", "meanSSBwt"),
         colnames(corrMat) %in% c("age1SprSardmeanWAA", "meanSSBwt")]
 # not highly correlated - keep both
 
 #### Final Selection of indicators ####
-# keep observation data indicators, remove associated model-derived indicators
-localModel <- c("HCI_R4", "NCOPspring", "NCOPsummerlag1", "SCOPsummerlag1", 
-                "BEUTI_33N", "BEUTI_39N", "CUTI_33N", "OC_LUSI_33N", "OC_LUSI_39N",
-                "OC_STI_33N", "OC_STI_39N", "swfscRockfishSurv_Myctophids",
-                "avgSSWIspring", "avgSSWIsummer", "sardLarv", "anchLarv", 
-                "mesopelLarv", "anchYoY", "age1SprSardmeanWAA", "meanSSBwt",
-                "copBio", "naupBio", "sardSpawnHab", "anchSpawnHab", 
-                "daysAbove5pct", "daysAbove40pct", "sardNurseHab", "anchNurseHab",
-                "anchRec", "sardRec", "summerSST", "albacore", "hake")
 
-# remove observation indicators, keep associated model-derived indicators
-projectModel <- c("HCI_R4", "BEUTI_33N", "BEUTI_39N", "CUTI_33N", "OC_LUSI_33N",
-                  "OC_LUSI_39N", "OC_STI_33N", "OC_STI_39N", "ZM_NorCal",
-                  "ZM_SoCal", "sardSpawnHab", "anchSpawnHab", "daysAbove5pct",
-                  "daysAbove40pct", "sardNurseHab", "anchNurseHab", "anchRec", 
-                  "sardRec", "summerSST", "avgNearTransspring", "avgNearTranssummer", 
-                  "avgOffTransspring", "avgOffTranssummer")
+# remove redundant variables
+allDat <- datDFA %>% filter(year %in% 1985:2023) %>%
+            select(-c(NCOPsummer,
+                      SCOPsummer,
+                      GCM)) %>% 
+            select(-c(avgNearTransspring, avgNearTranssummer,
+                      anchBioSmrySeas2,
+                      OC_STI_36N, OC_LUSI_36N,
+                      PS_NorCal, PS_SoCal, PL_NorCal, PL_SoCal, 
+                      ZS_NorCal, ZS_SoCal, ZL_NorCal, ZL_SoCal,
+                      meanResid, sdResid, # Could add these as options to sample from also
+                      SCOPspring, SCOPsummerlag1,
+                      # also remove the ecological (not timely or projectable) indicators
+                      avgSSWIspring, avgSSWIsummer,
+                      C.pacificus,
+                      sardLarv, mesopelLarv,
+                      yoySardSL, posCThSk))
 
+# three sets of correlated variables:
+# OC_STI_39N    vs    OC_LUSI_39N
+# daysAbove5pct    vs   sardSpawnHab
+# springSST    vs    HCI_30N355N, sardNurseHab
+
+# number of possible low-mid correlated sets:
+2^3
+
+corrMat[rownames(corrMat) %in% c("OC_STI_39N", "OC_LUSI_39N", "daysAbove5pct", "sardSpawnHab", "springSST", "HCI_30N355N", "sardNurseHab"),
+        colnames(corrMat) %in% c("OC_STI_39N", "OC_LUSI_39N", "daysAbove5pct", "sardSpawnHab", "springSST", "HCI_30N355N", "sardNurseHab")]
+
+setNames <- names(allDat)[-which(names(allDat) %in% c("OC_STI_39N", "OC_LUSI_39N",
+                                                      "daysAbove5pct", "sardSpawnHab",
+                                                      "springSST", "HCI_30N355N", "sardNurseHab"))]
+#!!RW: For now just work with one combination
+setNames <- c(setNames, sample(c("OC_STI_39N", "OC_LUSI_39N"), 1),
+              sample(c("daysAbove5pct", "sardSpawnHab"), 1),
+              sample(c("springSST", "HCI_30N355N", "sardNurseHab"), 1))
+# for now use set with LUSI, spawning habitat, and spring SST
+# save(setNames, file = "Data/indicatorSetNames_LUSI39spawnHabsprSST.RData")
 
 # GAM exploration ---------------------------------------------------------
 
+# Top 3 variables with significant trends related to sardRec in DFA fit
+# with 3 trends, equal variance, anchovy biomass included
+# index          cummLoading
+# <chr>                <dbl>
+# 1 NCOPspring           0.231
+# 2 BEUTI_39N            0.229
+# 3 sardRec              0.220
+# 4 NCOPsummerlag1       0.100
+# Top 10 for significant/strong loadings with sardRec from 3-trend DFA
+# index             cummLoading
+# <chr>                   <dbl>
+# 1 ZM_NorCal              0.921 
+# 2 springSST              0.917 
+# 3 NCOPspring             0.807 
+# 4 sardNurseHab           0.748 
+# 5 BEUTI_39N              0.728 
+# 6 CUTI_39N               0.650 
+# 7 summerSST              0.636 
+# 8 NCOPsummerlag1         0.588 
+# 9 ZM_SoCal               0.581 
+# 10 OC_LUSI_39N            0.574
+# All significant strong loadings from model with 1 trend, equal variance, anchovy biomass included
+#           est    conf.up    conf.low trend            index dummy0 isSig
+# 1   0.3308371  0.6139538  0.04772029     1            meanK      0  TRUE
+# 2   0.3314988  0.5494866  0.11351113     1 RREAS_YOYsardine      0  TRUE
+# 3   0.3337437  0.6346624  0.03282508     1        meanSSBwt      0  TRUE
+# 4  -0.3344017 -0.1187809 -0.55002247     1         CUTI_33N      0  TRUE
+# 5   0.3672421  0.5785110  0.15597326     1          sardRec      0  TRUE
+# 6  -0.4064455 -0.1889540 -0.62393700     1      OC_LUSI_39N      0  TRUE
+# 7  -0.4263450 -0.1713215 -0.68136854     1   NCOPsummerlag1      0  TRUE
+# 8   0.4874528  0.7174332  0.25747237     1        summerSST      0  TRUE
+# 9  -0.5185126 -0.2752890 -0.76173627     1         CUTI_39N      0  TRUE
+# 10 -0.5496007 -0.2789844 -0.82021688     1       NCOPspring      0  TRUE
+# 11 -0.5511358 -0.3017253 -0.80054627     1        BEUTI_39N      0  TRUE
+# 12  0.5742051  0.8551889  0.29322140     1     sardNurseHab      0  TRUE
+# 13 -0.5814889 -0.3314427 -0.83153514     1         ZM_SoCal      0  TRUE
+# 14  0.7185261  0.9939870  0.44306519     1        springSST      0  TRUE
+# 15 -0.7197106 -0.4413661 -0.99805501     1        ZM_NorCal      0  TRUE
+
+# take top 10 from DFA
+datGAM <- datDFA %>% filter(year %in% 1985:2021) %>%
+            select(ZM_NorCal, springSST, NCOPspring, sardNurseHab, BEUTI_39N, 
+                   CUTI_39N, summerSST, NCOPsummerlag1, ZM_SoCal, OC_LUSI_39N,
+                   year, sardRec)
+
 # Code to create candidate model structures with low-correlation covariates
 candModCovars <- list()
-for(ii in 1:500){
+for(ii in 1:100){
   # get names of covariates in 'datGAM'
   allCovarNames <- names(datGAM)
-  allCovarNames <- allCovarNames[-which(allCovarNames %in% c("Yr", "dev", "devLag1"))]
+  allCovarNames <- allCovarNames[-which(allCovarNames %in% c("year", "sardRec"))]
   # take sub-sample of covar names
   propNames <- sample(allCovarNames, size = sample(2:5, 1))
-  # subDat <- datGAM %>% dplyr::select(all_of(propNames))
-  # # find correlation matrix of subset
-  # corrMat <- cor(subDat, use = "pairwise.complete.obs")
-  # # find and remove highly correlated covars
-  # rmNames <- caret::findCorrelation(x = corrMat, cutoff = 0.8)
-  # # record remaining combo of low-correlation covars
-  # candModCovars[[ii]] <- sort(propNames[-rmNames])
+  subDat <- datGAM %>% dplyr::select(all_of(propNames))
+  # find correlation matrix of subset
+  corrMat <- cor(subDat, use = "pairwise.complete.obs")
+  # find and remove highly correlated covars
+  rmNames <- caret::findCorrelation(x = corrMat, cutoff = 0.6)
+  # record remaining combo of low-correlation covars
+  candModCovars[[ii]] <- sort(propNames[-rmNames])
   
-  # could also base off of p-value threshold
-  subDat <- datGAM %>% dplyr::select(dev, all_of(propNames))
-  candSel <- fuzzySim::corSelect(data = subDat, sp.cols = "dev", var.cols = names(subDat)[-1],
-                       coeff = FALSE) # based on p-value cutoff (0.05)
-  candModCovars[[ii]] <- sort(candSel$selected.vars)
+  # # could also base off of p-value threshold
+  # subDat <- datGAM %>% dplyr::select(sardRec, all_of(propNames))
+  # # candSel <- fuzzySim::corSelect(data = subDat, sp.cols = "sardRec", var.cols = names(subDat)[-1],
+  # #                      coeff = TRUE, cor.thresh = 0.6) # based on coefficient threshold
+  # candSel <- fuzzySim::corSelect(data = subDat, sp.cols = "sardRec", var.cols = names(subDat)[-1],
+  #                      coeff = FALSE) # based on p-value cutoff (0.05)
+  # candModCovars[[ii]] <- sort(candSel$selected.vars)
 }
 
 
@@ -186,4 +238,15 @@ test3long <-list2df_dt(test3)
 test3long <- as.data.frame(test3long) %>% mutate(inMod = 1) %>% pivot_wider(values_from = inMod, names_from = item)
 
 candMods <- bind_rows(test1long, test2long, test3long) %>% dplyr::select(-name)
-unique(candMods) %>% dim() 
+singles <- diag(10) %>% as_tibble()
+names(singles) <- names(candMods)
+candMods[is.na(candMods)] <- 0
+candMods <- bind_rows(candMods, singles)
+candMods <- unique(candMods) 
+dim(candMods) 
+candMods <- candMods %>% arrange(CUTI_39N, NCOPspring, OC_LUSI_39N, ZM_SoCal, 
+                                 summerSST, ZM_NorCal, NCOPsummerlag1, springSST, 
+                                 sardNurseHab, BEUTI_39N) 
+candMods %>% print(n=101)
+
+write_csv(candMods, file = "out/candidateGAMmodels.csv")
