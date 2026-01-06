@@ -117,7 +117,17 @@ regrDat %>% ggplot(aes(x = .estimate, y = dev)) +
 datDFA <- read_csv("../SardineRecruitIndex/Data/recrDFAdat.csv")
 candMods <- read_csv("../SardineRecruitIndex/out/candidateGAMmodels.csv")
 
-datGAM <- datDFA %>% select(year, sardRec, all_of(names(candMods))) %>% 
+#!!RW: for now omit rows with NAs
+candMods <- na.omit(candMods)
+
+datGAM <- datDFA %>% select(year, sardRec, #all_of(names(candMods)),
+                            NCOPspring, NCOPsummerlag1, BEUTI_33N, BEUTI_39N, CUTI_33N,
+                            CUTI_39N, OC_LUSI_33N, OC_STI_33N, RREAS_Myctophids, 
+                            RREAS_YOYsardine, age1SprSardmeanWAA, meanSSBwt, 
+                            ZM_NorCal, ZM_SoCal, sardNurseHab, anchBioSmrySeas1, 
+                            summerSST, avgOffTransspring, avgOffTranssummer, 
+                            sprRelOffTrans, sumRelOffTrans, meanK,
+                            OC_STI_39N, sardSpawnHab, springSST) %>% 
             filter(year %in% 1985:2021)
 
 datGAM <- mngt2024recdevs %>% dplyr::select(Yr, dev) %>% filter(Yr <= 2021) %>%
@@ -169,7 +179,7 @@ for (i in 1:nrow(candMods)) { #loop over each covariate combination i
 }
 
 # candidate models
-fitBEUTI <- gam(dev ~ s(BEUTI_39N, k = 4) - 1,
+fitBEUTI <- gam(dev ~ s(NCOPsummerlag1 , k = 4) + s(BEUTI_33N  , k = 4) - 1,
                 data = datGAM, method = "REML", select = TRUE)
 summary(fitBEUTI) # 
 concurvity(fitBEUTI)
@@ -212,8 +222,9 @@ summary(fitBEUTI.Nurse)
 smryTbl <- smryTbl %>% mutate(deltaAIC = AIC - min(AIC)) %>% arrange(deltaAIC)
 smryTbl %>% arrange(desc(devExp))
 # 6 models with best scores: 10, 17, 23, 27, 28, 44
+candMods[c(128, 130, 138, 151, 154, 155, 164, 166, 170),]
 
-summary(models[[10]])
-concurvity(models[[10]])
-plot(models[[10]], pages = 1)
-gam.check(models[[10]])
+summary(models[[151]])
+concurvity(models[[151]]) # 128, 130, 154, 155, 164, 166, 170 too high of concurvity, 138 borderline
+plot(models[[151]], pages = 1)
+gam.check(models[[151]])

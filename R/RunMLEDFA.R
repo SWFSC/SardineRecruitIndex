@@ -8,8 +8,10 @@ library(corrplot)
 
 # read prepped dataset
 datDFA <- read_csv("../SardineRecruitIndex/Data/recrDFAdat.csv")
-load(file = "Data/indicatorSetNames_LUSI39spawnHabsprSST.RData")
-
+# load(file = "Data/indicatorSetNames_LUSI39spawnHabsprSST.RData")
+# load(file = "Data/indicatorSetNames_STI39spawnHabHCI.RData")
+# load(file = "Data/indicatorSetNames_LUSI39spawnHabHCI.RData")
+load(file = "Data/indicatorSetNames_STI39spawnHabsprSST.RData")
 # Function to process loadings from MARSS output --------------------------
 
 ProcessLoadings <- function(outMARSS, ...){

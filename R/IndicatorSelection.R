@@ -4,6 +4,7 @@
 library(tidyverse)
 library(MARSS)
 library(corrplot)
+library(r4ss)
 
 # read prepped dataset
 datDFA <- read_csv("Data/recrDFAdat.csv")
@@ -12,6 +13,12 @@ allDat <- datDFA %>% filter(year %in% 1985:2021) %>%
             select(-c(NCOPsummer,
                       SCOPsummer,
                       GCM)) 
+
+mngtBench2024 <- SS_output("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/scenarioModels/Pacific sardine 2024 benchmark",)
+mngt2024recdevs <- mngtBench2024$recruit %>% filter(era == "Main")
+
+mngt2024recdevs <- mngt2024recdevs %>% select(Yr, dev) 
+allDat <- allDat %>% full_join(y = mngt2024recdevs, by = c("year" = "Yr"))
 
 datNames <- names(allDat)[-1]
 
@@ -27,27 +34,6 @@ corrplot(corrMat, p.mat = pTest$p, sig.level = 0.05, insig = "blank",
          cl.ratio = 0.1, tl.srt = 45, tl.cex = 0.6, #mar = c(0.1, 0.1, 0.1, 0.1), 
          addrect = 6, rect.col = "green", diag = FALSE)
 
-
-# clusters variables based on correlation structure - members at distant branches are less correlated
-corrClusts <- klaR::corclust(x = t(datZscore))
-plot(corrClusts)
-
-# try selection based on variance inflation factor
-collinear::vif_select(df = t(datZscore), max_vif = 10) # sample size is too small
-
-# ranks variables by cumulative Pearson correlation (low to high)
-varsKeep <- collinear::cor_select(df = as.data.frame(t(datZscore)), max_cor = 0.8)
-datNames[which(!datNames %in% varsKeep)]
-
-# identifies which variables to remove to reduce multicollinearity
-caret::findCorrelation(x = corrMat, cutoff = 0.8, names = TRUE)
-
-# similar, but can use different ways to determine removal of vars
-fuzzySim::corSelect(data = t(datZscore),  var.cols = datNames,
-                    coeff = FALSE) # based on p-value cutoff (0.05)
-hiCorrs <- fuzzySim::corSelect(data = t(datZscore), var.cols = datNames,
-                               coeff = TRUE) # based on correlation coefficient magnitude (0.8)
-hiCorrs$high.correlations %>% arrange(var1)
 
 # Check for repetitive indicators
 corrMat[rownames(corrMat) %in% c("OC_STI_33N", "OC_STI_36N", "OC_STI_39N"),
@@ -139,14 +125,16 @@ corrMat[rownames(corrMat) %in% c("OC_STI_39N", "OC_LUSI_39N", "daysAbove5pct", "
 
 setNames <- names(allDat)[-which(names(allDat) %in% c("OC_STI_39N", "OC_LUSI_39N",
                                                       "daysAbove5pct", "sardSpawnHab",
-                                                      "springSST", "HCI_30N355N", "sardNurseHab"))]
+                                                      "springSST", "HCI_30N355N"))]
 #!!RW: For now just work with one combination
 setNames <- c(setNames, sample(c("OC_STI_39N", "OC_LUSI_39N"), 1),
               sample(c("daysAbove5pct", "sardSpawnHab"), 1),
-              sample(c("springSST", "HCI_30N355N", "sardNurseHab"), 1))
+              sample(c("springSST", "HCI_30N355N"), 1))
 # for now use set with LUSI, spawning habitat, and spring SST
 # save(setNames, file = "Data/indicatorSetNames_LUSI39spawnHabsprSST.RData")
-
+# save(setNames, file = "Data/indicatorSetNames_STI39spawnHabHCI.RData")
+# save(setNames, file = "Data/indicatorSetNames_LUSI39spawnHabHCI.RData")
+# save(setNames, file = "Data/indicatorSetNames_STI39spawnHabsprSST.RData")
 # GAM exploration ---------------------------------------------------------
 
 # Top 3 variables with significant trends related to sardRec in DFA fit
@@ -190,16 +178,18 @@ setNames <- c(setNames, sample(c("OC_STI_39N", "OC_LUSI_39N"), 1),
 
 # take top 10 from DFA
 datGAM <- datDFA %>% filter(year %in% 1985:2021) %>%
-            select(ZM_NorCal, springSST, NCOPspring, sardNurseHab, BEUTI_39N, 
+            # select(names(allDat))
+            select(ZM_NorCal, springSST, NCOPspring, sardNurseHab, BEUTI_39N,
                    CUTI_39N, summerSST, NCOPsummerlag1, ZM_SoCal, OC_LUSI_39N,
+                   OC_STI_39N, HCI_30N355N, # high loadings in other indicator set
                    year, sardRec)
 
 # Code to create candidate model structures with low-correlation covariates
-candModCovars <- list()
-for(ii in 1:100){
+candModCovars1 <- list()
+for(ii in 1:500){
   # get names of covariates in 'datGAM'
   allCovarNames <- names(datGAM)
-  allCovarNames <- allCovarNames[-which(allCovarNames %in% c("year", "sardRec"))]
+  allCovarNames <- allCovarNames[-which(allCovarNames %in% c("year", "sardRec", "dev"))]
   # take sub-sample of covar names
   propNames <- sample(allCovarNames, size = sample(2:5, 1))
   subDat <- datGAM %>% dplyr::select(all_of(propNames))
@@ -208,21 +198,25 @@ for(ii in 1:100){
   # find and remove highly correlated covars
   rmNames <- caret::findCorrelation(x = corrMat, cutoff = 0.6)
   # record remaining combo of low-correlation covars
-  candModCovars[[ii]] <- sort(propNames[-rmNames])
+  candModCovars1[[ii]] <- sort(propNames[-rmNames])
+ 
+}
+candModCovars2 <- list()
+for(ii in 1:500){
+  # get names of covariates in 'datGAM'
+  allCovarNames <- names(datGAM)
+  allCovarNames <- allCovarNames[-which(allCovarNames %in% c("year", "sardRec", "dev"))]
+  # take sub-sample of covar names
+  propNames <- sample(allCovarNames, size = sample(2:5, 1))
   
   # # could also base off of p-value threshold
-  # subDat <- datGAM %>% dplyr::select(sardRec, all_of(propNames))
-  # # candSel <- fuzzySim::corSelect(data = subDat, sp.cols = "sardRec", var.cols = names(subDat)[-1],
-  # #                      coeff = TRUE, cor.thresh = 0.6) # based on coefficient threshold
+  subDat <- datGAM %>% dplyr::select(sardRec, all_of(propNames))
+  candSel <- fuzzySim::corSelect(data = subDat, sp.cols = "sardRec", var.cols = names(subDat)[-1],
+                       coeff = TRUE, cor.thresh = 0.6) # based on coefficient threshold
   # candSel <- fuzzySim::corSelect(data = subDat, sp.cols = "sardRec", var.cols = names(subDat)[-1],
   #                      coeff = FALSE) # based on p-value cutoff (0.05)
-  # candModCovars[[ii]] <- sort(candSel$selected.vars)
+  candModCovars2[[ii]] <- sort(candSel$selected.vars)
 }
-
-
-# test1 <- unique(candModCovars)
-# test2 <- unique(candModCovars)
-# test3 <- unique(candModCovars)
 
 list2df_dt <- function(x) {
   tmp <- lapply(x, as.data.frame, stringsAsFactors = FALSE)
@@ -230,23 +224,21 @@ list2df_dt <- function(x) {
   colnames(tmp)[2] <-  "item"
   tmp
 }
-test1long <- list2df_dt(test1)
-test1long <- as.data.frame(test1long) %>% mutate(inMod = 1) %>% pivot_wider(values_from = inMod, names_from = item)
-test2long <-list2df_dt(test2)
-test2long <- as.data.frame(test2long) %>% mutate(inMod = 1) %>% pivot_wider(values_from = inMod, names_from = item)
-test3long <-list2df_dt(test3)
-test3long <- as.data.frame(test3long) %>% mutate(inMod = 1) %>% pivot_wider(values_from = inMod, names_from = item)
+candModCovars1 <- list2df_dt(candModCovars1)
+candModCovars1 <- as.data.frame(candModCovars1) %>% mutate(inMod = 1) %>% pivot_wider(values_from = inMod, names_from = item)
+candModCovars2 <-list2df_dt(candModCovars2)
+candModCovars2 <- as.data.frame(candModCovars2) %>% mutate(inMod = 1) %>% pivot_wider(values_from = inMod, names_from = item)
 
-candMods <- bind_rows(test1long, test2long, test3long) %>% dplyr::select(-name)
-singles <- diag(10) %>% as_tibble()
+candMods <- bind_rows(candModCovars1, candModCovars2) %>% dplyr::select(-name)
+singles <- diag(length(names(candMods))-2) %>% as_tibble()
 names(singles) <- names(candMods)
 candMods[is.na(candMods)] <- 0
 candMods <- bind_rows(candMods, singles)
 candMods <- unique(candMods) 
 dim(candMods) 
-candMods <- candMods %>% arrange(CUTI_39N, NCOPspring, OC_LUSI_39N, ZM_SoCal, 
-                                 summerSST, ZM_NorCal, NCOPsummerlag1, springSST, 
-                                 sardNurseHab, BEUTI_39N) 
+# candMods <- candMods %>% arrange(CUTI_39N, NCOPspring, OC_LUSI_39N, ZM_SoCal, 
+#                                  summerSST, ZM_NorCal, NCOPsummerlag1, springSST, 
+#                                  sardNurseHab, BEUTI_39N) 
 candMods %>% print(n=101)
 
 write_csv(candMods, file = "out/candidateGAMmodels.csv")

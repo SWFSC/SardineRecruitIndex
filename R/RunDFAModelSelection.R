@@ -9,7 +9,10 @@ source("R/OSAResids.R")
 
 # read prepped dataset
 datDFA <- read_csv("../SardineRecruitIndex/Data/recrDFAdat.csv")
-load(file = "Data/indicatorSetNames_LUSI39spawnHabsprSST.RData")
+# load(file = "Data/indicatorSetNames_LUSI39spawnHabsprSST.RData")
+# load(file = "Data/indicatorSetNames_STI39spawnHabHCI.RData")
+load(file = "Data/indicatorSetNames_STI39spawnHabsprSST.RData")
+# load(file = "Data/indicatorSetNames_LUSI39spawnHabHCI.RData")
 # Assess LFOIC for last 10 years of data
 peels <- 10
 
@@ -18,7 +21,7 @@ peels <- 10
 
 # remove unused indicators
 allDat <- datDFA %>% filter(year %in% 1985:2021) %>%
-            select(all_of(setNames), -anchBioSmrySeas1) 
+            select(all_of(setNames))#, -anchBioSmrySeas1) 
 
 datNames <- names(allDat)[-1]
 
@@ -32,15 +35,16 @@ diag(Rcustom) <- c("COP", "COP",
                    "RREAS", "RREAS", 
                    "WAA", "WAA",
                    "NEMURO", "NEMURO",
+                   "sardlarvSDM",
                    "sardRec",
-                   # "anchBio",
+                   "anchBio",
                    "SST",
                    "Transp", "Transp", "Transp", "Transp",
                    "condK",
-                   "LUSI",
+                   "STI",#"LUSI",#
                    "sardSDM", 
-                   "sardlarvSDM", 
-                   "SST")
+                    
+                   "SST")#"HCI")#
 
 
 
@@ -148,14 +152,20 @@ perstResids <- allDat %>% select(year, sardRec) %>%
 
 
 
-# write_csv(xvModSel, file = "out/historicalModelSelection_NoAnch.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_NoAnch_LUSIspawnHabSST.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_Anch_STIspawnHabHCI.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_Anch_LUSIspawnHabHCI.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_Anch_STIspawnHabSST.csv")
 
-xvModSel <- read_csv("out/historicalModelSelection_noAnch.csv") %>%
-              mutate(dataset = "noAnch")
-testAnch <- read_csv("out/historicalModelSelection_Anch.csv") %>%
+# xvModSel <- read_csv("out/historicalModelSelection_noAnch_LUSIspawnHabSST.csv") %>%
+#               mutate(dataset = "noAnch")
+# testAnch <- read_csv("out/historicalModelSelection_Anch_LUSIspawnHabSST.csv") %>%
+#               mutate(dataset = "Anch")
+
+xvModSel <- read_csv("out/historicalModelSelection_Anch_STIspawnHabSST.csv") %>%
               mutate(dataset = "Anch")
 
-xvModSel <- bind_rows(xvModSel, testAnch)
+# xvModSel <- bind_rows(xvModSel, testAnch)
 xvModSel <- bind_rows(xvModSel, perstResids)
 # plot out best performing model structures over prediction horizons
 xvModSel %>% filter(resType %in% "resid.Inf", variable %in% c("Sard", "sardRec")) %>%
@@ -169,5 +179,5 @@ xvModSel %>% filter(resType %in% "resid.Inf", variable %in% c("Sard", "sardRec")
 
 xvModSel %>% filter(resType %in% c("resid.Inf", "resid.Perst"), 
                     variable %in% c("Sard", "sardRec"),
-                    predHoriz == 1) %>%
+                    predHoriz == 2) %>%
   arrange(RMSE)
