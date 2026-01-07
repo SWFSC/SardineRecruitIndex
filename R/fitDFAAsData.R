@@ -14,49 +14,6 @@ trendsHist <- tsSmooth(sardDFA, type = "xtT", interval = "confidence") %>%
                        t = t+1989)
 
 
-# Regression of DFA trend on rec devs -------------------------------------
-
-mngtBench2024 <- SS_output("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/scenarioModels/Pacific sardine 2024 benchmark",)
-mngt2024recdevs <- mngtBench2024$recruit %>% filter(era == "Main")
-
-regrDat <- mngt2024recdevs %>% select(Yr, dev) %>%
-              left_join(y = trendsHist, by = c("Yr" = "t"))
-
-regrFit <- lm(dev ~ .estimate, data = regrDat)
-summary(regrFit) # no sig relationship
-
-# plot(regrFit)
-
-regrDat <- regrDat %>% mutate(predPts = predict(regrFit, newdata = regrDat))
-
-regrDat %>% ggplot(aes(x = .estimate, y = dev)) +
-  geom_point() + 
-  geom_line(aes(y = predPts)) +
-  theme_classic()
-
-# see what it looks like with research model time series
-resAssess2025 <- SS_output("C:/Users/r.wildermuth/Documents/CEFI/SardineRecruitmentESP/SardineRecruitIndex/scenarioModels/2025_research_assessment_LorenzM",)
-res2025recdevs <- resAssess2025$recruit %>% filter(era == "Main")
-
-regrDat <- res2025recdevs %>% select(Yr, dev) %>%
-              left_join(y = trendsHist, by = c("Yr" = "t"))
-
-regrFit <- lm(dev ~ .estimate, data = regrDat)
-summary(regrFit) # sig relationship over longer historical period
-
-# plot(regrFit)
-
-regrDat <- regrDat %>% mutate(predPts = predict(regrFit, newdata = regrDat),
-                              # color points by era
-                              colr = case_when(Yr >= 2005 ~ "benchmark",
-                                               TRUE ~ "DFA"))
-              
-
-regrDat %>% ggplot(aes(x = .estimate, y = dev)) +
-  geom_point(aes(color = colr)) + 
-  geom_line(aes(y = predPts)) +
-  theme_classic()
-
 # Fit As Data SS model ----------------------------------------------------
 
 # read in and modify data.ss file
@@ -108,6 +65,38 @@ compSmry <- SSsummarize(list(dfaAsDataFit,
 dev.off()
 SSplotComparisons(compSmry, legendlabels = c("dfaAsData", 
                                              "mngtAssmt2024"))
+
+# plot of rec devs with DFA index overlaid
+# need points and error bars in same table
+recs <- compSmry$recdevs %>% pivot_longer(cols = c(model1, model2), names_to = "Model", values_to = "estRecDev")
+recsLo <- compSmry$recdevsLower %>% pivot_longer(cols = c(model1, model2), names_to = "Model", values_to = "recdevLo")
+recsHi <- compSmry$recdevsUpper %>% pivot_longer(cols = c(model1, model2), names_to = "Model", values_to = "recdevHi")
+recs <- recs %>% full_join(y = recsLo, by = c("Label", "Yr", "Model")) %>%
+          full_join(y = recsHi, by = c("Label", "Yr", "Model")) %>%
+          mutate(Model = case_when(Model == "model1" ~ "dfaAsData",
+                                   Model == "model2" ~ "mngtAssmt2024"),
+                 Label = "RecDev")
+# add the DFA trend used as index
+recs <- trendsHist %>% select(.rownames, t, .estimate, .conf.low, .conf.up) %>%
+  rename(Label = .rownames,
+         Yr = t,
+         estRecDev = .estimate,
+         recdevLo = .conf.low,
+         recdevHi = .conf.up) %>%
+  mutate(Model = "DFAtrend") %>%
+  bind_rows(recs)
+
+ggplot(recs, aes(x=Yr, y=estRecDev, group=Model, color=Model)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_line(linewidth = 1) +
+  geom_point(position=position_dodge(0.25), size = 2)+
+  geom_errorbar(aes(ymin=recdevLo, ymax=recdevHi), width=.5,
+                position=position_dodge(0.25),
+                linewidth = 1) +
+  labs(y = "Recruitment deviations or Index", x = "Year", cex = 1.5) + xlim(1998.5, 2024) +
+  theme_classic() +
+  facet_wrap(~Label, ncol = 1) + 
+  theme(text = element_text(size = 20))
 
 # diff in estimated rec devs
 recdevDiffs <- compSmry$recdevs %>% mutate(recdevDiff = model1 - model2) # w/Envt - benchmark

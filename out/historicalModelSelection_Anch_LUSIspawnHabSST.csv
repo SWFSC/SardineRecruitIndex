@@ -1,0 +1,1201 @@
+initYr,Rstructure,mTrends,compMethod,variable,resType,predHoriz,RMSE,nIndices,peels
+1985,diag & unequal,5,individual,sardRec,resid.Naiv,1,0.5027557947890177,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Naiv,5,0.7629413518195158,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Naiv,4,0.7785342226853934,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Naiv,3,0.793795797657505,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Naiv,2,0.8021451615550498,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Cont,5,0.866293847225589,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Inf,5,0.9486777037337221,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Proj,5,0.949375684628658,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Cont,1,0.9856039507217403,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Inf,1,1.06074291327151,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Proj,1,1.067094817525721,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Cont,4,1.0680109010532606,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Inf,4,1.1599178459111812,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Proj,4,1.1608005751171218,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Cont,2,1.4878157838323105,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Cont,3,1.5324451141655506,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Proj,2,1.5650254958313656,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Inf,2,1.5653179798923402,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Proj,3,1.6151372542479414,26,10
+1985,diag & unequal,5,individual,sardRec,resid.Inf,3,1.6170108295146002,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Naiv,1,0.5027557947890177,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Naiv,5,0.7629413518195158,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Naiv,4,0.7785342226853934,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Naiv,3,0.793795797657505,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Naiv,2,0.8021451615550498,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Cont,5,0.866293847225589,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Inf,5,0.9486777037337221,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Proj,5,0.949375684628658,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Cont,1,0.9856039507217403,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Inf,1,1.06074291327151,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Proj,1,1.067094817525721,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Cont,4,1.0680109010532606,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Inf,4,1.1599178459111812,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Proj,4,1.1608005751171218,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Cont,2,1.4878157838323105,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Cont,3,1.5324451141655506,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Proj,2,1.5650254958313656,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Inf,2,1.5653179798923402,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Proj,3,1.6151372542479414,26,10
+1985,diag & unequal,5,peel & variable combined,total,resid.Inf,3,1.6170108295146002,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Cont,1,0.9856039507217403,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Cont,1,0.9856039507217403,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Cont,2,1.4878157838323105,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Cont,2,1.4878157838323105,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Cont,3,1.5324451141655506,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Cont,3,1.5324451141655506,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Cont,4,1.0680109010532606,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Cont,4,1.0680109010532606,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Cont,5,0.866293847225589,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Cont,5,0.866293847225589,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Inf,1,1.06074291327151,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Inf,1,1.06074291327151,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Inf,2,1.5653179798923402,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Inf,2,1.5653179798923402,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Inf,3,1.6170108295146002,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Inf,3,1.6170108295146002,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Inf,4,1.1599178459111812,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Inf,4,1.1599178459111812,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Inf,5,0.9486777037337221,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Inf,5,0.9486777037337221,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Naiv,1,0.5027557947890177,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Naiv,1,0.5027557947890177,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Naiv,2,0.8021451615550498,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Naiv,2,0.8021451615550498,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Naiv,3,0.793795797657505,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Naiv,3,0.793795797657505,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Naiv,4,0.7785342226853934,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Naiv,4,0.7785342226853934,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Naiv,5,0.7629413518195158,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Naiv,5,0.7629413518195158,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Proj,1,1.067094817525721,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Proj,1,1.067094817525721,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Proj,2,1.5650254958313656,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Proj,2,1.5650254958313656,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Proj,3,1.6151372542479414,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Proj,3,1.6151372542479414,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Proj,4,1.1608005751171218,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Proj,4,1.1608005751171218,26,10
+1985,diag & unequal,5,peel then variable,totRMSE,resid.Proj,5,0.949375684628658,26,10
+1985,diag & unequal,5,peel then variable,meanRMSE,resid.Proj,5,0.949375684628658,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Naiv,5,0.5674034954471657,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Naiv,4,0.6041340318968483,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Naiv,1,0.6409217665188007,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Naiv,3,0.6523208223323146,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Naiv,2,0.6833541888873558,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Cont,1,0.812230619653417,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Inf,1,0.9076322282898148,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Proj,1,0.9138248389202938,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Cont,5,1.0062074653355269,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Cont,2,1.0191784345109403,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Inf,5,1.1327117102837512,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Proj,5,1.1330510735956592,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Proj,2,1.178185911004283,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Inf,2,1.185948427413874,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Cont,3,1.2636139944960407,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Cont,4,1.3005311687825303,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Inf,4,1.4531025861873212,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Proj,4,1.453467150844554,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Proj,3,1.4547007457523042,26,10
+1985,custom R by SDM,5,individual,sardRec,resid.Inf,3,1.4579708298086926,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Naiv,5,0.5674034954471657,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Naiv,4,0.6041340318968483,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Naiv,1,0.6409217665188007,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Naiv,3,0.6523208223323146,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Naiv,2,0.6833541888873558,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Cont,1,0.812230619653417,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Inf,1,0.9076322282898148,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Proj,1,0.9138248389202938,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Cont,5,1.0062074653355269,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Cont,2,1.0191784345109403,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Inf,5,1.1327117102837512,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Proj,5,1.1330510735956592,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Proj,2,1.178185911004283,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Inf,2,1.185948427413874,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Cont,3,1.2636139944960407,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Cont,4,1.3005311687825303,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Inf,4,1.4531025861873212,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Proj,4,1.453467150844554,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Proj,3,1.4547007457523042,26,10
+1985,custom R by SDM,5,peel & variable combined,total,resid.Inf,3,1.4579708298086926,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Cont,1,0.812230619653417,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Cont,1,0.812230619653417,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Cont,2,1.0191784345109403,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Cont,2,1.0191784345109403,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Cont,3,1.2636139944960407,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Cont,3,1.2636139944960407,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Cont,4,1.3005311687825303,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Cont,4,1.3005311687825303,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Cont,5,1.0062074653355269,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Cont,5,1.0062074653355269,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Inf,1,0.9076322282898148,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Inf,1,0.9076322282898148,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Inf,2,1.185948427413874,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Inf,2,1.185948427413874,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Inf,3,1.4579708298086926,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Inf,3,1.4579708298086926,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Inf,4,1.4531025861873212,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Inf,4,1.4531025861873212,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Inf,5,1.1327117102837512,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Inf,5,1.1327117102837512,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Naiv,1,0.6409217665188007,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Naiv,1,0.6409217665188007,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Naiv,2,0.6833541888873558,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Naiv,2,0.6833541888873558,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Naiv,3,0.6523208223323146,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Naiv,3,0.6523208223323146,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Naiv,4,0.6041340318968483,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Naiv,4,0.6041340318968483,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Naiv,5,0.5674034954471657,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Naiv,5,0.5674034954471657,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Proj,1,0.9138248389202938,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Proj,1,0.9138248389202938,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Proj,2,1.178185911004283,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Proj,2,1.178185911004283,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Proj,3,1.4547007457523042,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Proj,3,1.4547007457523042,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Proj,4,1.453467150844554,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Proj,4,1.453467150844554,26,10
+1985,custom R by SDM,5,peel then variable,totRMSE,resid.Proj,5,1.1330510735956592,26,10
+1985,custom R by SDM,5,peel then variable,meanRMSE,resid.Proj,5,1.1330510735956592,26,10
+1985,diag & equal,5,individual,sardRec,resid.Cont,5,0.4733351729204502,26,10
+1985,diag & equal,5,individual,sardRec,resid.Inf,5,0.6186233359988641,26,10
+1985,diag & equal,5,individual,sardRec,resid.Proj,5,0.6191566125363929,26,10
+1985,diag & equal,5,individual,sardRec,resid.Naiv,1,0.6203273898848449,26,10
+1985,diag & equal,5,individual,sardRec,resid.Cont,1,0.6372831287861115,26,10
+1985,diag & equal,5,individual,sardRec,resid.Naiv,3,0.7462701948886142,26,10
+1985,diag & equal,5,individual,sardRec,resid.Naiv,2,0.7752106342829271,26,10
+1985,diag & equal,5,individual,sardRec,resid.Inf,1,0.775996326927409,26,10
+1985,diag & equal,5,individual,sardRec,resid.Proj,1,0.7927331611963143,26,10
+1985,diag & equal,5,individual,sardRec,resid.Naiv,4,0.80577611617972,26,10
+1985,diag & equal,5,individual,sardRec,resid.Cont,2,0.806854541314714,26,10
+1985,diag & equal,5,individual,sardRec,resid.Naiv,5,0.8828558513832199,26,10
+1985,diag & equal,5,individual,sardRec,resid.Cont,3,0.92143253267571,26,10
+1985,diag & equal,5,individual,sardRec,resid.Cont,4,0.9259843185258821,26,10
+1985,diag & equal,5,individual,sardRec,resid.Inf,2,1.0262164785899888,26,10
+1985,diag & equal,5,individual,sardRec,resid.Proj,2,1.0287864434134681,26,10
+1985,diag & equal,5,individual,sardRec,resid.Inf,4,1.1893366009648294,26,10
+1985,diag & equal,5,individual,sardRec,resid.Proj,4,1.1897576946037287,26,10
+1985,diag & equal,5,individual,sardRec,resid.Proj,3,1.1900781241369276,26,10
+1985,diag & equal,5,individual,sardRec,resid.Inf,3,1.1902184930874957,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Cont,5,0.4733351729204502,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Inf,5,0.6186233359988641,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Proj,5,0.6191566125363929,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Naiv,1,0.6203273898848449,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Cont,1,0.6372831287861115,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Naiv,3,0.7462701948886142,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Naiv,2,0.7752106342829271,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Inf,1,0.775996326927409,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Proj,1,0.7927331611963143,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Naiv,4,0.80577611617972,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Cont,2,0.806854541314714,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Naiv,5,0.8828558513832199,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Cont,3,0.92143253267571,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Cont,4,0.9259843185258821,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Inf,2,1.0262164785899888,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Proj,2,1.0287864434134681,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Inf,4,1.1893366009648294,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Proj,4,1.1897576946037287,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Proj,3,1.1900781241369276,26,10
+1985,diag & equal,5,peel & variable combined,total,resid.Inf,3,1.1902184930874957,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Cont,1,0.6372831287861115,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Cont,1,0.6372831287861115,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Cont,2,0.806854541314714,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Cont,2,0.806854541314714,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Cont,3,0.92143253267571,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Cont,3,0.92143253267571,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Cont,4,0.9259843185258821,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Cont,4,0.9259843185258821,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Cont,5,0.4733351729204502,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Cont,5,0.4733351729204502,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Inf,1,0.775996326927409,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Inf,1,0.775996326927409,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Inf,2,1.0262164785899888,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Inf,2,1.0262164785899888,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Inf,3,1.1902184930874957,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Inf,3,1.1902184930874957,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Inf,4,1.1893366009648294,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Inf,4,1.1893366009648294,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Inf,5,0.6186233359988641,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Inf,5,0.6186233359988641,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Naiv,1,0.6203273898848449,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Naiv,1,0.6203273898848449,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Naiv,2,0.7752106342829271,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Naiv,2,0.7752106342829271,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Naiv,3,0.7462701948886142,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Naiv,3,0.7462701948886142,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Naiv,4,0.80577611617972,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Naiv,4,0.80577611617972,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Naiv,5,0.8828558513832199,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Naiv,5,0.8828558513832199,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Proj,1,0.7927331611963143,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Proj,1,0.7927331611963143,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Proj,2,1.0287864434134681,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Proj,2,1.0287864434134681,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Proj,3,1.1900781241369276,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Proj,3,1.1900781241369276,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Proj,4,1.1897576946037287,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Proj,4,1.1897576946037287,26,10
+1985,diag & equal,5,peel then variable,totRMSE,resid.Proj,5,0.6191566125363929,26,10
+1985,diag & equal,5,peel then variable,meanRMSE,resid.Proj,5,0.6191566125363929,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Naiv,5,0.4323377108860715,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Cont,4,0.6219184281707352,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Naiv,3,0.6802958347192012,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Inf,4,0.6813106106516413,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Proj,4,0.6832369044514945,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Naiv,4,0.7159152202828288,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Naiv,1,0.7624412197568597,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Naiv,2,0.8161302277726635,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Cont,5,0.9212670109944647,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Cont,1,0.954076110888166,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Inf,5,0.9934122478574076,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Proj,5,0.9946791364930263,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Inf,1,1.0145893207768972,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Proj,1,1.0218898020150116,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Cont,3,1.1472310508759238,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Proj,3,1.228909349198304,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Inf,3,1.2311832291751796,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Cont,2,1.7288673754407309,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Proj,2,1.8325959928910405,26,10
+1985,diag & unequal,4,individual,sardRec,resid.Inf,2,1.836557314224473,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Naiv,5,0.4323377108860715,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Cont,4,0.6219184281707352,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Naiv,3,0.6802958347192012,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Inf,4,0.6813106106516413,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Proj,4,0.6832369044514945,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Naiv,4,0.7159152202828288,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Naiv,1,0.7624412197568597,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Naiv,2,0.8161302277726635,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Cont,5,0.9212670109944647,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Cont,1,0.954076110888166,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Inf,5,0.9934122478574076,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Proj,5,0.9946791364930263,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Inf,1,1.0145893207768972,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Proj,1,1.0218898020150116,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Cont,3,1.1472310508759238,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Proj,3,1.228909349198304,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Inf,3,1.2311832291751796,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Cont,2,1.7288673754407309,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Proj,2,1.8325959928910405,26,10
+1985,diag & unequal,4,peel & variable combined,total,resid.Inf,2,1.836557314224473,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Cont,1,0.954076110888166,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Cont,1,0.954076110888166,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Cont,2,1.7288673754407309,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Cont,2,1.7288673754407309,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Cont,3,1.1472310508759238,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Cont,3,1.1472310508759238,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Cont,4,0.6219184281707352,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Cont,4,0.6219184281707352,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Cont,5,0.9212670109944647,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Cont,5,0.9212670109944647,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Inf,1,1.0145893207768972,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Inf,1,1.0145893207768972,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Inf,2,1.836557314224473,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Inf,2,1.836557314224473,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Inf,3,1.2311832291751796,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Inf,3,1.2311832291751796,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Inf,4,0.6813106106516413,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Inf,4,0.6813106106516413,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Inf,5,0.9934122478574076,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Inf,5,0.9934122478574076,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Naiv,1,0.7624412197568597,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Naiv,1,0.7624412197568597,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Naiv,2,0.8161302277726635,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Naiv,2,0.8161302277726635,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Naiv,3,0.6802958347192012,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Naiv,3,0.6802958347192012,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Naiv,4,0.7159152202828288,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Naiv,4,0.7159152202828288,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Naiv,5,0.4323377108860715,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Naiv,5,0.4323377108860715,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Proj,1,1.0218898020150116,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Proj,1,1.0218898020150116,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Proj,2,1.8325959928910405,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Proj,2,1.8325959928910405,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Proj,3,1.228909349198304,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Proj,3,1.228909349198304,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Proj,4,0.6832369044514945,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Proj,4,0.6832369044514945,26,10
+1985,diag & unequal,4,peel then variable,totRMSE,resid.Proj,5,0.9946791364930263,26,10
+1985,diag & unequal,4,peel then variable,meanRMSE,resid.Proj,5,0.9946791364930263,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Naiv,5,0.5902203858315468,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Naiv,4,0.7346871471462357,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Naiv,2,0.7617606497129872,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Naiv,3,0.7877340682634392,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Cont,5,0.8432349322550469,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Naiv,1,0.8859549491695932,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Inf,5,0.9030270258547871,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Proj,5,0.9034444129819316,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Cont,1,0.9877439751874327,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Cont,2,0.9976826129189548,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Inf,1,1.0541564200602973,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Proj,1,1.0578845978472502,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Proj,2,1.0860354916606336,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Inf,2,1.0911827897939184,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Cont,4,1.2850312461472795,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Cont,3,1.335730862587144,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Proj,4,1.395369256988304,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Inf,4,1.39556023210301,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Proj,3,1.4318848352112847,26,10
+1985,custom R by SDM,4,individual,sardRec,resid.Inf,3,1.4338006351311132,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Naiv,5,0.5902203858315468,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Naiv,4,0.7346871471462357,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Naiv,2,0.7617606497129872,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Naiv,3,0.7877340682634392,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Cont,5,0.8432349322550469,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Naiv,1,0.8859549491695932,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Inf,5,0.9030270258547871,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Proj,5,0.9034444129819316,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Cont,1,0.9877439751874327,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Cont,2,0.9976826129189548,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Inf,1,1.0541564200602973,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Proj,1,1.0578845978472502,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Proj,2,1.0860354916606336,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Inf,2,1.0911827897939184,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Cont,4,1.2850312461472795,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Cont,3,1.335730862587144,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Proj,4,1.395369256988304,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Inf,4,1.39556023210301,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Proj,3,1.4318848352112847,26,10
+1985,custom R by SDM,4,peel & variable combined,total,resid.Inf,3,1.4338006351311132,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Cont,1,0.9877439751874327,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Cont,1,0.9877439751874327,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Cont,2,0.9976826129189548,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Cont,2,0.9976826129189548,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Cont,3,1.335730862587144,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Cont,3,1.335730862587144,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Cont,4,1.2850312461472795,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Cont,4,1.2850312461472795,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Cont,5,0.8432349322550469,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Cont,5,0.8432349322550469,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Inf,1,1.0541564200602973,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Inf,1,1.0541564200602973,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Inf,2,1.0911827897939184,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Inf,2,1.0911827897939184,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Inf,3,1.4338006351311132,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Inf,3,1.4338006351311132,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Inf,4,1.39556023210301,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Inf,4,1.39556023210301,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Inf,5,0.9030270258547871,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Inf,5,0.9030270258547871,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Naiv,1,0.8859549491695932,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Naiv,1,0.8859549491695932,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Naiv,2,0.7617606497129872,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Naiv,2,0.7617606497129872,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Naiv,3,0.7877340682634392,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Naiv,3,0.7877340682634392,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Naiv,4,0.7346871471462357,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Naiv,4,0.7346871471462357,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Naiv,5,0.5902203858315468,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Naiv,5,0.5902203858315468,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Proj,1,1.0578845978472502,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Proj,1,1.0578845978472502,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Proj,2,1.0860354916606336,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Proj,2,1.0860354916606336,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Proj,3,1.4318848352112847,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Proj,3,1.4318848352112847,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Proj,4,1.395369256988304,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Proj,4,1.395369256988304,26,10
+1985,custom R by SDM,4,peel then variable,totRMSE,resid.Proj,5,0.9034444129819316,26,10
+1985,custom R by SDM,4,peel then variable,meanRMSE,resid.Proj,5,0.9034444129819316,26,10
+1985,diag & equal,4,individual,sardRec,resid.Naiv,5,0.5186169360829688,26,10
+1985,diag & equal,4,individual,sardRec,resid.Naiv,3,0.5631165603258893,26,10
+1985,diag & equal,4,individual,sardRec,resid.Naiv,2,0.6263813709577843,26,10
+1985,diag & equal,4,individual,sardRec,resid.Naiv,4,0.6391368505816387,26,10
+1985,diag & equal,4,individual,sardRec,resid.Naiv,1,0.6923048569084697,26,10
+1985,diag & equal,4,individual,sardRec,resid.Cont,5,0.7338157996763306,26,10
+1985,diag & equal,4,individual,sardRec,resid.Inf,5,0.7990389300110465,26,10
+1985,diag & equal,4,individual,sardRec,resid.Proj,5,0.7991533606923327,26,10
+1985,diag & equal,4,individual,sardRec,resid.Cont,1,0.8388621472684129,26,10
+1985,diag & equal,4,individual,sardRec,resid.Cont,2,0.9109550190929732,26,10
+1985,diag & equal,4,individual,sardRec,resid.Inf,1,0.9400187361289922,26,10
+1985,diag & equal,4,individual,sardRec,resid.Proj,1,0.9499275853724464,26,10
+1985,diag & equal,4,individual,sardRec,resid.Cont,4,1.0118949920250082,26,10
+1985,diag & equal,4,individual,sardRec,resid.Cont,3,1.0193841991839703,26,10
+1985,diag & equal,4,individual,sardRec,resid.Inf,2,1.0304161226246675,26,10
+1985,diag & equal,4,individual,sardRec,resid.Proj,2,1.0313907869259642,26,10
+1985,diag & equal,4,individual,sardRec,resid.Proj,4,1.1010894609276094,26,10
+1985,diag & equal,4,individual,sardRec,resid.Inf,4,1.1011928410472127,26,10
+1985,diag & equal,4,individual,sardRec,resid.Proj,3,1.1327730381480126,26,10
+1985,diag & equal,4,individual,sardRec,resid.Inf,3,1.1336411399305177,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Naiv,5,0.5186169360829688,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Naiv,3,0.5631165603258893,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Naiv,2,0.6263813709577843,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Naiv,4,0.6391368505816387,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Naiv,1,0.6923048569084697,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Cont,5,0.7338157996763306,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Inf,5,0.7990389300110465,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Proj,5,0.7991533606923327,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Cont,1,0.8388621472684129,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Cont,2,0.9109550190929732,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Inf,1,0.9400187361289922,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Proj,1,0.9499275853724464,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Cont,4,1.0118949920250082,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Cont,3,1.0193841991839703,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Inf,2,1.0304161226246675,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Proj,2,1.0313907869259642,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Proj,4,1.1010894609276094,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Inf,4,1.1011928410472127,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Proj,3,1.1327730381480126,26,10
+1985,diag & equal,4,peel & variable combined,total,resid.Inf,3,1.1336411399305177,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Cont,1,0.8388621472684129,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Cont,1,0.8388621472684129,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Cont,2,0.9109550190929732,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Cont,2,0.9109550190929732,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Cont,3,1.0193841991839703,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Cont,3,1.0193841991839703,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Cont,4,1.0118949920250082,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Cont,4,1.0118949920250082,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Cont,5,0.7338157996763306,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Cont,5,0.7338157996763306,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Inf,1,0.9400187361289922,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Inf,1,0.9400187361289922,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Inf,2,1.0304161226246675,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Inf,2,1.0304161226246675,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Inf,3,1.1336411399305177,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Inf,3,1.1336411399305177,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Inf,4,1.1011928410472127,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Inf,4,1.1011928410472127,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Inf,5,0.7990389300110465,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Inf,5,0.7990389300110465,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Naiv,1,0.6923048569084697,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Naiv,1,0.6923048569084697,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Naiv,2,0.6263813709577843,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Naiv,2,0.6263813709577843,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Naiv,3,0.5631165603258893,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Naiv,3,0.5631165603258893,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Naiv,4,0.6391368505816387,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Naiv,4,0.6391368505816387,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Naiv,5,0.5186169360829688,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Naiv,5,0.5186169360829688,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Proj,1,0.9499275853724464,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Proj,1,0.9499275853724464,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Proj,2,1.0313907869259642,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Proj,2,1.0313907869259642,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Proj,3,1.1327730381480126,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Proj,3,1.1327730381480126,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Proj,4,1.1010894609276094,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Proj,4,1.1010894609276094,26,10
+1985,diag & equal,4,peel then variable,totRMSE,resid.Proj,5,0.7991533606923327,26,10
+1985,diag & equal,4,peel then variable,meanRMSE,resid.Proj,5,0.7991533606923327,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Naiv,2,0.436013452290929,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Naiv,5,0.4564283429200846,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Naiv,3,0.6868274220357339,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Naiv,1,0.7076480359731265,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Naiv,4,0.7675251653302625,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Cont,1,0.9203497309516692,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Inf,1,0.9779096349228167,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Cont,5,0.9781153903640084,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Proj,1,0.9862131246500628,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Cont,3,1.0322750578644764,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Inf,5,1.0328974275689873,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Proj,5,1.0338760515934478,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Proj,3,1.0904659860505592,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Inf,3,1.0942190414855335,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Cont,2,1.3563364944307468,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Proj,2,1.4411840765253672,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Inf,2,1.4415273093147547,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Cont,4,1.63835014931338,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Inf,4,1.681940143459396,26,10
+1985,diag & unequal,3,individual,sardRec,resid.Proj,4,1.6820976524023026,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Naiv,2,0.436013452290929,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Naiv,5,0.4564283429200846,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Naiv,3,0.6868274220357339,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Naiv,1,0.7076480359731265,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Naiv,4,0.7675251653302625,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Cont,1,0.9203497309516692,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Inf,1,0.9779096349228167,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Cont,5,0.9781153903640084,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Proj,1,0.9862131246500628,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Cont,3,1.0322750578644764,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Inf,5,1.0328974275689873,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Proj,5,1.0338760515934478,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Proj,3,1.0904659860505592,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Inf,3,1.0942190414855335,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Cont,2,1.3563364944307468,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Proj,2,1.4411840765253672,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Inf,2,1.4415273093147547,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Cont,4,1.63835014931338,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Inf,4,1.681940143459396,26,10
+1985,diag & unequal,3,peel & variable combined,total,resid.Proj,4,1.6820976524023026,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Cont,1,0.9203497309516692,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Cont,1,0.9203497309516692,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Cont,2,1.3563364944307468,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Cont,2,1.3563364944307468,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Cont,3,1.0322750578644764,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Cont,3,1.0322750578644764,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Cont,4,1.63835014931338,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Cont,4,1.63835014931338,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Cont,5,0.9781153903640084,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Cont,5,0.9781153903640084,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Inf,1,0.9779096349228167,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Inf,1,0.9779096349228167,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Inf,2,1.4415273093147547,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Inf,2,1.4415273093147547,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Inf,3,1.0942190414855335,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Inf,3,1.0942190414855335,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Inf,4,1.681940143459396,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Inf,4,1.681940143459396,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Inf,5,1.0328974275689873,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Inf,5,1.0328974275689873,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Naiv,1,0.7076480359731265,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Naiv,1,0.7076480359731265,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Naiv,2,0.436013452290929,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Naiv,2,0.436013452290929,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Naiv,3,0.6868274220357339,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Naiv,3,0.6868274220357339,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Naiv,4,0.7675251653302625,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Naiv,4,0.7675251653302625,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Naiv,5,0.4564283429200846,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Naiv,5,0.4564283429200846,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Proj,1,0.9862131246500628,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Proj,1,0.9862131246500628,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Proj,2,1.4411840765253672,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Proj,2,1.4411840765253672,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Proj,3,1.0904659860505592,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Proj,3,1.0904659860505592,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Proj,4,1.6820976524023026,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Proj,4,1.6820976524023026,26,10
+1985,diag & unequal,3,peel then variable,totRMSE,resid.Proj,5,1.0338760515934478,26,10
+1985,diag & unequal,3,peel then variable,meanRMSE,resid.Proj,5,1.0338760515934478,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Naiv,5,0.3681355917872755,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Naiv,3,0.6364394321673902,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Naiv,4,0.6825173940795232,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Naiv,2,0.7504435708687303,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Naiv,1,0.7565780780276824,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Cont,5,0.7707208828957322,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Inf,5,0.8260078665436061,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Proj,5,0.8263896503620753,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Cont,1,1.0498858891326908,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Inf,1,1.132559252706436,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Proj,1,1.1382918777003286,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Cont,2,1.1646439736098309,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Cont,4,1.169530355210636,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Proj,4,1.2336593506828861,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Inf,4,1.2340074791849829,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Proj,2,1.2643300974102392,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Inf,2,1.2711985202130924,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Cont,3,1.2741259524752235,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Proj,3,1.3565534398030061,26,10
+1985,custom R by SDM,3,individual,sardRec,resid.Inf,3,1.358036800616798,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Naiv,5,0.3681355917872755,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Naiv,3,0.6364394321673902,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Naiv,4,0.6825173940795232,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Naiv,2,0.7504435708687303,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Naiv,1,0.7565780780276824,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Cont,5,0.7707208828957322,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Inf,5,0.8260078665436061,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Proj,5,0.8263896503620753,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Cont,1,1.0498858891326908,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Inf,1,1.132559252706436,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Proj,1,1.1382918777003286,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Cont,2,1.1646439736098309,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Cont,4,1.169530355210636,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Proj,4,1.2336593506828861,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Inf,4,1.2340074791849829,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Proj,2,1.2643300974102392,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Inf,2,1.2711985202130924,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Cont,3,1.2741259524752235,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Proj,3,1.3565534398030061,26,10
+1985,custom R by SDM,3,peel & variable combined,total,resid.Inf,3,1.358036800616798,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Cont,1,1.0498858891326908,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Cont,1,1.0498858891326908,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Cont,2,1.1646439736098309,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Cont,2,1.1646439736098309,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Cont,3,1.2741259524752235,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Cont,3,1.2741259524752235,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Cont,4,1.169530355210636,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Cont,4,1.169530355210636,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Cont,5,0.7707208828957322,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Cont,5,0.7707208828957322,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Inf,1,1.132559252706436,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Inf,1,1.132559252706436,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Inf,2,1.2711985202130924,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Inf,2,1.2711985202130924,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Inf,3,1.358036800616798,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Inf,3,1.358036800616798,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Inf,4,1.2340074791849829,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Inf,4,1.2340074791849829,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Inf,5,0.8260078665436061,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Inf,5,0.8260078665436061,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Naiv,1,0.7565780780276824,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Naiv,1,0.7565780780276824,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Naiv,2,0.7504435708687303,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Naiv,2,0.7504435708687303,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Naiv,3,0.6364394321673902,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Naiv,3,0.6364394321673902,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Naiv,4,0.6825173940795232,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Naiv,4,0.6825173940795232,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Naiv,5,0.3681355917872755,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Naiv,5,0.3681355917872755,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Proj,1,1.1382918777003286,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Proj,1,1.1382918777003286,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Proj,2,1.2643300974102392,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Proj,2,1.2643300974102392,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Proj,3,1.3565534398030061,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Proj,3,1.3565534398030061,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Proj,4,1.2336593506828861,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Proj,4,1.2336593506828861,26,10
+1985,custom R by SDM,3,peel then variable,totRMSE,resid.Proj,5,0.8263896503620753,26,10
+1985,custom R by SDM,3,peel then variable,meanRMSE,resid.Proj,5,0.8263896503620753,26,10
+1985,diag & equal,3,individual,sardRec,resid.Naiv,5,0.46915743738670684,26,10
+1985,diag & equal,3,individual,sardRec,resid.Naiv,3,0.6066598573294559,26,10
+1985,diag & equal,3,individual,sardRec,resid.Naiv,4,0.6129126493425932,26,10
+1985,diag & equal,3,individual,sardRec,resid.Naiv,2,0.6485503619261037,26,10
+1985,diag & equal,3,individual,sardRec,resid.Naiv,1,0.7083532138671929,26,10
+1985,diag & equal,3,individual,sardRec,resid.Cont,5,0.7538534122916001,26,10
+1985,diag & equal,3,individual,sardRec,resid.Inf,5,0.818988635841084,26,10
+1985,diag & equal,3,individual,sardRec,resid.Proj,5,0.8192792789016138,26,10
+1985,diag & equal,3,individual,sardRec,resid.Cont,1,0.904631001950049,26,10
+1985,diag & equal,3,individual,sardRec,resid.Cont,2,0.9672269011737147,26,10
+1985,diag & equal,3,individual,sardRec,resid.Inf,1,0.9961647279159473,26,10
+1985,diag & equal,3,individual,sardRec,resid.Proj,1,1.002470045631953,26,10
+1985,diag & equal,3,individual,sardRec,resid.Cont,4,1.0329205231825414,26,10
+1985,diag & equal,3,individual,sardRec,resid.Cont,3,1.039197287378148,26,10
+1985,diag & equal,3,individual,sardRec,resid.Proj,2,1.0738122228502767,26,10
+1985,diag & equal,3,individual,sardRec,resid.Inf,2,1.0743094221010117,26,10
+1985,diag & equal,3,individual,sardRec,resid.Proj,4,1.113417523750574,26,10
+1985,diag & equal,3,individual,sardRec,resid.Inf,4,1.1134562867337754,26,10
+1985,diag & equal,3,individual,sardRec,resid.Proj,3,1.135767784475599,26,10
+1985,diag & equal,3,individual,sardRec,resid.Inf,3,1.1374624698614986,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Naiv,5,0.46915743738670684,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Naiv,3,0.6066598573294559,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Naiv,4,0.6129126493425932,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Naiv,2,0.6485503619261037,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Naiv,1,0.7083532138671929,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Cont,5,0.7538534122916001,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Inf,5,0.818988635841084,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Proj,5,0.8192792789016138,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Cont,1,0.904631001950049,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Cont,2,0.9672269011737147,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Inf,1,0.9961647279159473,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Proj,1,1.002470045631953,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Cont,4,1.0329205231825414,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Cont,3,1.039197287378148,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Proj,2,1.0738122228502767,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Inf,2,1.0743094221010117,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Proj,4,1.113417523750574,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Inf,4,1.1134562867337754,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Proj,3,1.135767784475599,26,10
+1985,diag & equal,3,peel & variable combined,total,resid.Inf,3,1.1374624698614986,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Cont,1,0.904631001950049,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Cont,1,0.904631001950049,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Cont,2,0.9672269011737147,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Cont,2,0.9672269011737147,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Cont,3,1.039197287378148,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Cont,3,1.039197287378148,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Cont,4,1.0329205231825414,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Cont,4,1.0329205231825414,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Cont,5,0.7538534122916001,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Cont,5,0.7538534122916001,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Inf,1,0.9961647279159473,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Inf,1,0.9961647279159473,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Inf,2,1.0743094221010117,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Inf,2,1.0743094221010117,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Inf,3,1.1374624698614986,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Inf,3,1.1374624698614986,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Inf,4,1.1134562867337754,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Inf,4,1.1134562867337754,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Inf,5,0.818988635841084,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Inf,5,0.818988635841084,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Naiv,1,0.7083532138671929,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Naiv,1,0.7083532138671929,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Naiv,2,0.6485503619261037,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Naiv,2,0.6485503619261037,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Naiv,3,0.6066598573294559,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Naiv,3,0.6066598573294559,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Naiv,4,0.6129126493425932,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Naiv,4,0.6129126493425932,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Naiv,5,0.46915743738670684,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Naiv,5,0.46915743738670684,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Proj,1,1.002470045631953,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Proj,1,1.002470045631953,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Proj,2,1.0738122228502767,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Proj,2,1.0738122228502767,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Proj,3,1.135767784475599,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Proj,3,1.135767784475599,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Proj,4,1.113417523750574,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Proj,4,1.113417523750574,26,10
+1985,diag & equal,3,peel then variable,totRMSE,resid.Proj,5,0.8192792789016138,26,10
+1985,diag & equal,3,peel then variable,meanRMSE,resid.Proj,5,0.8192792789016138,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Naiv,5,0.30741999759335464,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Naiv,2,0.5355830566051379,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Naiv,1,0.7063131355398496,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Naiv,4,0.7107103089758087,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Naiv,3,0.7156119235074676,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Cont,5,0.9065405584993071,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Cont,1,0.9324635146643987,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Inf,5,0.9559132020138064,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Proj,5,0.9564918426126637,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Inf,1,0.9787050994442206,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Proj,1,0.98927428180739585,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Cont,2,1.0781714845143517,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Cont,4,1.1166986390437619,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Inf,2,1.1309329433560908,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Cont,3,1.132485010551122,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Proj,2,1.1338983843361725,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Inf,4,1.1515579141093033,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Proj,4,1.1519779195550381,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Proj,3,1.180392816754587,26,10
+1985,diag & unequal,2,individual,sardRec,resid.Inf,3,1.1819361819268308,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Naiv,5,0.30741999759335464,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Naiv,2,0.5355830566051379,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Naiv,1,0.7063131355398496,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Naiv,4,0.7107103089758087,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Naiv,3,0.7156119235074676,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Cont,5,0.9065405584993071,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Cont,1,0.9324635146643987,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Inf,5,0.9559132020138064,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Proj,5,0.9564918426126637,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Inf,1,0.9787050994442206,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Proj,1,0.98927428180739585,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Cont,2,1.0781714845143517,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Cont,4,1.1166986390437619,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Inf,2,1.1309329433560908,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Cont,3,1.132485010551122,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Proj,2,1.1338983843361725,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Inf,4,1.1515579141093033,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Proj,4,1.1519779195550381,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Proj,3,1.180392816754587,26,10
+1985,diag & unequal,2,peel & variable combined,total,resid.Inf,3,1.1819361819268308,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Cont,1,0.9324635146643987,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Cont,1,0.9324635146643987,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Cont,2,1.0781714845143517,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Cont,2,1.0781714845143517,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Cont,3,1.132485010551122,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Cont,3,1.132485010551122,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Cont,4,1.1166986390437619,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Cont,4,1.1166986390437619,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Cont,5,0.9065405584993071,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Cont,5,0.9065405584993071,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Inf,1,0.9787050994442206,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Inf,1,0.9787050994442206,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Inf,2,1.1309329433560908,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Inf,2,1.1309329433560908,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Inf,3,1.1819361819268308,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Inf,3,1.1819361819268308,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Inf,4,1.1515579141093033,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Inf,4,1.1515579141093033,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Inf,5,0.9559132020138064,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Inf,5,0.9559132020138064,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Naiv,1,0.7063131355398496,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Naiv,1,0.7063131355398496,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Naiv,2,0.5355830566051379,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Naiv,2,0.5355830566051379,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Naiv,3,0.7156119235074676,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Naiv,3,0.7156119235074676,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Naiv,4,0.7107103089758087,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Naiv,4,0.7107103089758087,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Naiv,5,0.30741999759335464,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Naiv,5,0.30741999759335464,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Proj,1,0.98927428180739585,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Proj,1,0.98927428180739585,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Proj,2,1.1338983843361725,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Proj,2,1.1338983843361725,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Proj,3,1.180392816754587,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Proj,3,1.180392816754587,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Proj,4,1.1519779195550381,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Proj,4,1.1519779195550381,26,10
+1985,diag & unequal,2,peel then variable,totRMSE,resid.Proj,5,0.9564918426126637,26,10
+1985,diag & unequal,2,peel then variable,meanRMSE,resid.Proj,5,0.9564918426126637,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Naiv,2,0.46701385814734947,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Naiv,5,0.4935918932249367,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Naiv,3,0.6872171456043862,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Naiv,4,0.720776526561291,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Naiv,1,0.8499437383875103,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Cont,1,0.8956052037280561,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Cont,5,0.9033301760517609,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Cont,2,0.9633060233706032,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Inf,5,0.9655606243866516,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Proj,5,0.9661755620354725,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Inf,1,0.9755164520562317,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Proj,1,0.990820868397432,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Inf,2,1.0461296253618846,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Proj,2,1.050450681823843,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Cont,4,1.085368141645851,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Cont,3,1.115055133753006,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Inf,4,1.1378427687644537,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Proj,4,1.1382962990852425,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Proj,3,1.203223674454786,26,10
+1985,custom R by SDM,2,individual,sardRec,resid.Inf,3,1.2037226349290218,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Naiv,2,0.46701385814734947,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Naiv,5,0.4935918932249367,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Naiv,3,0.6872171456043862,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Naiv,4,0.720776526561291,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Naiv,1,0.8499437383875103,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Cont,1,0.8956052037280561,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Cont,5,0.9033301760517609,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Cont,2,0.9633060233706032,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Inf,5,0.9655606243866516,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Proj,5,0.9661755620354725,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Inf,1,0.9755164520562317,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Proj,1,0.990820868397432,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Inf,2,1.0461296253618846,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Proj,2,1.050450681823843,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Cont,4,1.085368141645851,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Cont,3,1.115055133753006,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Inf,4,1.1378427687644537,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Proj,4,1.1382962990852425,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Proj,3,1.203223674454786,26,10
+1985,custom R by SDM,2,peel & variable combined,total,resid.Inf,3,1.2037226349290218,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Cont,1,0.8956052037280561,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Cont,1,0.8956052037280561,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Cont,2,0.9633060233706032,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Cont,2,0.9633060233706032,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Cont,3,1.115055133753006,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Cont,3,1.115055133753006,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Cont,4,1.085368141645851,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Cont,4,1.085368141645851,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Cont,5,0.9033301760517609,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Cont,5,0.9033301760517609,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Inf,1,0.9755164520562317,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Inf,1,0.9755164520562317,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Inf,2,1.0461296253618846,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Inf,2,1.0461296253618846,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Inf,3,1.2037226349290218,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Inf,3,1.2037226349290218,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Inf,4,1.1378427687644537,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Inf,4,1.1378427687644537,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Inf,5,0.9655606243866516,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Inf,5,0.9655606243866516,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Naiv,1,0.8499437383875103,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Naiv,1,0.8499437383875103,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Naiv,2,0.46701385814734947,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Naiv,2,0.46701385814734947,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Naiv,3,0.6872171456043862,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Naiv,3,0.6872171456043862,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Naiv,4,0.720776526561291,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Naiv,4,0.720776526561291,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Naiv,5,0.4935918932249367,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Naiv,5,0.4935918932249367,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Proj,1,0.990820868397432,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Proj,1,0.990820868397432,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Proj,2,1.050450681823843,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Proj,2,1.050450681823843,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Proj,3,1.203223674454786,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Proj,3,1.203223674454786,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Proj,4,1.1382962990852425,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Proj,4,1.1382962990852425,26,10
+1985,custom R by SDM,2,peel then variable,totRMSE,resid.Proj,5,0.9661755620354725,26,10
+1985,custom R by SDM,2,peel then variable,meanRMSE,resid.Proj,5,0.9661755620354725,26,10
+1985,diag & equal,2,individual,sardRec,resid.Naiv,5,0.3604367824841825,26,10
+1985,diag & equal,2,individual,sardRec,resid.Naiv,4,0.5300849249682911,26,10
+1985,diag & equal,2,individual,sardRec,resid.Naiv,3,0.5999245120203501,26,10
+1985,diag & equal,2,individual,sardRec,resid.Naiv,2,0.6907718046695321,26,10
+1985,diag & equal,2,individual,sardRec,resid.Cont,5,0.7881228438569108,26,10
+1985,diag & equal,2,individual,sardRec,resid.Naiv,1,0.7915777962007147,26,10
+1985,diag & equal,2,individual,sardRec,resid.Inf,5,0.8422656083169595,26,10
+1985,diag & equal,2,individual,sardRec,resid.Proj,5,0.8425512166040489,26,10
+1985,diag & equal,2,individual,sardRec,resid.Cont,1,0.9504884342309039,26,10
+1985,diag & equal,2,individual,sardRec,resid.Inf,1,1.0360787836775718,26,10
+1985,diag & equal,2,individual,sardRec,resid.Proj,1,1.043690982905038,26,10
+1985,diag & equal,2,individual,sardRec,resid.Cont,2,1.0508076921550906,26,10
+1985,diag & equal,2,individual,sardRec,resid.Cont,4,1.0714562778982089,26,10
+1985,diag & equal,2,individual,sardRec,resid.Cont,3,1.0975708069233365,26,10
+1985,diag & equal,2,individual,sardRec,resid.Proj,4,1.1424362731796645,26,10
+1985,diag & equal,2,individual,sardRec,resid.Inf,4,1.1425996068305573,26,10
+1985,diag & equal,2,individual,sardRec,resid.Proj,2,1.153219322204612,26,10
+1985,diag & equal,2,individual,sardRec,resid.Inf,2,1.1537684781644937,26,10
+1985,diag & equal,2,individual,sardRec,resid.Proj,3,1.1894921329096608,26,10
+1985,diag & equal,2,individual,sardRec,resid.Inf,3,1.191342028906138,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Naiv,5,0.3604367824841825,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Naiv,4,0.5300849249682911,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Naiv,3,0.5999245120203501,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Naiv,2,0.6907718046695321,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Cont,5,0.7881228438569108,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Naiv,1,0.7915777962007147,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Inf,5,0.8422656083169595,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Proj,5,0.8425512166040489,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Cont,1,0.9504884342309039,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Inf,1,1.0360787836775718,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Proj,1,1.043690982905038,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Cont,2,1.0508076921550906,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Cont,4,1.0714562778982089,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Cont,3,1.0975708069233365,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Proj,4,1.1424362731796645,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Inf,4,1.1425996068305573,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Proj,2,1.153219322204612,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Inf,2,1.1537684781644937,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Proj,3,1.1894921329096608,26,10
+1985,diag & equal,2,peel & variable combined,total,resid.Inf,3,1.191342028906138,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Cont,1,0.9504884342309039,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Cont,1,0.9504884342309039,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Cont,2,1.0508076921550906,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Cont,2,1.0508076921550906,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Cont,3,1.0975708069233365,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Cont,3,1.0975708069233365,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Cont,4,1.0714562778982089,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Cont,4,1.0714562778982089,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Cont,5,0.7881228438569108,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Cont,5,0.7881228438569108,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Inf,1,1.0360787836775718,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Inf,1,1.0360787836775718,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Inf,2,1.1537684781644937,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Inf,2,1.1537684781644937,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Inf,3,1.191342028906138,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Inf,3,1.191342028906138,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Inf,4,1.1425996068305573,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Inf,4,1.1425996068305573,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Inf,5,0.8422656083169595,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Inf,5,0.8422656083169595,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Naiv,1,0.7915777962007147,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Naiv,1,0.7915777962007147,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Naiv,2,0.6907718046695321,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Naiv,2,0.6907718046695321,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Naiv,3,0.5999245120203501,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Naiv,3,0.5999245120203501,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Naiv,4,0.5300849249682911,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Naiv,4,0.5300849249682911,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Naiv,5,0.3604367824841825,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Naiv,5,0.3604367824841825,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Proj,1,1.043690982905038,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Proj,1,1.043690982905038,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Proj,2,1.153219322204612,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Proj,2,1.153219322204612,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Proj,3,1.1894921329096608,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Proj,3,1.1894921329096608,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Proj,4,1.1424362731796645,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Proj,4,1.1424362731796645,26,10
+1985,diag & equal,2,peel then variable,totRMSE,resid.Proj,5,0.8425512166040489,26,10
+1985,diag & equal,2,peel then variable,meanRMSE,resid.Proj,5,0.8425512166040489,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Naiv,4,0.5553741196598683,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Naiv,5,0.6525904711807022,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Naiv,3,0.6754324009282531,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Naiv,2,0.8419148712064745,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Cont,5,0.8556309937361276,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Inf,5,0.8818189953843664,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Proj,5,0.881818995703493,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Naiv,1,0.9900503663633675,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Cont,1,1.0378600095479573,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Inf,1,1.0630290366705302,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Proj,1,1.0630895266683293,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Cont,2,1.073919304273122,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Inf,2,1.1095763689522182,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Proj,2,1.109578212995369,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Cont,3,1.1456252014924158,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Cont,4,1.1663534460478795,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Inf,3,1.1854140846399706,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Proj,3,1.1854141295817022,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Inf,4,1.202899739515951,26,10
+1985,diag & unequal,1,individual,sardRec,resid.Proj,4,1.2028997495829508,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Naiv,4,0.5553741196598683,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Naiv,5,0.6525904711807022,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Naiv,3,0.6754324009282531,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Naiv,2,0.8419148712064745,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Cont,5,0.8556309937361276,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Inf,5,0.8818189953843664,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Proj,5,0.881818995703493,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Naiv,1,0.9900503663633675,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Cont,1,1.0378600095479573,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Inf,1,1.0630290366705302,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Proj,1,1.0630895266683293,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Cont,2,1.073919304273122,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Inf,2,1.1095763689522182,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Proj,2,1.109578212995369,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Cont,3,1.1456252014924158,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Cont,4,1.1663534460478795,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Inf,3,1.1854140846399706,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Proj,3,1.1854141295817022,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Inf,4,1.202899739515951,26,10
+1985,diag & unequal,1,peel & variable combined,total,resid.Proj,4,1.2028997495829508,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Cont,1,1.0378600095479573,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Cont,1,1.0378600095479573,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Cont,2,1.073919304273122,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Cont,2,1.073919304273122,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Cont,3,1.1456252014924158,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Cont,3,1.1456252014924158,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Cont,4,1.1663534460478795,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Cont,4,1.1663534460478795,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Cont,5,0.8556309937361276,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Cont,5,0.8556309937361276,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Inf,1,1.0630290366705302,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Inf,1,1.0630290366705302,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Inf,2,1.1095763689522182,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Inf,2,1.1095763689522182,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Inf,3,1.1854140846399706,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Inf,3,1.1854140846399706,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Inf,4,1.202899739515951,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Inf,4,1.202899739515951,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Inf,5,0.8818189953843664,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Inf,5,0.8818189953843664,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Naiv,1,0.9900503663633675,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Naiv,1,0.9900503663633675,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Naiv,2,0.8419148712064745,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Naiv,2,0.8419148712064745,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Naiv,3,0.6754324009282531,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Naiv,3,0.6754324009282531,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Naiv,4,0.5553741196598683,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Naiv,4,0.5553741196598683,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Naiv,5,0.6525904711807022,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Naiv,5,0.6525904711807022,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Proj,1,1.0630895266683293,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Proj,1,1.0630895266683293,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Proj,2,1.109578212995369,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Proj,2,1.109578212995369,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Proj,3,1.1854141295817022,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Proj,3,1.1854141295817022,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Proj,4,1.2028997495829508,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Proj,4,1.2028997495829508,26,10
+1985,diag & unequal,1,peel then variable,totRMSE,resid.Proj,5,0.881818995703493,26,10
+1985,diag & unequal,1,peel then variable,meanRMSE,resid.Proj,5,0.881818995703493,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Naiv,4,0.5414887349785729,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Naiv,3,0.6606788377200515,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Naiv,5,0.6626827302491793,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Naiv,2,0.8234258342608617,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Cont,5,0.8358285248835119,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Inf,5,0.876217693614879,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Proj,5,0.8762176971135474,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Naiv,1,0.9750316501348201,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Cont,1,1.00795430056054,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Cont,2,1.038241093052583,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Inf,1,1.0431381513166627,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Proj,1,1.0432777977811871,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Inf,2,1.0895224375532606,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Proj,2,1.0895282826279322,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Cont,3,1.112049858592623,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Cont,4,1.133578320518575,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Inf,3,1.1709005470097036,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Proj,3,1.1709008341994485,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Inf,4,1.1886370275038172,26,10
+1985,custom R by SDM,1,individual,sardRec,resid.Proj,4,1.1886370870360083,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Naiv,4,0.5414887349785729,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Naiv,3,0.6606788377200515,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Naiv,5,0.6626827302491793,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Naiv,2,0.8234258342608617,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Cont,5,0.8358285248835119,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Inf,5,0.876217693614879,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Proj,5,0.8762176971135474,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Naiv,1,0.9750316501348201,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Cont,1,1.00795430056054,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Cont,2,1.038241093052583,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Inf,1,1.0431381513166627,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Proj,1,1.0432777977811871,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Inf,2,1.0895224375532606,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Proj,2,1.0895282826279322,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Cont,3,1.112049858592623,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Cont,4,1.133578320518575,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Inf,3,1.1709005470097036,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Proj,3,1.1709008341994485,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Inf,4,1.1886370275038172,26,10
+1985,custom R by SDM,1,peel & variable combined,total,resid.Proj,4,1.1886370870360083,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Cont,1,1.00795430056054,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Cont,1,1.00795430056054,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Cont,2,1.038241093052583,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Cont,2,1.038241093052583,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Cont,3,1.112049858592623,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Cont,3,1.112049858592623,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Cont,4,1.133578320518575,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Cont,4,1.133578320518575,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Cont,5,0.8358285248835119,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Cont,5,0.8358285248835119,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Inf,1,1.0431381513166627,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Inf,1,1.0431381513166627,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Inf,2,1.0895224375532606,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Inf,2,1.0895224375532606,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Inf,3,1.1709005470097036,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Inf,3,1.1709005470097036,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Inf,4,1.1886370275038172,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Inf,4,1.1886370275038172,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Inf,5,0.876217693614879,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Inf,5,0.876217693614879,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Naiv,1,0.9750316501348201,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Naiv,1,0.9750316501348201,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Naiv,2,0.8234258342608617,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Naiv,2,0.8234258342608617,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Naiv,3,0.6606788377200515,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Naiv,3,0.6606788377200515,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Naiv,4,0.5414887349785729,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Naiv,4,0.5414887349785729,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Naiv,5,0.6626827302491793,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Naiv,5,0.6626827302491793,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Proj,1,1.0432777977811871,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Proj,1,1.0432777977811871,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Proj,2,1.0895282826279322,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Proj,2,1.0895282826279322,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Proj,3,1.1709008341994485,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Proj,3,1.1709008341994485,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Proj,4,1.1886370870360083,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Proj,4,1.1886370870360083,26,10
+1985,custom R by SDM,1,peel then variable,totRMSE,resid.Proj,5,0.8762176971135474,26,10
+1985,custom R by SDM,1,peel then variable,meanRMSE,resid.Proj,5,0.8762176971135474,26,10
+1985,diag & equal,1,individual,sardRec,resid.Naiv,4,0.5230348812453525,26,10
+1985,diag & equal,1,individual,sardRec,resid.Naiv,3,0.636000393323153,26,10
+1985,diag & equal,1,individual,sardRec,resid.Naiv,5,0.7192966193995383,26,10
+1985,diag & equal,1,individual,sardRec,resid.Cont,5,0.7978930295177791,26,10
+1985,diag & equal,1,individual,sardRec,resid.Naiv,2,0.8081787933512269,26,10
+1985,diag & equal,1,individual,sardRec,resid.Inf,5,0.8534152490941639,26,10
+1985,diag & equal,1,individual,sardRec,resid.Proj,5,0.8534153723657586,26,10
+1985,diag & equal,1,individual,sardRec,resid.Naiv,1,0.9507954098131471,26,10
+1985,diag & equal,1,individual,sardRec,resid.Cont,1,0.9629326361180567,26,10
+1985,diag & equal,1,individual,sardRec,resid.Cont,2,0.9800540845787975,26,10
+1985,diag & equal,1,individual,sardRec,resid.Inf,1,1.0164252441211041,26,10
+1985,diag & equal,1,individual,sardRec,resid.Proj,1,1.017184046157776,26,10
+1985,diag & equal,1,individual,sardRec,resid.Inf,2,1.0460849041630735,26,10
+1985,diag & equal,1,individual,sardRec,resid.Proj,2,1.0461313374197676,26,10
+1985,diag & equal,1,individual,sardRec,resid.Cont,3,1.050365211862669,26,10
+1985,diag & equal,1,individual,sardRec,resid.Cont,4,1.0826149649869252,26,10
+1985,diag & equal,1,individual,sardRec,resid.Inf,3,1.1243134916132185,26,10
+1985,diag & equal,1,individual,sardRec,resid.Proj,3,1.1243158573119594,26,10
+1985,diag & equal,1,individual,sardRec,resid.Inf,4,1.1556830901901893,26,10
+1985,diag & equal,1,individual,sardRec,resid.Proj,4,1.1556843152705742,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Naiv,4,0.5230348812453525,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Naiv,3,0.636000393323153,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Naiv,5,0.7192966193995383,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Cont,5,0.7978930295177791,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Naiv,2,0.8081787933512269,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Inf,5,0.8534152490941639,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Proj,5,0.8534153723657586,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Naiv,1,0.9507954098131471,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Cont,1,0.9629326361180567,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Cont,2,0.9800540845787975,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Inf,1,1.0164252441211041,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Proj,1,1.017184046157776,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Inf,2,1.0460849041630735,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Proj,2,1.0461313374197676,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Cont,3,1.050365211862669,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Cont,4,1.0826149649869252,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Inf,3,1.1243134916132185,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Proj,3,1.1243158573119594,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Inf,4,1.1556830901901893,26,10
+1985,diag & equal,1,peel & variable combined,total,resid.Proj,4,1.1556843152705742,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Cont,1,0.9629326361180567,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Cont,1,0.9629326361180567,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Cont,2,0.9800540845787975,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Cont,2,0.9800540845787975,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Cont,3,1.050365211862669,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Cont,3,1.050365211862669,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Cont,4,1.0826149649869252,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Cont,4,1.0826149649869252,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Cont,5,0.7978930295177791,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Cont,5,0.7978930295177791,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Inf,1,1.0164252441211041,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Inf,1,1.0164252441211041,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Inf,2,1.0460849041630735,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Inf,2,1.0460849041630735,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Inf,3,1.1243134916132185,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Inf,3,1.1243134916132185,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Inf,4,1.1556830901901893,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Inf,4,1.1556830901901893,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Inf,5,0.8534152490941639,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Inf,5,0.8534152490941639,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Naiv,1,0.9507954098131471,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Naiv,1,0.9507954098131471,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Naiv,2,0.8081787933512269,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Naiv,2,0.8081787933512269,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Naiv,3,0.636000393323153,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Naiv,3,0.636000393323153,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Naiv,4,0.5230348812453525,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Naiv,4,0.5230348812453525,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Naiv,5,0.7192966193995383,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Naiv,5,0.7192966193995383,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Proj,1,1.017184046157776,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Proj,1,1.017184046157776,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Proj,2,1.0461313374197676,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Proj,2,1.0461313374197676,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Proj,3,1.1243158573119594,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Proj,3,1.1243158573119594,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Proj,4,1.1556843152705742,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Proj,4,1.1556843152705742,26,10
+1985,diag & equal,1,peel then variable,totRMSE,resid.Proj,5,0.8534153723657586,26,10
+1985,diag & equal,1,peel then variable,meanRMSE,resid.Proj,5,0.8534153723657586,26,10

@@ -1,0 +1,10 @@
+#V3.30.15.09-safe;_2020_07_06;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_12.0
+#Stock Synthesis (SS) is a work of the U.S. Government and is not subject to copyright protection in the United States.
+#Foreign copyrights may apply. See copyright.txt for more information.
+Thu Mar 13 16:44:07 2025
+
+settle_month is less than spawn_month, so logical age at settlement calculated to be: 1  for settle_time 1.  Does not match read value of 0 are you sure? 
+setting in starter does not request all priors, and 5 parameters have priors and are not estimated, so their prior not included in obj_fun.
+setting positive forecast relF for forecast only fleet: 1
+setting positive forecast relF for forecast only fleet: 2
+ Fmsy is <1/3 of Fspr are you sure?  check for convergence 

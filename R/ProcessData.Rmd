@@ -22,6 +22,7 @@ library(sf)
 library(stars)
 library(cubelyr)
 library(r4ss)
+library(units)
 ```
 
 # California Current Integrated Ecosystem Assessment data
@@ -301,12 +302,31 @@ transport <- bind_rows(nearshoreTrans, nearTransNRT) %>%
                                           month %in% c(12,1,2) ~ "winter")) %>%
                 group_by(year, seas) %>%
                 summarize(avgNearshTran = mean(nearshTrans)) %>% 
-                # ggplot(aes(x = year, y = avgNearshTran, color = season)) +
-                # geom_line()
         
                 pivot_wider(names_from = seas, names_prefix = "avgNearTrans",
                             values_from = avgNearshTran) %>%
                 full_join(y = transport, by = "year")
+
+transport %>% pivot_longer(cols = -year) %>%
+  ggplot(aes(x = year, y = value)) +
+    geom_line() + 
+    facet_wrap(~name)
+
+# create proportional offshore:nearshore flow index
+#!!Note: this isn't a continuous metric:
+#  - switches to negative when nearshore flow has net positive (northward) direction
+#  - also only works if offshore flow is negative (southward)
+#  - Sqrt transform removes some years with high positive northward flow
+transport <- transport %>% mutate(sprRelOffTrans = as.numeric(avgOffTransspring/(avgOffTransspring+avgNearTransspring)),
+                                  sumRelOffTrans = as.numeric(avgOffTranssummer/(avgOffTranssummer+avgNearTranssummer)),
+                                  sprRelOffTrans = sqrt(sprRelOffTrans), # deal with some of the skewness
+                                  sumRelOffTrans = sqrt(sumRelOffTrans),
+                                  sumRelOffTrans = case_when(is.nan(sumRelOffTrans) ~ 0,
+                                                             TRUE ~ sumRelOffTrans))
+transport %>% pivot_longer(cols = c(sprRelOffTrans, sumRelOffTrans)) %>%
+  ggplot(aes(x = year, y = value)) +
+    geom_line() + 
+    facet_wrap(~name)
 ```
 
 # Larval indices
@@ -353,6 +373,58 @@ yoySLiDERS %>% group_by(Season) %>% summarize(avgN = mean(ns),
 yoySLiDERS %>% filter(Season == "2-Su") %>%
   ggplot(aes(x = altYear, y = xn)) +
   geom_line()
+```
+
+Common thresher shark stomach contents from Antonella Preti (6/12/2025)
+```{r}
+thresher <- readxl::read_xlsx(path = paste0(datPath, "SWORDFISH_CCTD_FINAL_robert.xlsx"),
+                              sheet = "Predator_Information")
+shkCollections <- readxl::read_xlsx(path = paste0(datPath, "SWORDFISH_CCTD_FINAL_robert.xlsx"),
+                              sheet = "Collection_Information")
+preyComp <- readxl::read_xlsx(path = paste0(datPath, "SWORDFISH_CCTD_FINAL_robert.xlsx"),
+                              sheet = "Prey_Composition")
+preyComp <- preyComp %>% filter(Scientific_Name == "Sardinops sagax") %>% 
+              select(Predator_ID, Prey_ID, Scientific_Name, Prey_N)
+
+thresher <- thresher %>% left_join(y = shkCollections, by = "Collection_ID") %>% 
+              select(Collection_ID, Predator_ID, Predator_Species, Month, Year, Region) %>%
+              left_join(y = preyComp, by = "Predator_ID") %>%
+              mutate(Prey_N = case_when(is.na(Prey_N) ~ 0,
+                                        TRUE ~ Prey_N),
+                     Month = as.numeric(Month),
+                     Year = as.numeric(Year))
+
+prevThresher <- readxl::read_xlsx(path = paste0(datPath, "Diet_Data_Preti_110320_FINAL_SUBMITTED.xlsx"),
+                              sheet = "Predator_Information")
+prevCollections <- readxl::read_xlsx(path = paste0(datPath, "Diet_Data_Preti_110320_FINAL_SUBMITTED.xlsx"),
+                              sheet = "Collection_Information")
+prevPreyComp <- readxl::read_xlsx(path = paste0(datPath, "Diet_Data_Preti_110320_FINAL_SUBMITTED.xlsx"),
+                              sheet = "Prey_Composition")
+prevPreyComp <- prevPreyComp %>% filter(Scientific_Name == "Sardinops sagax") %>% 
+                  select(Predator_ID, Prey_ID, Scientific_Name, Prey_N)
+
+prevThresher <- prevThresher %>% filter(Predator_Species == "Common Thresher Shark") %>%
+                  left_join(y = prevCollections, by = "Collection_ID") %>% 
+                  select(Collection_ID, Predator_ID, Predator_Species, Month, Year, Region) %>%
+                  left_join(y = prevPreyComp, by = "Predator_ID") %>%
+                  mutate(Prey_N = case_when(is.na(Prey_N) ~ 0,
+                                            TRUE ~ Prey_N))
+
+thresher <- bind_rows(thresher, prevThresher) %>% filter(Region != "NorCal, OR, WA") %>%
+              mutate(Year = case_when(Month == 1 ~ Year - 1,
+                                      TRUE ~ Year)) %>%
+              group_by(Year) %>% 
+              summarize(totSard = sum(Prey_N),
+                        nStomachs = n(),
+                        meanSard = mean(Prey_N),
+                        nZeros = sum(Prey_N==0)) %>%
+              mutate(meanPosSard = totSard/(nStomachs - nZeros))
+
+thresher %>% select(Year, totSard, meanSard, meanPosSard) %>% 
+  pivot_longer(cols = -Year, names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = Year, y = log(value))) +
+  geom_line() +
+  facet_wrap(~variable, scales = "free_y")
 ```
 
 # Weight-at-age data
@@ -404,6 +476,39 @@ sardSSBwt %>% ggplot(aes(x = year, y = meanSSBwt, color = seas)) +
   facet_wrap(~seas, scales = "free_y") +
   labs(y = "Mean SSB weight (g)")
 
+```
+
+Weight-length residuals using data from Caitlin Allen Akselrud 6/2/2025
+```{r}
+atBiolDat <- read_csv(file= paste0(datPath, "raw_trawl_specimen_data.csv"))
+
+# get estimated length intervals, assuming extra
+lengths <- data.frame(lenSL = seq(from = min(atBiolDat$standardLength_mm, na.rm = TRUE), 
+                                  to = max(atBiolDat$standardLength_mm, na.rm = TRUE), 
+                                  by = 1))
+# convert to total length mm 
+lengths$lenTL <- atm::convert_length(scientificName = "Sardinops sagax",
+                                     L.in = lengths$lenSL, 
+                                     from = "SL", to = "TL")
+
+lengths$weight_est <- atm::estimate_weight(scientificName = "Sardinops sagax", 
+                                           season = 1, model.type = "GLM", 
+                                           totalLength_mm = lengths$lenTL)
+
+atBiolDat <- atBiolDat %>% left_join(y = lengths, by = c("standardLength_mm" = "lenSL")) %>%
+                mutate(year = year(final_date),
+                       wtResid = weightg - weight_est,
+                       condK = weightg/(lenTL^3)) %>%
+                filter(sex == "female", standardLength_mm >= 160) %>%
+                group_by(year) %>%
+                summarize(meanResid = mean(wtResid, na.rm = TRUE),
+                          sdResid = sd(wtResid, na.rm = TRUE),
+                          meanK = mean(condK, na.rm = TRUE))
+
+atBiolDat %>% pivot_longer(cols = -year, names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = year, y = value)) +
+  geom_line() +
+  facet_wrap(~variable, scales = "free_y")
 ```
 
 # Zooplankton data
@@ -540,7 +645,7 @@ nemuroZ <- nemuroZ %>% filter(GCM == "HIST") %>%
               pivot_wider(names_from = zone, values_from = c(PS, PL, ZS, ZM, ZL))
 ```
 
-Spring Copepoda pacificus
+Spring Calanus pacificus
 ```{r}
 spCpacificus <- read_csv(paste0(datPath, "Spring copepod community for Andrew 20221116.csv"))
 spCpacificus <- spCpacificus %>% filter(Species_new == "Calanus pacificus")
@@ -897,6 +1002,10 @@ yoySLiDERS <- yoySLiDERS %>% filter(Season == "2-Su") %>%
                        yoySardSL = xn) %>%
                 select(year, yoySardSL)
 
+thresher <- thresher %>% select(Year, meanPosSard) %>%
+              rename(year = Year,
+                     posCThSk = meanPosSard)
+
 # # take only small zooplkn groups in spring for larvae forage
 # zooplkn <- zooplkn %>% group_by(Class, year, seas) %>%
 #               summarize(meanZooplkn = mean(`Carbon Biomass Sum (mgC m-2)`)) %>%
@@ -932,19 +1041,18 @@ recrDat <- recrDat %>% full_join(indxGAM, by = "year") %>%
               # full_join(copMeanSize, by = "year") %>%
               # full_join(naupMeanSize, by = "year") %>%
               # full_join(copGAM, by = "year") %>%
-              # full_join(nemuroZ, by = "year") %>%
+              full_join(nemuroZ, by = "year") %>%
               full_join(spCpacificus, by = "year") %>%
               full_join(spawnTS, by = "year") %>%
               full_join(sardSpawnDays, by = "year") %>%
               full_join(nurseTS, by = "year") %>%
               full_join(outSS3, by = "year") %>%
-              # full_join(anchBio, by = "year") %>%
               # full_join(sardBio, by = "year") %>%
               full_join(sst, by = "year") %>%
               full_join(transport, by = "year") %>%
               full_join(yoySLiDERS, by = "year") %>%
-  
-  
+              full_join(thresher, by = "year") %>%
+              full_join(atBiolDat, by = "year") %>%
               select(-c(sprCalCOFILarvalSardine,
                         sprCalCOFISouthernMesopels,
                         sardGAMcoef, mesopelGAMcoef))

@@ -9,7 +9,10 @@ source("R/OSAResids.R")
 
 # read prepped dataset
 datDFA <- read_csv("../SardineRecruitIndex/Data/recrDFAdat.csv")
-
+# load(file = "Data/indicatorSetNames_LUSI39spawnHabsprSST.RData")
+# load(file = "Data/indicatorSetNames_STI39spawnHabHCI.RData")
+load(file = "Data/indicatorSetNames_STI39spawnHabsprSST.RData")
+# load(file = "Data/indicatorSetNames_LUSI39spawnHabHCI.RData")
 # Assess LFOIC for last 10 years of data
 peels <- 10
 
@@ -17,17 +20,8 @@ peels <- 10
 # Data for full historical dataset ---------------------------------------
 
 # remove unused indicators
-allDat <- datDFA %>% select(-c(NCOPsummer,
-                               SCOPsummer,
-                               anchBioSmrySeas1,
-                               anchBioSmrySeas2,
-                               # Potential redundant variables:
-                               # CUTI_39N, 
-                               # OC_LUSI_36N,
-                               # OC_STI_36N,
-                               summerSST,
-                               SCOPspring,
-                               SCOPsummerlag1)) 
+allDat <- datDFA %>% filter(year %in% 1985:2021) %>%
+            select(all_of(setNames))#, -anchBioSmrySeas1) 
 
 datNames <- names(allDat)[-1]
 
@@ -36,57 +30,22 @@ Rcustom <- matrix(list(0),length(datNames),length(datNames))
 diag(Rcustom) <- c("COP", "COP", 
                    "BEUTI", "BEUTI", 
                    "CUTI", "CUTI",
-                   "HCI", 
-                   "LUSI", "LUSI", "LUSI",
-                   "STI", "STI", "STI",
-                   "RREAS", "RREAS",
-                   "SSWI", "SSWI",
-                   "CalCOFI", "CalCOFI", 
+                   "LUSI",
+                   "STI",
+                   "RREAS", "RREAS", 
                    "WAA", "WAA",
-                   "CPac", 
-                   # "SDM", "SDM", "TIME", "TIME", "SDM", "SDM",
-                   "sardSDM", "sardSDM", 
-                   "sardlarvSDM", 
+                   "NEMURO", "NEMURO",
+                   "sardlarvSDM",
                    "sardRec",
-                   # "anchBio", #"anchBio",
+                   "anchBio",
                    "SST",
                    "Transp", "Transp", "Transp", "Transp",
-                   "SLiDERS")
+                   "condK",
+                   "STI",#"LUSI",#
+                   "sardSDM", 
+                    
+                   "SST")#"HCI")#
 
-# # Data for historical projection dataset ---------------------------------------
-# 
-# # remove contemporary adult biomass with recruits, should be S2 biomass -> S1 recs
-# allDat <- datDFA%>% select(c("year", "HCI_R3", "HCI_R4", "BEUTI_33N", "BEUTI_39N",
-#                              "CUTI_33N", "CUTI_39N",
-#                              "OC_LUSI_33N", "OC_LUSI_36N", "OC_LUSI_39N", "OC_STI_33N",
-#                              "OC_STI_36N", "OC_STI_39N", "ZM_NorCal", "ZM_SoCal",
-#                              "sardSpawnHab",
-#                              "anchSpawnHab", "daysAbove5pct", "daysAbove40pct",
-#                              "sardNurseHab", "anchNurseHab",
-#                              "springSST", "summerSST", "avgNearTransspring",
-#                              "avgNearTranssummer",
-#                              "avgOffTransspring", "avgOffTranssummer",
-#                              # Variables of interest
-#                              "sardRec", "anchRec", "sardLarv",
-#                              "anchLarv", "anchYoY"))
-# 
-# datNames <- names(allDat)[-1]
-# 
-# # Create a custom R obs error matrix assuming each data source has it's own common error
-# Rcustom <- matrix(list(0),length(datNames),length(datNames))
-# diag(Rcustom) <- c("HCI", "HCI",
-#                    "BEUTI", "BEUTI",
-#                    "CUTI", "CUTI",
-#                    "LUSI", "LUSI", "LUSI",
-#                    "STI", "STI", "STI",
-#                    "NEMURO", "NEMURO",
-#                    "sardSDM", "anchSDM", "sardSDM", "anchSDM",
-#                    "sardlarvSDM", "anchlarvSDM",
-#                    "SST", "SST",
-#                    "Transp", "Transp", "Transp", "Transp",
-#                    "sardRec", "anchRec",
-#                    "CalCOFI", "CalCOFI",
-#                    "RREAS")
 
 
 # LFOIC  ------------------------------------------------------------------
@@ -97,19 +56,19 @@ xvModSel <- tibble(initYr = 0,
                    mTrends = 0)[0,]
 
 # loop over initial dates
-for(y in c(#1980, 1985, 
-           1990)){
+for(y in c(#1980, 1990
+            1985)){
   cat("\n")
   print(y)
   
   # subset from 1980, 1985, or 1990 to 2023
-  initDat <- allDat %>% filter(year %in% y:2023)
+  initDat <- allDat %>% filter(year %in% y:2021)
   
   # transpose for MARSS formatting
   itDat <- initDat %>% select(-year) %>% t()
   
   # loop over number of trends
-  for(m in 4:1){
+  for(m in 5:1){
     cat("\n Trends: ", m)
     cat("\n Diagonal and equal R matrix")
     itEqRMSE <- LFOXV(dfaDat = itDat,
@@ -162,10 +121,10 @@ xvModSel <- xvModSel %>% mutate(nIndices = length(datNames),
 
 # Calculate Persistence Prediction RMSE -----------------------------------
 
-datLen <- length(1990:2023)
+datLen <- length(1985:2021)
 
 perstResids <- allDat %>% select(year, sardRec) %>% 
-                  filter(year >= 1990, year < 2024) %>% 
+                  filter(year >= 1985, year < 2022) %>% 
                   mutate(zscoreSardRec = zscore(sardRec),
                          perst1Sard = c(NA, zscoreSardRec[1:(datLen-1)]),
                          resid1Sard = zscoreSardRec - perst1Sard,
@@ -182,7 +141,7 @@ perstResids <- allDat %>% select(year, sardRec) %>%
                   pivot_longer(cols = -year, names_prefix = "resid", names_sep = 1, 
                                names_to = c("predHoriz", "variable"), 
                                values_to = "perstResid") %>% 
-                  filter(year %in% 2014:2023) %>%
+                  filter(year %in% 2012:2021) %>%
                   group_by(variable, predHoriz) %>%
                   summarize(sosRes = sum(perstResid^2, na.rm = TRUE),
                             peels = sum(!is.na(perstResid))) %>%
@@ -193,21 +152,32 @@ perstResids <- allDat %>% select(year, sardRec) %>%
 
 
 
-# write_csv(xvModSel, file = "out/historicalModelSelection_noAnch.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_NoAnch_LUSIspawnHabSST.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_Anch_STIspawnHabHCI.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_Anch_LUSIspawnHabHCI.csv")
+# write_csv(xvModSel, file = "out/historicalModelSelection_Anch_STIspawnHabSST.csv")
 
-xvModSel <- read_csv("out/historicalModelSelection_noAnch.csv") %>%
-              mutate(dataset = "noAnch")
-testAnch <- read_csv("out/fullHistoricalModelSelection.csv") %>%
+# xvModSel <- read_csv("out/historicalModelSelection_noAnch_LUSIspawnHabSST.csv") %>%
+#               mutate(dataset = "noAnch")
+# testAnch <- read_csv("out/historicalModelSelection_Anch_LUSIspawnHabSST.csv") %>%
+#               mutate(dataset = "Anch")
+
+xvModSel <- read_csv("out/historicalModelSelection_Anch_STIspawnHabSST.csv") %>%
               mutate(dataset = "Anch")
 
-xvModSel <- bind_rows(xvModSel, testAnch)
+# xvModSel <- bind_rows(xvModSel, testAnch)
 xvModSel <- bind_rows(xvModSel, perstResids)
 # plot out best performing model structures over prediction horizons
 xvModSel %>% filter(resType %in% "resid.Inf", variable %in% c("Sard", "sardRec")) %>%
   ggplot(aes(x = predHoriz, y = RMSE)) +
-  geom_line(aes(color = as.character(mTrends))) + #paste(mTrends, Rstructure, sep = "-"))) +
+  geom_line(aes(color = as.character(mTrends)), linewidth = 1) + #paste(mTrends, Rstructure, sep = "-"))) +
   geom_point(data = perstResids %>% filter(!variable == "Mean")) +
   geom_hline(yintercept = perstResids %>% filter(variable == "Mean") %>% pull(RMSE)) + 
-  scale_color_viridis_d() +
-  facet_grid(cols= vars(Rstructure), rows = vars(dataset))
-  
+  # scale_color_viridis_d() +
+  facet_grid(cols= vars(Rstructure), rows = vars(dataset), scales = "free_y")
+  # facet_wrap(~Rstructure)
+
+xvModSel %>% filter(resType %in% c("resid.Inf", "resid.Perst"), 
+                    variable %in% c("Sard", "sardRec"),
+                    predHoriz == 2) %>%
+  arrange(RMSE)
