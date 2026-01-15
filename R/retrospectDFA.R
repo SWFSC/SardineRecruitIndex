@@ -1,6 +1,10 @@
 # Code from Alex Jensen to re-create 2024 benchmark retrospective analysis,
 # modified to apply to the As-Data DFA implementation
 
+# Note: for final analysis, final two years of assessment removed (endyr = 2021)
+#   to account for highly uncertain recruitment estimates in those years. 
+#   AsNowcast model modified to end in 2021 for retrospective and reforecast analyses.
+
 # Necessary libs
 require(r4ss)
 require(tidyverse)
@@ -99,60 +103,100 @@ ChangeIndexRecDevs <- function(dfDFAExp, # data.frame of DFA expected rec devs
             skipfinished = FALSE)
 }
 
+
+# Refit DFA calibration without retrospective period ----------------------
+
+# read prepped dataset
+datDFA <- read_csv("../SardineRecruitIndex/Data/recrDFAdat.csv")
+load(file = "Data/indicatorSetNames_STI39spawnHabsprSST.RData")
+
+# subset for sardine DFA from 1985 to 2015 
+sardDat <- datDFA %>% filter(year %in% 1985:2015) %>%
+            select(all_of(setNames)) 
+datNames <- names(sardDat)[-1]
+# transpose for MARSS formatting
+sardDat <- sardDat %>% select(-year) %>% t()
+
+sardDFA <- MARSS(y = sardDat, 
+                 form = "dfa",
+                 method = "BFGS",
+                 inits = list(x0 = matrix(1, 1, 1)),
+                 z.score = TRUE,
+                 model = list( R = "diagonal and equal", 
+                               m = 1) # number of latent processes
+)
+
+# load DFA model fit
+# load(file = "out/marssFit_1trendDiagEq1985_2021Anch_SardRec.RData")
+
+# Get estimates over reforecast period
+# need to scale full dataset for residual calcs and 'newdata' input
+origDat <- datDFA %>% filter(year %in% 1985:2023) %>%
+              select(all_of(setNames), -year) %>% 
+              apply(., 2, scale, simplify = TRUE) %>% t()
+# create 'YStar' by removing last observation of 'sardRec' variables
+YStar <- origDat
+YStar["sardRec", (ncol(YStar)-7):ncol(YStar)] <- NA # remove obs from 2016-2023
+yExpctProj <- predict(object = sardDFA, n.ahead = 0, interval = "confidence", 
+                      newdata = list(t = 1:ncol(origDat),
+                                     y = YStar),
+                      type = 'ytt', x0 = "use.model")
+yExpctProj <- yExpctProj$pred %>%
+                mutate(t = t+1984) %>% 
+                filter(.rownames == "sardRec")
+
+# # For now use naive innovations
+# yExpNaive <- predict(object = sardDFA, interval = "confidence", 
+#                      n.ahead = 1, type = 'ytT')
+# 
+# # extract estimated historical trends
+# yExpHist <- fitted(sardDFA, type = "ytT", interval = "confidence") %>%
+#   mutate(t = t+1989)
+# yExpHist %>% filter(.rownames == "sardRec")
+# yExpNaive <- yExpNaive$pred %>%
+#   mutate(t = t+1989) %>% 
+#   filter(.rownames == "sardRec")
+# # For now, these are the same as the 2023 values because no other indicators are 
+# # informing the sardRec estimate in predict()
 # -------------------------------------------------------------------------
 
-cbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 # Settings for retrospective analysis
-yrs_rm <- c(0:-5)
+yrs_rm <- c(0:-7)
 max_yr <- 2023
 
 # Run the retrospective analyses
 # retro(dir = "scenarioModels/benchmarkDFA_AsData/", # ID base directory
 # retro(dir = "scenarioModels/Pacific sardine 2024 benchmark/", # ID base directory
-retro(dir = "scenarioModels/benchmarkDFA_AsNowcast/", # ID base directory
+retro(dir = "scenarioModels/Autocorrelated recruitment/", # ID base directory
+# retro(dir = "scenarioModels/benchmarkDFA_AsNowcast/", # ID base directory
       oldsubdir = "", # ID input files
       newsubdir = "Retro_runs", # ID new place to store retro runs within dir
       subdirstart = "retro",
       years = yrs_rm, # years relative to ending year of model
       exe = "C:/Users/r.wildermuth/Documents/SS3.30/ss3_win.exe")
-
-# retrospective forecast for As-Forecast application ---------------------------
-retro(dir = "scenarioModels/benchmarkDFA_AsForecast/", # ID base directory
-      oldsubdir = "", # ID input files
-      newsubdir = "Retro_runs", # ID new place to store retro runs within dir
-      subdirstart = "retro",
-      years = yrs_rm, # years relative to ending year of model
-      exe = "C:/Users/r.wildermuth/Documents/SS3.30/ss3_win.exe")
-
-# run retro() first to get model directories set up, but then need to modify 
-# input files as in useDFAAsForecast and re-run estimation before continuing
-# load DFA model fit
-load(file = "out/marssFit_1990to2023_noAnch_1trend_EqlVar.RData")
-
-# For now use naive innovations
-yExpNaive <- predict(object = sardDFA, interval = "confidence", 
-                     n.ahead = 1, type = 'ytT')
-
-# extract estimated historical trends
-yExpHist <- fitted(sardDFA, type = "ytT", interval = "confidence") %>%
-  mutate(t = t+1989)
-yExpHist %>% filter(.rownames == "sardRec")
-yExpNaive <- yExpNaive$pred %>%
-  mutate(t = t+1989) %>% 
-  filter(.rownames == "sardRec")
-# For now, these are the same as the 2023 values because no other indicators are 
-# informing the sardRec estimate in predict()
-
-# update assumed recruitments using DFA and re-run models
-for(i in yrs_rm) {
-  ChangeCtlRecDevs(dfDFAExp = yExpNaive, rmYr = i)
-}
 
 # update estimated recruitments using DFA and re-run models
 for(i in yrs_rm) {
-  ChangeIndexRecDevs(dfDFAExp = yExpNaive, rmYr = i)
+  ChangeIndexRecDevs(dfDFAExp = yExpctProj, rmYr = i)
 }
+
+# # retrospective forecast for As-Forecast application ---------------------------
+# retro(dir = "scenarioModels/benchmarkDFA_AsForecast/", # ID base directory
+#       oldsubdir = "", # ID input files
+#       newsubdir = "Retro_runs", # ID new place to store retro runs within dir
+#       subdirstart = "retro",
+#       years = yrs_rm, # years relative to ending year of model
+#       exe = "C:/Users/r.wildermuth/Documents/SS3.30/ss3_win.exe")
+# 
+# # run retro() first to get model directories set up, but then need to modify 
+# # input files as in useDFAAsForecast and re-run estimation before continuing
+# 
+# # update assumed recruitments using DFA and re-run models
+# for(i in yrs_rm) {
+#   ChangeCtlRecDevs(dfDFAExp = yExpNaive, rmYr = i)
+# }
+
 
 # Calculate Mohn's rho values ---------------------------------------------
 
@@ -161,10 +205,11 @@ for(i in yrs_rm) {
 # retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/benchmarkDFA_AsForecast/Retro_runs",
 retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/benchmarkDFA_AsNowcast/Retro_runs",
 # retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/Pacific sardine 2024 benchmark/Retro_runs",
+# retroModels <- SSgetoutput(dirvec = file.path("scenarioModels/Autocorrelated recruitment/Retro_runs",
                                               paste0("retro", yrs_rm)))
 retroSummary <- SSsummarize(retroModels) # summarize the model results
 endyrvec <- (retroSummary[["endyrs"]]+1) + yrs_rm # create a vector of the ending year for retrospective forecasts
-strtYrVec <- retroSummary[["endyrs"]] - 4 # Start years for retrospective forecasts
+strtYrVec <- retroSummary[["endyrs"]] - 6 # Start years for retrospective forecasts
 # Generate retrospective plots
 # Default
 
@@ -175,10 +220,11 @@ strtYrVec <- retroSummary[["endyrs"]] - 4 # Start years for retrospective foreca
 #                   plot = TRUE, # dont plot to default graphics device
 #                   plotdir = "scenarioModels/benchmarkDFA_AsData/Retro_runs")
 
+cbPalette <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 # Manual using ggplot and custom data processing
 biomass_retro <- retroSummary$quants %>%
-  rename_with(~as.character(abs(yrs_rm)), 1:6) %>%
+  rename_with(~as.character(abs(yrs_rm)), 1:8) %>%
   pivot_longer(1:length(yrs_rm), names_to="Years removed") %>%
   mutate(`Years removed`=as.numeric(`Years removed`)) %>%
   filter(substr(Label,1,9)=="SmryBio_2") %>%
@@ -190,7 +236,7 @@ p1 <- biomass_retro %>%
              color = as.character(`Years removed`))) +
   geom_point() +
   geom_line() + #theme_sleek() + 
-  theme(legend.position = c(.8, .8)) +
+  theme(legend.position.inside = c(.8, .8)) +
   # scale_y_continuous(label = comma) +
   ylab("Summary biomass (age-1+ mt)") + xlab("Model year")  +
   scale_color_manual(values = cbPalette) +
